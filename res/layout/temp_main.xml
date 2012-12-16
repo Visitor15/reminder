@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dip"
+        android:hint="TITLE"
+        android:ems="10" />
+
+    <TextView
+        android:id="@+id/tv_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dip"
+        android:text="CATEGORY" />
+
+    <Spinner
+        android:id="@+id/spinner_category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"
+        android:layout_marginBottom="16dip" />
+    
+        <TextView
+        android:id="@+id/tv_subcategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dip"
+        android:text="SUBCATEGORY" />
+
+    <Spinner
+        android:id="@+id/spinner_subcategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dip"
+        android:layout_marginRight="16dip"
+        android:layout_marginBottom="16dip" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:layout_margin="16dip"
+        android:hint="MESSAGE" />
+
+<!--     <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <CheckBox
+            android:id="@+id/cb_category_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use custom category color" />
+
+        <FrameLayout
+            android:id="@+id/color_sample_container"
+            android:layout_width="96dip"
+            android:layout_height="48dip" >
+        </FrameLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <CheckBox
+            android:id="@+id/cb_subcategory_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use custom subcategory color" />
+
+        <FrameLayout
+            android:id="@+id/color_sample_container"
+            android:layout_width="96dip"
+            android:layout_height="48dip" >
+        </FrameLayout>
+
+    </RelativeLayout> -->
+
+</LinearLayout>
