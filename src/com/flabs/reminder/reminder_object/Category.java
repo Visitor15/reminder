@@ -33,11 +33,6 @@ public class Category extends BaseCategory implements ICategory {
 	}
 
 	@Override
-	public int getColorAsInt() {
-		return color;
-	}
-
-	@Override
 	public void setCustomLabel(String label) {
 		this.customLabel = label;
 	}

@@ -47,7 +47,7 @@ public class MainActivity extends ReminderActivity {
 	}
 
 	protected void onBtnAddClicked() {
-		
+		String title = titleInput.getText().toString();
 	}
 
 	@Override

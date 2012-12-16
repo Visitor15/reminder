@@ -12,6 +12,4 @@ public interface IBaseCategory {
 	
 	int getColor();
 	
-	int getColorAsInt();
-	
 }
