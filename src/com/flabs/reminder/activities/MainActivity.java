@@ -40,10 +40,14 @@ public class MainActivity extends ReminderActivity {
 
 			@Override
 			public void onClick(View v) {
-				
+				onBtnAddClicked();
 			}
 			
 		});
+	}
+
+	protected void onBtnAddClicked() {
+		
 	}
 
 	@Override

@@ -6,11 +6,11 @@ public interface IBaseCategory {
 
 	void setLabel(String label);
 	
-	void setColor(Color color);
-	
 	void setColor(int color);
 	
-	Color getColor();
+	void setColor(String color);
+	
+	int getColor();
 	
 	int getColorAsInt();
 	

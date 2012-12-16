@@ -19,21 +19,21 @@ public class SubCategory extends BaseCategory implements ICategory {
 	}
 
 	@Override
-	public void setColor(Color color) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void setColor(int color) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Color getColor() {
+	public void setColor(String color) {
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+
+	@Override
+	public int getColor() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override
@@ -49,13 +49,13 @@ public class SubCategory extends BaseCategory implements ICategory {
 	}
 
 	@Override
-	public void setCustomColor(Color color) {
+	public void setCustomColor(int color) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void setCusomColor(int color) {
+	public void setCusomColor(String color) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -67,13 +67,7 @@ public class SubCategory extends BaseCategory implements ICategory {
 	}
 
 	@Override
-	public Color getCustomColor() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getCustomColorAsInt() {
+	public int getCustomColor() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -85,8 +79,9 @@ public class SubCategory extends BaseCategory implements ICategory {
 	}
 
 	@Override
-	public SubCategory fromBundle(Bundle bundle) {
+	public ICategory fromBundle(Bundle bundle) {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

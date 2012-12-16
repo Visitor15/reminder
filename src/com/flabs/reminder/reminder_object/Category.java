@@ -6,7 +6,7 @@ import android.os.Bundle;
 public class Category extends BaseCategory implements ICategory {
 
 	private String customLabel;
-	private Color customColor;
+	private int customColor;
 	
 	public Category() {
 		super();
@@ -14,68 +14,52 @@ public class Category extends BaseCategory implements ICategory {
 
 	@Override
 	public void setLabel(String label) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setColor(Color color) {
-		// TODO Auto-generated method stub
-		
+		this.label = label;
 	}
 
 	@Override
 	public void setColor(int color) {
-		// TODO Auto-generated method stub
-		
+		this.color = color;
+	}
+	
+	@Override
+	public void setColor(String color) {
+		this.color = Color.parseColor(color);
 	}
 
 	@Override
-	public Color getColor() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getColor() {
+		return color;
 	}
 
 	@Override
 	public int getColorAsInt() {
-		// TODO Auto-generated method stub
-		return 0;
+		return color;
 	}
 
 	@Override
 	public void setCustomLabel(String label) {
-		// TODO Auto-generated method stub
-		
+		this.customLabel = label;
 	}
 
 	@Override
-	public void setCustomColor(Color color) {
-		// TODO Auto-generated method stub
-		
+	public void setCustomColor(int color) {
+		this.customColor = color;
 	}
 
 	@Override
-	public void setCusomColor(int color) {
-		// TODO Auto-generated method stub
-		
+	public void setCusomColor(String color) {
+		this.customColor = Color.parseColor(color);
 	}
 
 	@Override
 	public String getCustomLabel() {
-		// TODO Auto-generated method stub
-		return null;
+		return customLabel;
 	}
 
 	@Override
-	public Color getCustomColor() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getCustomColorAsInt() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getCustomColor() {
+		return customColor;
 	}
 
 	@Override

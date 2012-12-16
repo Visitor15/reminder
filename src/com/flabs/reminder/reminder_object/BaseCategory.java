@@ -4,8 +4,8 @@ import android.graphics.Color;
 
 public abstract class BaseCategory implements IBaseCategory {
 
-	private String label;
-	private Color color;
+	protected String label;
+	protected int color;
 	
 	public BaseCategory() {
 		

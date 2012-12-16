@@ -1,21 +1,18 @@
 package com.flabs.reminder.reminder_object;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 public interface ICategory {
 
 	void setCustomLabel(String label);
 	
-	void setCustomColor(Color color);
+	void setCustomColor(int color);
 	
-	void setCusomColor(int color);
+	void setCusomColor(String color);
 	
 	String getCustomLabel();
 	
-	Color getCustomColor();
-	
-	int getCustomColorAsInt();
+	int getCustomColor();
 	
 	void toBundle(Bundle bundle);
 	

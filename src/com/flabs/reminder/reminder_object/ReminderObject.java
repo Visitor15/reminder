@@ -1,5 +1,7 @@
 package com.flabs.reminder.reminder_object;
 
+import com.flabs.reminder.util.EnvironmentVariables.ACTION;
+
 public class ReminderObject implements IReminderObject {
 
 	private String title;
@@ -7,6 +9,7 @@ public class ReminderObject implements IReminderObject {
 	private Category category;
 	private SubCategory subCategory;
 	private boolean isActivated;
+	private ACTION onRemindAction;
 	
 	public ReminderObject() {
 		
@@ -14,31 +17,61 @@ public class ReminderObject implements IReminderObject {
 
 	@Override
 	public void setTitle(String title) {
-		// TODO Auto-generated method stub
-		
+		this.title = title;
 	}
 
 	@Override
 	public void setMessage(String message) {
-		// TODO Auto-generated method stub
-		
+		this.message = message;
 	}
 
 	@Override
 	public void setCategory(Category category) {
-		// TODO Auto-generated method stub
-		
+		this.category = category;
 	}
 
 	@Override
 	public void setSubCategory(SubCategory subCategory) {
-		// TODO Auto-generated method stub
-		
+		this.subCategory = subCategory;
 	}
 
 	@Override
 	public void setActivatedState(boolean isActivated) {
-		// TODO Auto-generated method stub
-		
+		this.isActivated = isActivated;
+	}
+
+	@Override
+	public void setOnRemindAction(ACTION action) {
+		this.onRemindAction = action;
+	}
+
+	@Override
+	public String getTitle() {
+		return title;
+	}
+
+	@Override
+	public String getMessage() {
+		return message;
+	}
+
+	@Override
+	public Category getCategory() {
+		return category;
+	}
+
+	@Override
+	public SubCategory getSubCategory() {
+		return subCategory;
+	}
+
+	@Override
+	public boolean isActivated() {
+		return isActivated;
+	}
+
+	@Override
+	public ACTION getOnRemindAction() {
+		return onRemindAction;
 	}
 }
