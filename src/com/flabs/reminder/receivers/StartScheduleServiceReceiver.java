@@ -9,14 +9,14 @@ import android.content.Context;
 import android.content.Intent;
 
 public class StartScheduleServiceReceiver extends BroadcastReceiver{
-	
+
 	//30 seconds
-		private static final long REPEAT_TIME = 1000 * 30;
+	private static final long REPEAT_TIME = 1000 * 30;
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		
-		
+
+
 		AlarmManager service = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 		Intent i = new Intent(context, ReminderScheduleReceiver.class);
 		PendingIntent pending = PendingIntent.getBroadcast(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
@@ -26,12 +26,12 @@ public class StartScheduleServiceReceiver extends BroadcastReceiver{
 		//
 		// Fetch every 30 seconds
 		// InexactRepeating allows Android to optimize the energy consumption
-		service.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), REPEAT_TIME, pending);
-		
-		
-		
-//		Intent service = new Intent(context, ReminderListenerService.class);
-//	    context.startService(service);
+//		service.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), REPEAT_TIME, pending);
+
+
+
+		//		Intent service = new Intent(context, ReminderListenerService.class);
+		//	    context.startService(service);
 	}
 
 }

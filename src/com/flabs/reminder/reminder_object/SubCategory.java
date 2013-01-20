@@ -1,5 +1,12 @@
 package com.flabs.reminder.reminder_object;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
+
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -7,7 +14,7 @@ public class SubCategory extends BaseCategory implements ICategory {
 
 	private String customLabel;
 	private int customColor;
-	
+
 	public SubCategory() {
 		super();
 	}
@@ -48,6 +55,11 @@ public class SubCategory extends BaseCategory implements ICategory {
 	}
 
 	@Override
+	public String getLabel() {
+		return label;
+	}
+
+	@Override
 	public String getCustomLabel() {
 		return this.customLabel;
 	}
@@ -60,7 +72,7 @@ public class SubCategory extends BaseCategory implements ICategory {
 	@Override
 	public void toBundle(Bundle bundle) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -69,4 +81,33 @@ public class SubCategory extends BaseCategory implements ICategory {
 		return null;
 	}
 
+	public byte[] toBinary() {
+		final ByteArrayOutputStream os = new ByteArrayOutputStream();
+		try {
+			final ObjectOutputStream out = new ObjectOutputStream(os);
+			out.writeChars(getLabel());
+			out.writeChars(getCustomLabel());
+			out.writeInt(getColor());
+			out.writeInt(getCustomColor());
+			out.flush();
+		} catch (final IOException e) {
+		}
+
+		final byte[] res = os.toByteArray();
+
+		return res;
+	}
+	
+	public static SubCategory fromBinary(final byte[] byteArray) throws StreamCorruptedException, IOException {
+		final ByteArrayInputStream is = new ByteArrayInputStream(byteArray);
+		final ObjectInputStream in = new ObjectInputStream(is);
+		
+		SubCategory subCategory = new SubCategory();
+		subCategory.setLabel(in.readUTF());
+		subCategory.setCustomLabel(in.readUTF());
+		subCategory.setColor(in.readInt());
+		subCategory.setCustomColor(in.readInt());
+		
+		return subCategory;
+	}
 }

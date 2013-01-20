@@ -18,4 +18,5 @@ public interface ICategory {
 	
 	ICategory fromBundle(Bundle bundle);
 	
+	
 }

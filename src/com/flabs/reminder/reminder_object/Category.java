@@ -1,5 +1,13 @@
 package com.flabs.reminder.reminder_object;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+import com.metago.astro.log.MLog;
+
 import android.graphics.Color;
 import android.os.Bundle;
 
@@ -7,7 +15,7 @@ public class Category extends BaseCategory implements ICategory {
 
 	private String customLabel;
 	private int customColor;
-	
+
 	public Category() {
 		super();
 	}
@@ -21,7 +29,7 @@ public class Category extends BaseCategory implements ICategory {
 	public void setColor(int color) {
 		this.color = color;
 	}
-	
+
 	@Override
 	public void setColor(String color) {
 		this.color = Color.parseColor(color);
@@ -30,6 +38,11 @@ public class Category extends BaseCategory implements ICategory {
 	@Override
 	public int getColor() {
 		return color;
+	}
+
+	@Override
+	public String getLabel() {
+		return label;
 	}
 
 	@Override
@@ -60,12 +73,42 @@ public class Category extends BaseCategory implements ICategory {
 	@Override
 	public void toBundle(Bundle bundle) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public Category fromBundle(Bundle bundle) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public byte[] toBinary() {
+		final ByteArrayOutputStream os = new ByteArrayOutputStream();
+		try {
+			final ObjectOutputStream out = new ObjectOutputStream(os);
+			out.writeChars(getLabel());
+			out.writeChars(getCustomLabel());
+			out.writeInt(getColor());
+			out.writeInt(getCustomColor());
+			out.flush();
+		} catch (final IOException e) {
+		}
+
+		final byte[] res = os.toByteArray();
+
+		return res;
+	}
+	
+	public static Category fromBinary(final byte[] byteArray) {
+		final ByteArrayInputStream is = new ByteArrayInputStream(byteArray);
+		final ObjectInputStream in = new ObjectInputStream(is);
+		
+		Category category = new Category();
+		category.setLabel(in.readUTF());
+		category.setCustomLabel(in.readUTF());
+		category.setColor(in.readInt());
+		category.setCustomColor(in.readInt());
+		
+		return category;
 	}
 }

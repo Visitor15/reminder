@@ -18,6 +18,8 @@ public interface IReminderObject {
 	
 	public void setOnRemindAction(ACTION action);
 	
+	public void setHasDisplayedIn24Hours(boolean hasDisplayed);
+	
 	public String getTitle();
 	
 	public String getIconPath();
@@ -31,4 +33,9 @@ public interface IReminderObject {
 	public boolean isActivated();
 	
 	public ACTION getOnRemindAction();
+	
+	public boolean hasDisplayedIn24Hours();
+	
+	public byte[] toBinary();
+	
 }

@@ -2,6 +2,7 @@ package com.flabs.reminder.controllers;
 
 import android.content.Context;
 
+import com.flabs.reminder.database.DBManager;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class ReminderObjectBuilder {
@@ -32,4 +33,7 @@ public class ReminderObjectBuilder {
 		return reminderObj;
 	}
 	
+	public ReminderObject getReminderByTitle(String title) {
+		DBManager.getInstance(mContext).
+	}
 }

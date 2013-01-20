@@ -1,6 +1,8 @@
 package com.flabs.reminder.ui;
 
 
+import android.app.FragmentTransaction;
+
 import com.flabs.reminder.activities.ReminderActivity;
 
 public class TransparentDialogActivity extends ReminderActivity {

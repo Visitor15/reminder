@@ -12,4 +12,6 @@ public interface IBaseCategory {
 	
 	int getColor();
 	
+	String getLabel();
+	
 }
