@@ -43,6 +43,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name="com.flabs.reminder.ui.TransparentDialogActivity"
+            android:theme="@style/Theme.Transparent" >
+            <intent-filter>
+                <action android:name="com.flabs.reminder.display.reminder_dialog"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
