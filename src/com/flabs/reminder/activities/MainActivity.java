@@ -7,12 +7,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.flabs.mobile.reminder.R;
+import com.flabs.reminder.controllers.ReminderObjectBuilder;
+import com.flabs.reminder.database.DBManager;
+import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class MainActivity extends ReminderActivity {
 
 	public static final String TAG = "MainActivity";
 	
 	//UI Elements
+	EditText messageInput;
 	EditText titleInput;
 	Spinner category;
 	Spinner subCategory;
@@ -28,6 +32,7 @@ public class MainActivity extends ReminderActivity {
 
 	private void initVariables() {
 		titleInput = (EditText) findViewById(R.id.et_title);
+		messageInput = (EditText) findViewById(R.id.et_message);
 		category = (Spinner) findViewById(R.id.spinner_category);
 		subCategory = (Spinner) findViewById(R.id.spinner_subcategory);
 		btnAdd = (Button) findViewById(R.id.btn);
@@ -47,7 +52,13 @@ public class MainActivity extends ReminderActivity {
 	}
 
 	protected void onBtnAddClicked() {
-		String title = titleInput.getText().toString();
+		
+		ReminderObject mReminder = ReminderObjectBuilder.getInstance(this).createSimpleReminder();
+		
+		mReminder.setTitle(titleInput.getText().toString());
+		mReminder.setMessage(messageInput.getText().toString());
+		
+		DBManager.getInstance(this).insert(mReminder);
 	}
 
 	@Override

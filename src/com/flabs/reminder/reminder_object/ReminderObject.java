@@ -6,6 +6,7 @@ public class ReminderObject implements IReminderObject {
 
 	private String title;
 	private String message;
+	private String iconUriPath;
 	private Category category;
 	private SubCategory subCategory;
 	private boolean isActivated;
@@ -18,6 +19,11 @@ public class ReminderObject implements IReminderObject {
 	@Override
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	@Override
+	public void setIconPath(String iconPath) {
+		this.iconUriPath = iconPath;
 	}
 
 	@Override
@@ -48,6 +54,11 @@ public class ReminderObject implements IReminderObject {
 	@Override
 	public String getTitle() {
 		return title;
+	}
+	
+	@Override
+	public String getIconPath() {
+		return iconUriPath;
 	}
 
 	@Override

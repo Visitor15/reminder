@@ -1,14 +1,16 @@
+package com.flabs.reminder.database;
 
-
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.flabs.reminder.reminder_object.IReminderObject;
 import com.flabs.reminder.util.EnvironmentVariables;
 
 public class DBManager extends SQLiteOpenHelper {
 
-	private static final DBManager instance;
+	private static DBManager instance;
 	private static Context mContext;
 	
 	public static final DBManager getInstance(Context c) {
@@ -28,7 +30,6 @@ public class DBManager extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(final SQLiteDatabase db) {
-
 		db.execSQL(EnvironmentVariables.DATABASE.CREATE_MASTER_DATABASE_TABLE);
 
 
@@ -40,6 +41,18 @@ public class DBManager extends SQLiteOpenHelper {
 			//Initialize with the read only database.
 		}
 
+	}
+	
+	public long insert(IReminderObject reminderObj) {
+		return insert(reminderObj.getTitle(), reminderObj.getIconPath(), reminderObj);
+	}
+	
+	private long insert(final String title, final String iconPath, final IReminderObject reminderObj) {
+		ContentValues values = new ContentValues();
+		values.put(EnvironmentVariables.DATABASE.Columns.TITLE_NAME.name(), title);
+		values.put(EnvironmentVariables.DATABASE.Columns.ICON.name(), iconPath);
+		values.put(EnvironmentVariables.DATABASE.Columns.DATA_BLOB.name(), reminderObj.toString());
+		return getReadableDatabase().insert(EnvironmentVariables.DATABASE.MASTER_TABLE_NAME, null, values);
 	}
 
 	@Override

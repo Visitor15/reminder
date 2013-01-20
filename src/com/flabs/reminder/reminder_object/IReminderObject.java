@@ -6,6 +6,8 @@ public interface IReminderObject {
 
 	public void setTitle(String title);
 	
+	public void setIconPath(String iconPath);
+	
 	public void setMessage(String message);
 	
 	public void setCategory(Category category);
@@ -17,6 +19,8 @@ public interface IReminderObject {
 	public void setOnRemindAction(ACTION action);
 	
 	public String getTitle();
+	
+	public String getIconPath();
 	
 	public String getMessage();
 	

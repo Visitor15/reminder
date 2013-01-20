@@ -15,7 +15,7 @@ public final class R {
     }
     public static final class id {
         public static final int btn=0x7f060006;
-        public static final int editText1=0x7f060005;
+        public static final int et_message=0x7f060005;
         public static final int et_title=0x7f060000;
         public static final int spinner_category=0x7f060002;
         public static final int spinner_subcategory=0x7f060004;
