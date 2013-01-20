@@ -1,31 +1,26 @@
 package com.flabs.reminder.receivers;
 
-import java.util.Calendar;
-
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+
+import com.flabs.reminder.activities.MainActivity;
 
 public class ReminderScheduleReceiver extends BroadcastReceiver {
 
-	// Restart service every 30 seconds
-	  private static final long REPEAT_TIME = 1000 * 30;
+	public static final String TAG = "ReminderScheduleReceiver";
 	
+	
+
 	@Override
 	public void onReceive(Context c, Intent intent) {
-		AlarmManager service = (AlarmManager) c.getSystemService(Context.ALARM_SERVICE);
-		    Intent i = new Intent(c, StartScheduleServiceReceiver.class);
-		    PendingIntent pending = PendingIntent.getBroadcast(c, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
-		    Calendar cal = Calendar.getInstance();
-		    // Start 30 seconds after boot completed
-		    cal.add(Calendar.SECOND, 30);
-		    //
-		    // Fetch every 30 seconds
-		    // InexactRepeating allows Android to optimize the energy consumption
-		    service.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), REPEAT_TIME, pending);
-		
+
+		Log.d(TAG, "onReceive");
+
+		Intent mIntent = new Intent(c, MainActivity.class);
+		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		c.startActivity(mIntent);
 	}
 
 }
