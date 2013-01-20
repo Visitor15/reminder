@@ -18,10 +18,10 @@ public class ReminderListenerService extends Service {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	  @Override
-	  public synchronized int onStartCommand(final Intent intent, final int flags, final int startId) {
-	    return Service.START_NOT_STICKY;
-	  }
+
+	@Override
+	public synchronized int onStartCommand(final Intent intent, final int flags, final int startId) {
+		return Service.START_STICKY;
+	}
 
 }
