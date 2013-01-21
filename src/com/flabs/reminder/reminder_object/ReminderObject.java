@@ -155,12 +155,8 @@ public class ReminderObject implements IReminderObject {
 		
 		final int categoryBytesLength = in.readInt();
 		
-		Log.d("TAG", "NCC - CAT BYTE LENGTH: " + categoryBytesLength);
-		
 		final byte[] categoryBytes = new byte[categoryBytesLength];
 		in.read(categoryBytes);
-		
-		Log.d("TAG", "NCC - CAT BYTE BYTES: " + categoryBytes.length);
 		
 		reminderObj.setCategory(Category.fromBinary(categoryBytes));
 		
@@ -168,30 +164,6 @@ public class ReminderObject implements IReminderObject {
 		final byte[] subCategoryBytes = new byte[subCategoryBytesLength];
 		in.read(subCategoryBytes);
 		reminderObj.setSubCategory(SubCategory.fromBinary(subCategoryBytes));
-		
-//		final int sortBytesLen = in.readInt();
-//	      final byte[] sortBytes = new byte[sortBytesLen];
-//	      in.read(sortBytes);
-//	      dopt.sort = Sort.fromBinary(sortBytes);
-		
-
-//		final int categoryByteLength = in.readInt();
-//		int categoryObj = in.read();
-		//		ByteArrayOutputStream bos = new ByteArrayOutputStream() ;
-		//		ObjectOutputStream out = new ObjectOutputStream(bos);
-		//		out.writeObject(categoryObj);
-		//		reminderObj.setCategory(Category.fromBinary(bos.toByteArray()));
-
-//		final byte[] categoryBytes = new byte[categoryObj];
-		//		reminderObj.setCategory(Category.fromBinary());
-//		reminderObj.setCategory(Category.fromBinary(categoryBytes));
-
-//		reminderObj.setCategory(new Category());
-
-//		final int subCategoryByteLength = in.readInt();
-		//	    final byte[] subCategoryBytes = new byte[subCategoryByteLength];
-		//		reminderObj.setSubCategory(SubCategory.fromBinary(subCategoryBytes));
-//		reminderObj.setSubCategory(new SubCategory());
 
 		reminderObj.setHasDisplayedIn24Hours(in.readBoolean());
 
