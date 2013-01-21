@@ -3,7 +3,9 @@ package com.flabs.reminder.activities;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
+import java.util.Random;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +19,9 @@ import android.widget.TextView;
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.controllers.ReminderObjectBuilder;
 import com.flabs.reminder.database.DBManager;
+import com.flabs.reminder.reminder_object.Category;
 import com.flabs.reminder.reminder_object.ReminderObject;
+import com.flabs.reminder.reminder_object.SubCategory;
 
 public class MainActivity extends ReminderActivity {
 
@@ -112,6 +116,13 @@ public class MainActivity extends ReminderActivity {
 		category.setText(obj.getCategory().getLabel());
 		subCategory.setText(obj.getSubCategory().getLabel());
 		
+		if(obj.isActivated()) {
+			v.setBackgroundColor(Color.parseColor("#22000088"));
+		}
+		else {
+			v.setBackgroundColor(Color.parseColor("#22880000"));
+		}
+		
 		Log.d(TAG, "NCC - ADDING: " + title);
 		
 		container.addView(v);
@@ -125,6 +136,20 @@ public class MainActivity extends ReminderActivity {
 		
 		mReminder.setTitle(titleInput.getText().toString());
 		mReminder.setMessage(messageInput.getText().toString());
+		
+		Category category = new Category();
+		category.setLabel("Test category");
+		category.setCustomLabel("Test custom label");
+		
+		SubCategory subCategory = new SubCategory();
+		subCategory.setLabel("Test subcategory");
+		subCategory.setCustomLabel("Test custom subcategory label");
+		
+		mReminder.setCategory(category);
+		mReminder.setSubCategory(subCategory);
+		
+		Random ran = new Random();
+		mReminder.setActivatedState(ran.nextBoolean());
 		
 		Log.d(TAG, "NCC - DB IT RETURNED: " + DBManager.getInstance(this).insert(mReminder));
 	}
