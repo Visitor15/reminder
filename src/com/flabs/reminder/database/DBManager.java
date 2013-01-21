@@ -69,30 +69,34 @@ public class DBManager extends SQLiteOpenHelper {
 		return getReadableDatabase().insert(EnvironmentVariables.DATABASE.MASTER_TABLE_NAME, null, values);
 	}
 
-	public ReminderObject getReminderObjectByTitle(final String title) throws StreamCorruptedException, IOException {
+	public ArrayList<ReminderObject> getReminderObjectsByTitle(final String title) throws StreamCorruptedException, IOException, ClassNotFoundException {
 		final Cursor all = query(null, null, null);
+		ArrayList<ReminderObject> reminderList = new ArrayList<ReminderObject>();
 		ReminderObject reminder;
 
+		Log.d("TAG", "NCC : Cursor count: " + all.getCount());
+		
 		while (all.moveToNext()) {
 
 			reminder = (ReminderObject) ReminderObject.fromBinary(all.getBlob(all.getColumnIndex(
 					EnvironmentVariables.DATABASE.Columns.DATA_BLOB.name())));
 
+			Log.d("TAG", "NCC - REMINDER FROM DB: " + reminder.getTitle());
+			
 			if(reminder.getTitle().equalsIgnoreCase(title)) {
-				return reminder;
+				reminderList.add(reminder);
 			}
 		}
 
 		all.close();
 
-		reminder = new ReminderObject();
-
-		return reminder;
+		return reminderList;
 	}
 
 	public Cursor query(final String selection, final String[] selectionArgs, final String orderBy) {
 		try {
 			SQLiteDatabase db = getReadableDatabase();
+			Log.d("TAG", "NCC : Query");
 			final Cursor c = db.query(EnvironmentVariables.DATABASE.MASTER_TABLE_NAME, EnvironmentVariables.DATABASE.ALL_COLUMNS,
 					selection, selectionArgs, null, null, orderBy);
 			return c;

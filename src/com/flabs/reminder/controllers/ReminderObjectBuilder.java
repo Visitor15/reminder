@@ -34,6 +34,8 @@ public class ReminderObjectBuilder {
 	}
 	
 	public ReminderObject getReminderByTitle(String title) {
-		DBManager.getInstance(mContext).
+//		DBManager.getInstance(mContext)
+		
+		return null;
 	}
 }

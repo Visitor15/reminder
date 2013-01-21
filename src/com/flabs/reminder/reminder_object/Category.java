@@ -5,19 +5,20 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
-import com.metago.astro.log.MLog;
+import java.io.Serializable;
+import java.io.StreamCorruptedException;
 
 import android.graphics.Color;
 import android.os.Bundle;
 
 public class Category extends BaseCategory implements ICategory {
 
-	private String customLabel;
-	private int customColor;
+	private String customLabel = "NULL";
+	private int customColor = -1;
 
 	public Category() {
 		super();
+		
 	}
 
 	@Override
@@ -86,8 +87,8 @@ public class Category extends BaseCategory implements ICategory {
 		final ByteArrayOutputStream os = new ByteArrayOutputStream();
 		try {
 			final ObjectOutputStream out = new ObjectOutputStream(os);
-			out.writeChars(getLabel());
-			out.writeChars(getCustomLabel());
+			out.writeUTF(getLabel());
+			out.writeUTF(getCustomLabel());
 			out.writeInt(getColor());
 			out.writeInt(getCustomColor());
 			out.flush();
@@ -99,7 +100,7 @@ public class Category extends BaseCategory implements ICategory {
 		return res;
 	}
 	
-	public static Category fromBinary(final byte[] byteArray) {
+	public static Category fromBinary(final byte[] byteArray) throws StreamCorruptedException, IOException {
 		final ByteArrayInputStream is = new ByteArrayInputStream(byteArray);
 		final ObjectInputStream in = new ObjectInputStream(is);
 		

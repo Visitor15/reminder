@@ -12,8 +12,8 @@ import android.os.Bundle;
 
 public class SubCategory extends BaseCategory implements ICategory {
 
-	private String customLabel;
-	private int customColor;
+	private String customLabel = "NULL";
+	private int customColor = -1;
 
 	public SubCategory() {
 		super();
@@ -85,8 +85,8 @@ public class SubCategory extends BaseCategory implements ICategory {
 		final ByteArrayOutputStream os = new ByteArrayOutputStream();
 		try {
 			final ObjectOutputStream out = new ObjectOutputStream(os);
-			out.writeChars(getLabel());
-			out.writeChars(getCustomLabel());
+			out.writeUTF(getLabel());
+			out.writeUTF(getCustomLabel());
 			out.writeInt(getColor());
 			out.writeInt(getCustomColor());
 			out.flush();
