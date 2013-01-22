@@ -19,7 +19,9 @@ public class ReminderPreferences {
 	public static final String KEY_MONTH_REPEAT = "month_repeat_key";
 	public static final String KEY_REMIND_IS_ACTIVE = "remind_is_active_key";
 	public static final String KEY_IS_PRO_VERSION = "is_pro_version_key";
+	public static final String KEY_HAS_REMINDERS_TO_SHOW = "has_reminders_to_show";
 	
+	public static final boolean DEFAULT_HAS_REMINDERS_TO_SHOW = false;
 	public static final boolean DEFAULT_FIRST_BOOT = true;
 	public static final boolean DEFAULT_IS_PRO_VERSION = false;
 	public static final boolean DEFAULT_REMIND_IS_ACTIVE = true;
@@ -37,6 +39,7 @@ public class ReminderPreferences {
 		editPreference(c, KEY_DAY_REPEAT, DEFAULT_DAY_REPEAT);
 		editPreference(c, KEY_WEEK_REPEAT, DEFAULT_WEEK_REPEAT);
 		editPreference(c, KEY_MONTH_REPEAT, DEFAULT_MONTH_REPEAT);
+		editPreference(c, KEY_HAS_REMINDERS_TO_SHOW, DEFAULT_HAS_REMINDERS_TO_SHOW);
 	}
 	
 	public static void initDefaultPreferences(Context c) {
