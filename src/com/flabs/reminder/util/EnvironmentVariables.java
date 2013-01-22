@@ -9,6 +9,33 @@ public class EnvironmentVariables {
 		VIEW_REMINDER
 	}
 	
+	public static enum DAYS {
+		MONDAY,
+		TUESDAY,
+		WEDNESDAY,
+		THURSDAY,
+		FRIDAY,
+		SATURDAY,
+		SUNDAY,
+		ALL
+	}
+	
+	public static enum MONTHS {
+		JANUARY,
+		FEBURARY,
+		MARCH,
+		APRIL,
+		MAY,
+		JUNE,
+		JULY,
+		AUGUST,
+		SEPTEMBER,
+		OCTOBER,
+		NOVEMBER,
+		DECEMBER,
+		ALL
+	}
+	
 	public static class DATABASE {
 		
 		public static final String MASTER_DATABASE_NAME = "reminderdb";
