@@ -1,16 +1,33 @@
 package com.flabs.reminder.ui;
 
 
+import java.io.IOException;
+import java.io.StreamCorruptedException;
+import java.util.ArrayList;
+
 import android.app.FragmentTransaction;
 
 import com.flabs.reminder.activities.ReminderActivity;
+import com.flabs.reminder.database.DBManager;
+import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class TransparentDialogActivity extends ReminderActivity {
 
 	@Override
 	public void onReminderActivityCreate() {
-		// TODO Auto-generated method stub
-		
+		try {
+			ArrayList<ReminderObject> reminders = DBManager.getInstance(this)
+					.getReminderObjectsByTitle("");
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

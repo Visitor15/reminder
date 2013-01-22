@@ -83,7 +83,10 @@ public class DBManager extends SQLiteOpenHelper {
 
 			Log.d("TAG", "NCC - REMINDER FROM DB: " + reminder.getTitle());
 			
-			if(reminder.getTitle().equalsIgnoreCase(title)) {
+			if((title == null) || title.trim().length() == 0) {
+				reminderList.add(reminder);
+			}
+			else if(reminder.getTitle().equalsIgnoreCase(title)) {
 				reminderList.add(reminder);
 			}
 		}

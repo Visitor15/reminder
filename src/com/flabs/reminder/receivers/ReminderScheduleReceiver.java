@@ -18,8 +18,6 @@ public class ReminderScheduleReceiver extends BroadcastReceiver {
 	public void onReceive(Context c, Intent intent) {
 
 		Log.d(TAG, "onReceive");
-		
-		
 
 		Intent mIntent = new Intent(c, TransparentDialogActivity.class);
 		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
