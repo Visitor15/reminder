@@ -20,14 +20,18 @@ public class ReminderScheduleReceiver extends BroadcastReceiver {
 		Log.d(TAG, "onReceive");
 
 		if((Boolean) ReminderPreferences.getPreference(c, ReminderPreferences.KEY_REMIND_IS_ACTIVE)) {
-				startTransparentActivity(c, intent);
+			startTransparentActivity(c, intent);
 		}
 	}
 
 	private void startTransparentActivity(final Context c, final Intent intent) {
 		Intent mIntent = new Intent(c, TransparentDialogActivity.class);
-		mIntent.putExtra(ReminderObject.BUNDLE_KEY, intent.getByteArrayExtra(ReminderObject.BUNDLE_KEY));
 		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		byte[] byteArray = intent.getByteArrayExtra(ReminderObject.TAG);
+		
+		Log.d(TAG, "NCC - BYTE LENGTH: " + byteArray.length);
+		
+		mIntent.putExtra(ReminderObject.TAG, byteArray);
 		c.startActivity(mIntent);
 	}
 

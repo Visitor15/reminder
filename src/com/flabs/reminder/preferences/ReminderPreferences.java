@@ -27,9 +27,9 @@ public class ReminderPreferences {
 	public static final boolean DEFAULT_REMIND_IS_ACTIVE = true;
 	public static final int DEFAULT_MINUTE_REPEAT = 0;
 	public static final int DEFAULT_HOUR_REPEAT = 12;
-	public static final DAYS DEFAULT_DAY_REPEAT = EnvironmentVariables.DAYS.ALL;
+	public static final String DEFAULT_DAY_REPEAT = EnvironmentVariables.DAYS.ALL.name();
 	public static final int DEFAULT_WEEK_REPEAT = -1;
-	public static final MONTHS DEFAULT_MONTH_REPEAT = EnvironmentVariables.MONTHS.ALL;
+	public static final String DEFAULT_MONTH_REPEAT = EnvironmentVariables.MONTHS.ALL.name();
 
 	private static void setDefaultPreferences(Context c) {
 		editPreference(c, KEY_FIRST_BOOT, DEFAULT_FIRST_BOOT);

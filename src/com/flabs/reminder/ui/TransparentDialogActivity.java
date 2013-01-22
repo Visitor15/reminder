@@ -6,6 +6,7 @@ import java.io.StreamCorruptedException;
 
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.util.Log;
 
 import com.flabs.reminder.activities.ReminderActivity;
 import com.flabs.reminder.reminder_object.ReminderObject;
@@ -65,6 +66,7 @@ public class TransparentDialogActivity extends ReminderActivity {
 	
 	private void handleIntent(final Intent mIntent) throws StreamCorruptedException, IOException, ClassNotFoundException {
 		byte[] reminderByteArray = mIntent.getByteArrayExtra(ReminderObject.TAG);
+		Log.d(TAG, "NCC - BYTE LENGTH: " + reminderByteArray.length);
 		ReminderObject reminder = (ReminderObject) ReminderObject.fromBinary(reminderByteArray);
 		
 		showReminderDialog(reminder);

@@ -169,11 +169,11 @@ public class MainActivity extends ReminderActivity {
 		PendingIntent pending = PendingIntent.getBroadcast(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
 		Calendar cal = Calendar.getInstance();
 		// Start 30 seconds after boot completed
-		cal.add(Calendar.SECOND, 30);
+		cal.add(Calendar.SECOND, 10);
 		//
 		// Fetch every 30 seconds
 		// InexactRepeating allows Android to optimize the energy consumption
-		service.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 300000, pending);
+		service.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 30000, pending);
 	}
 
 	@Override
