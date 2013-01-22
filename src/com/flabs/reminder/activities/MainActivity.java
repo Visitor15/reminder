@@ -11,7 +11,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
+import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -163,10 +163,12 @@ public class MainActivity extends ReminderActivity {
 	}
 	
 	private void setFutureAlarm(final Context context, ReminderObject reminderObj) {
-		AlarmManager service = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-		Intent i = new Intent(context, ReminderScheduleReceiver.class);
+		AlarmManager service = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
+		Intent i = new Intent(getApplicationContext(), ReminderScheduleReceiver.class);
+		Random ran = new Random();
+		i.setData(Uri.parse("timer:" + ran.nextInt(29997)));
 		i.putExtra(ReminderObject.TAG, reminderObj.toBinary());
-		PendingIntent pending = PendingIntent.getBroadcast(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
+		PendingIntent pending = PendingIntent.getBroadcast(getApplicationContext(), 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
 		Calendar cal = Calendar.getInstance();
 		// Start 30 seconds after boot completed
 		cal.add(Calendar.SECOND, 10);
