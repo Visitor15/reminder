@@ -3,9 +3,11 @@ package com.flabs.reminder.receivers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.flabs.reminder.preferences.ReminderPreferences;
+import com.flabs.reminder.reminder_object.ReminderObject;
 import com.flabs.reminder.ui.TransparentDialogActivity;
 
 public class ReminderScheduleReceiver extends BroadcastReceiver {
@@ -18,14 +20,13 @@ public class ReminderScheduleReceiver extends BroadcastReceiver {
 		Log.d(TAG, "onReceive");
 
 		if((Boolean) ReminderPreferences.getPreference(c, ReminderPreferences.KEY_REMIND_IS_ACTIVE)) {
-			if((Boolean) ReminderPreferences.getPreference(c, ReminderPreferences.KEY_HAS_REMINDERS_TO_SHOW)) {
-				startTransparentActivity(c);
-			}
+				startTransparentActivity(c, intent);
 		}
 	}
 
-	private void startTransparentActivity(final Context c) {
+	private void startTransparentActivity(final Context c, final Intent intent) {
 		Intent mIntent = new Intent(c, TransparentDialogActivity.class);
+		mIntent.putExtra(ReminderObject.BUNDLE_KEY, intent.getByteArrayExtra(ReminderObject.BUNDLE_KEY));
 		mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 		c.startActivity(mIntent);
 	}

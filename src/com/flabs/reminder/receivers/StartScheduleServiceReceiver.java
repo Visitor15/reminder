@@ -26,7 +26,7 @@ public class StartScheduleServiceReceiver extends BroadcastReceiver{
 		//
 		// Fetch every 30 seconds
 		// InexactRepeating allows Android to optimize the energy consumption
-//		service.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), REPEAT_TIME, pending);
+		service.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 0, pending);
 
 
 

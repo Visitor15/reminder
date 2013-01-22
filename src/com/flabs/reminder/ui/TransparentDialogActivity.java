@@ -3,12 +3,11 @@ package com.flabs.reminder.ui;
 
 import java.io.IOException;
 import java.io.StreamCorruptedException;
-import java.util.ArrayList;
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 
 import com.flabs.reminder.activities.ReminderActivity;
-import com.flabs.reminder.database.DBManager;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class TransparentDialogActivity extends ReminderActivity {
@@ -16,8 +15,7 @@ public class TransparentDialogActivity extends ReminderActivity {
 	@Override
 	public void onReminderActivityCreate() {
 		try {
-			ArrayList<ReminderObject> reminders = DBManager.getInstance(this)
-					.getReminderObjectsByTitle("");
+			handleIntent(getIntent());
 		} catch (StreamCorruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -32,9 +30,7 @@ public class TransparentDialogActivity extends ReminderActivity {
 
 	@Override
 	public void onReminderActivityStart() {
-		TestDialogFragment dialogFrag = new TestDialogFragment();
-		FragmentTransaction ft = getFragmentManager().beginTransaction();
-		dialogFrag.show(ft, "TAG");
+		
 	}
 
 	@Override
@@ -66,5 +62,17 @@ public class TransparentDialogActivity extends ReminderActivity {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	private void handleIntent(final Intent mIntent) throws StreamCorruptedException, IOException, ClassNotFoundException {
+		byte[] reminderByteArray = mIntent.getByteArrayExtra(ReminderObject.TAG);
+		ReminderObject reminder = (ReminderObject) ReminderObject.fromBinary(reminderByteArray);
+		
+		showReminderDialog(reminder);
+	}
 
+	private void showReminderDialog(ReminderObject reminder) {
+		TestDialogFragment dialogFrag = new TestDialogFragment(reminder);
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
+		dialogFrag.show(ft, "TAG");
+	}
 }

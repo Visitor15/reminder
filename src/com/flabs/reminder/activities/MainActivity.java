@@ -3,9 +3,15 @@ package com.flabs.reminder.activities;
 import java.io.IOException;
 import java.io.StreamCorruptedException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Random;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +25,7 @@ import android.widget.TextView;
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.controllers.ReminderObjectBuilder;
 import com.flabs.reminder.database.DBManager;
+import com.flabs.reminder.receivers.ReminderScheduleReceiver;
 import com.flabs.reminder.reminder_object.Category;
 import com.flabs.reminder.reminder_object.ReminderObject;
 import com.flabs.reminder.reminder_object.SubCategory;
@@ -110,7 +117,6 @@ public class MainActivity extends ReminderActivity {
 		TextView subCategory = (TextView) v.findViewById(R.id.tv_subcategory);
 		TextView message = (TextView) v.findViewById(R.id.tv_message);
 		
-		
 		title.setText(obj.getTitle());
 		message.setText(obj.getMessage());
 		category.setText(obj.getCategory().getLabel());
@@ -151,7 +157,23 @@ public class MainActivity extends ReminderActivity {
 		Random ran = new Random();
 		mReminder.setActivatedState(ran.nextBoolean());
 		
+		setFutureAlarm(this, mReminder);
+		
 		Log.d(TAG, "NCC - DB IT RETURNED: " + DBManager.getInstance(this).insert(mReminder));
+	}
+	
+	private void setFutureAlarm(final Context context, ReminderObject reminderObj) {
+		AlarmManager service = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+		Intent i = new Intent(context, ReminderScheduleReceiver.class);
+		i.putExtra(ReminderObject.TAG, reminderObj.toBinary());
+		PendingIntent pending = PendingIntent.getBroadcast(context, 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
+		Calendar cal = Calendar.getInstance();
+		// Start 30 seconds after boot completed
+		cal.add(Calendar.SECOND, 30);
+		//
+		// Fetch every 30 seconds
+		// InexactRepeating allows Android to optimize the energy consumption
+		service.setInexactRepeating(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), 300000, pending);
 	}
 
 	@Override

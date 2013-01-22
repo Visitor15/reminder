@@ -14,6 +14,10 @@ import com.flabs.reminder.util.EnvironmentVariables.ACTION;
 
 public class ReminderObject implements IReminderObject {
 
+	public static final String TAG = "ReminderObject";
+	
+	public static final String BUNDLE_KEY = "bundle_reminder_key";
+	
 	private String title = "NULL";
 	private String message = "NULL";
 	private String iconUriPath = "NULL";
