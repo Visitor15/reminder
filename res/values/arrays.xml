@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    
+    <string-array name="category_list">
+        <item>Math</item>
+        <item>Sciences</item>
+        <item>History</item>
+        <item>Macro/Micro Economics</item>
+    </string-array>
+    
+    <string-array name="subcategory_list">
+        <item>Algebra</item>
+        <item>Calculus</item>
+        <item>North American History</item>
+        <item>Biology</item>
+        <item>Economics 101</item>
+    </string-array>
+    
+</resources>

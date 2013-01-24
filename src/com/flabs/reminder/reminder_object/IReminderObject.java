@@ -20,6 +20,8 @@ public interface IReminderObject {
 	
 	public void setHasDisplayedIn24Hours(boolean hasDisplayed);
 	
+	public void setId(long Id);
+	
 	public String getTitle();
 	
 	public String getIconPath();
@@ -29,6 +31,8 @@ public interface IReminderObject {
 	public Category getCategory();
 	
 	public SubCategory getSubCategory();
+	
+	public long getId();
 	
 	public boolean isActivated();
 	

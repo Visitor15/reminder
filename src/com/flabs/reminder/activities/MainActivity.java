@@ -38,8 +38,8 @@ public class MainActivity extends ReminderActivity {
 	LinearLayout container;
 	EditText messageInput;
 	EditText titleInput;
-	Spinner category;
-	Spinner subCategory;
+	Spinner categorySpinner;
+	Spinner subCategorySpinner;
 	Button btnAdd;
 	Button btnSearch;
 	
@@ -55,8 +55,8 @@ public class MainActivity extends ReminderActivity {
 		container = (LinearLayout) findViewById(R.id.ll_container);
 		titleInput = (EditText) findViewById(R.id.et_title);
 		messageInput = (EditText) findViewById(R.id.et_message);
-		category = (Spinner) findViewById(R.id.spinner_category);
-		subCategory = (Spinner) findViewById(R.id.spinner_subcategory);
+		categorySpinner = (Spinner) findViewById(R.id.spinner_category);
+		subCategorySpinner = (Spinner) findViewById(R.id.spinner_subcategory);
 		btnAdd = (Button) findViewById(R.id.btn);
 		btnSearch = (Button) findViewById(R.id.btn_search);
 		
@@ -144,18 +144,20 @@ public class MainActivity extends ReminderActivity {
 		mReminder.setMessage(messageInput.getText().toString());
 		
 		Category category = new Category();
-		category.setLabel("Test category");
-		category.setCustomLabel("Test custom label");
+		category.setLabel(categorySpinner.getSelectedItem().toString());
+//		category.setCustomLabel();
 		
 		SubCategory subCategory = new SubCategory();
-		subCategory.setLabel("Test subcategory");
-		subCategory.setCustomLabel("Test custom subcategory label");
+		subCategory.setLabel(subCategorySpinner.getSelectedItem().toString());
+//		subCategory.setCustomLabel("Test custom subcategory label");
 		
 		mReminder.setCategory(category);
 		mReminder.setSubCategory(subCategory);
 		
 		Random ran = new Random();
 		mReminder.setActivatedState(ran.nextBoolean());
+		
+		mReminder.setId(ran.nextLong());
 		
 		setFutureAlarm(this, mReminder);
 		

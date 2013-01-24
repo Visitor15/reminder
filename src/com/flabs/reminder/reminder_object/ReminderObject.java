@@ -26,6 +26,7 @@ public class ReminderObject implements IReminderObject {
 	private boolean isActivated = false;
 	private boolean hasDisplayedIn24Hours = false;
 	private ACTION onRemindAction;
+	private long id;
 
 	public ReminderObject() {
 		category = new Category();
@@ -66,6 +67,11 @@ public class ReminderObject implements IReminderObject {
 	@Override
 	public void setOnRemindAction(ACTION action) {
 		this.onRemindAction = action;
+	}
+	
+	@Override
+	public void setId(long Id) {
+		this.id = Id;
 	}
 
 	@Override
@@ -114,6 +120,11 @@ public class ReminderObject implements IReminderObject {
 	}
 
 	@Override
+	public long getId() {
+		return id;
+	}
+
+	@Override
 	public byte[] toBinary() {
 		final ByteArrayOutputStream os = new ByteArrayOutputStream();
 		try {
@@ -136,6 +147,7 @@ public class ReminderObject implements IReminderObject {
 			out.write(subCategoryBytes);
 			
 			out.writeBoolean(hasDisplayedIn24Hours());
+			out.writeLong(getId());
 
 			out.flush();
 		} catch (final IOException e) {
@@ -170,6 +182,7 @@ public class ReminderObject implements IReminderObject {
 		reminderObj.setSubCategory(SubCategory.fromBinary(subCategoryBytes));
 
 		reminderObj.setHasDisplayedIn24Hours(in.readBoolean());
+		reminderObj.setId(in.readLong());
 
 		return reminderObj;
 	}

@@ -76,7 +76,8 @@
                 android:layout_marginBottom="16dip"
                 android:layout_marginLeft="16dip"
                 android:layout_marginRight="16dip"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:entries="@array/category_list" />
 
             <TextView
                 android:id="@+id/tv_subcategory"
@@ -92,7 +93,8 @@
                 android:layout_marginBottom="16dip"
                 android:layout_marginLeft="16dip"
                 android:layout_marginRight="16dip"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:entries="@array/subcategory_list" />
 
             <EditText
                 android:id="@+id/et_message"

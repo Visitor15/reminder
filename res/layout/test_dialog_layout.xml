@@ -1,19 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:id="@+id/rl_root_container"
+    style="@style/Theme.Dialog"
+    android:layout_gravity="center"
+    android:layout_margin="24dip"
+    android:background="#2200FF00"
+    android:gravity="center"
+    android:minHeight="260dip"
     android:orientation="vertical" >
 
     <RelativeLayout
+        android:id="@+id/rl_first_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content"
+        android:layout_margin="8dip"
+        android:background="#22FF0000" >
 
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/ll_second_container"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="THIS IS A DIALOG!" />
+            android:background="#220000FF"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="THIS IS A DIALOG!"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/tv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="THIS IS A DIALOG!"
+                android:textColor="#000000" />
+        </LinearLayout>
     </RelativeLayout>
 
 </LinearLayout>
