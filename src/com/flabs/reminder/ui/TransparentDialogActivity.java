@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.StreamCorruptedException;
 
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
 
