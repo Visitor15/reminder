@@ -32,8 +32,8 @@ public class TestDialogFragment extends DialogFragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
-//		setStyle(STYLE_NO_FRAME, 0);
-	    setStyle(STYLE_NO_TITLE, R.style.Theme_Dialog);
+		setStyle(DialogFragment.STYLE_NO_FRAME, 0);
+	    setStyle(STYLE_NO_TITLE, R.style.Dialog);
 	}
 
 	@Override
