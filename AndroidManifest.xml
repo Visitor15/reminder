@@ -7,7 +7,10 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="16" />
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission
+        android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission 
+        android:name="android.permission.GET_TASKS"/>
 
     <application
         android:allowBackup="true"
@@ -20,7 +23,8 @@
             android:process=":reminder_process" >
         </service>
 
-        <receiver android:name="com.flabs.reminder.receivers.ReminderScheduleReceiver"
+        <receiver
+            android:name="com.flabs.reminder.receivers.ReminderScheduleReceiver"
             android:exported="false" >
             <intent-filter>
                 <action android:name="com.flabs.reminder.start_schedule_service" />
@@ -43,12 +47,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
             android:name="com.flabs.reminder.ui.TransparentDialogActivity"
             android:theme="@style/Theme.Transparent" >
             <intent-filter>
-                <action android:name="com.flabs.reminder.display.reminder_dialog"/>
+                <action android:name="com.flabs.reminder.display.reminder_dialog" />
             </intent-filter>
         </activity>
     </application>

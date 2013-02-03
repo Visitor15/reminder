@@ -170,7 +170,7 @@ public class MainActivity extends ReminderActivity {
 		Random ran = new Random();
 		i.setData(Uri.parse("timer:" + ran.nextInt(29997)));
 		i.putExtra(ReminderObject.TAG, reminderObj.toBinary());
-		PendingIntent pending = PendingIntent.getBroadcast(getApplicationContext(), 0, i, PendingIntent.FLAG_CANCEL_CURRENT);
+		PendingIntent pending = PendingIntent.getBroadcast(getApplicationContext(), 0, i, 0);
 		Calendar cal = Calendar.getInstance();
 		// Start 30 seconds after boot completed
 		cal.add(Calendar.SECOND, 10);

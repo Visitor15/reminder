@@ -29,7 +29,7 @@ public class TransparentDialogActivity extends ReminderActivity {
 			e.printStackTrace();
 		}
 	}
-
+	
 	@Override
 	public void onReminderActivityStart() {
 		
