@@ -18,7 +18,7 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 	}
 	
 	private void init() {
-		setLayoutId(R.layout.new_reminder_title_layout);
+		setLayoutId(R.layout.new_reminder_type_layout);
 	}
 	
 	@Override

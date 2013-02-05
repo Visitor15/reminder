@@ -13,9 +13,8 @@ import com.flabs.reminder.fragments.ReminderFrequencyFragment;
 import com.flabs.reminder.fragments.ReminderSetMessageFragment;
 import com.flabs.reminder.fragments.ReminderSetTitleFragment;
 import com.flabs.reminder.fragments.ReminderSubCategoryChooserFragment;
+import com.flabs.reminder.fragments.ReminderTypeChooserFragment;
 import com.flabs.reminder.reminder_object.ReminderObject;
-
-
 
 public class NewReminderActivity extends ReminderActivity {
 	
@@ -94,6 +93,7 @@ public class NewReminderActivity extends ReminderActivity {
 	private ArrayList<Fragment> initFragmentList() {
 		fragmentList = new ArrayList<Fragment>();
 		
+		fragmentList.add(new ReminderTypeChooserFragment());
 		fragmentList.add(new ReminderSetMessageFragment());
 		fragmentList.add(new ReminderFrequencyFragment());
 		fragmentList.add(new ReminderCategoryChooserFragment());
