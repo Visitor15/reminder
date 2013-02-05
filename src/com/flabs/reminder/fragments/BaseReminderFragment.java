@@ -45,6 +45,8 @@ public abstract class BaseReminderFragment extends Fragment implements IBaseRemi
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
 		final View v = inflater.inflate(layoutId, null);
 
+		onFragmentCreateView(v);
+		
 		return v;
 	}
 

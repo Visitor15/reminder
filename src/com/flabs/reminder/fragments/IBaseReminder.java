@@ -1,6 +1,7 @@
 package com.flabs.reminder.fragments;
 
 import android.os.Bundle;
+import android.view.View;
 
 public interface IBaseReminder {
 	
@@ -9,6 +10,8 @@ public interface IBaseReminder {
 	public int getLayoutId();
 	
 	public void onFragmentCreate(final Bundle b);
+	
+	public void onFragmentCreateView(final View v);
 	
 	public void onFragmentCreated(final Bundle b);
 	

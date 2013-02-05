@@ -1,11 +1,11 @@
 package com.flabs.reminder.activities;
 
-import android.app.Activity;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.Window;
 
-public abstract class ReminderActivity extends Activity implements IReminderActivity {
+public abstract class ReminderActivity extends FragmentActivity implements IReminderActivity {
 
 	public static final String TAG = "ReminderActivity";
 

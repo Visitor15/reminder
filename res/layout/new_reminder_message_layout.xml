@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
+    android:background="@drawable/green_gradient_background"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -19,7 +19,7 @@
             android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="#44FFFFFF"
-            android:text="Title?" />
+            android:text="Message?" />
 
     </RelativeLayout>
 
@@ -38,8 +38,8 @@
             android:layout_marginBottom="8dip"
             android:padding="4dip"
             android:ems="10"
-            android:inputType="textPersonName"
-            android:gravity="center"
+            android:inputType="textMultiLine"
+            android:lines="6"
             android:background="@drawable/message_edittext_background"
             android:layout_centerInParent="true" />
 
