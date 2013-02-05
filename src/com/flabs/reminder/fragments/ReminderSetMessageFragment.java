@@ -7,15 +7,13 @@ import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class ReminderSetMessageFragment extends BaseReminderFragment {
-
-	private ReminderObject reminderObj;
 	
 	public ReminderSetMessageFragment() {
-		
+		init();
 	}
 	
-	public ReminderSetMessageFragment(final ReminderObject reminder) {
-		this.reminderObj = reminder;
+	public ReminderSetMessageFragment(final ReminderObject reminderObj) {
+		this.setReminderObject(reminderObj);
 		init();
 	}
 	

@@ -7,15 +7,13 @@ import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class ReminderFrequencyFragment extends BaseReminderFragment {
-
-	private ReminderObject reminderObj;
 	
 	public ReminderFrequencyFragment() {
-
+		init();
 	}
 
 	public ReminderFrequencyFragment(ReminderObject reminderObj) {
-		this.reminderObj = reminderObj;
+		this.setReminderObject(reminderObj);
 		init();
 	}
 	

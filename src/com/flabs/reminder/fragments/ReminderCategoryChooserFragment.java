@@ -8,14 +8,12 @@ import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 	
-	private ReminderObject reminderObj;
-	
 	public ReminderCategoryChooserFragment() {
-		
+		init();
 	}
 	
 	public ReminderCategoryChooserFragment(final ReminderObject reminderObj) {
-		this.reminderObj = reminderObj;
+		this.setReminderObject(reminderObj);
 		init();
 	}
 	

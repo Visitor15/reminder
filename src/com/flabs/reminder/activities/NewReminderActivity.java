@@ -84,7 +84,7 @@ public class NewReminderActivity extends ReminderActivity {
 		mViewPager = new ViewPager(this);
 		mViewPager.setId(NewReminderActivity.VIEW_PAGER_ID);
 		
-		pageAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentList);
+		pageAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentList, newReminderObj);
 		
 		mViewPager.setAdapter(pageAdapter);
 		
@@ -94,12 +94,12 @@ public class NewReminderActivity extends ReminderActivity {
 	private ArrayList<Fragment> initFragmentList() {
 		fragmentList = new ArrayList<Fragment>();
 		
-		fragmentList.add(new ReminderSetMessageFragment(newReminderObj));
-		fragmentList.add(new ReminderFrequencyFragment(newReminderObj));
-		fragmentList.add(new ReminderCategoryChooserFragment(newReminderObj));
-		fragmentList.add(new ReminderSubCategoryChooserFragment(newReminderObj));
-		fragmentList.add(new OnReminderActionChooserFragment(newReminderObj));
-		fragmentList.add(new ReminderSetTitleFragment(newReminderObj));
+		fragmentList.add(new ReminderSetMessageFragment());
+		fragmentList.add(new ReminderFrequencyFragment());
+		fragmentList.add(new ReminderCategoryChooserFragment());
+		fragmentList.add(new ReminderSubCategoryChooserFragment());
+		fragmentList.add(new OnReminderActionChooserFragment());
+		fragmentList.add(new ReminderSetTitleFragment());
 		
 		return fragmentList;
 	}

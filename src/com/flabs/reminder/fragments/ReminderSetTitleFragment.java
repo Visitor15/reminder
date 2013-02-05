@@ -8,14 +8,12 @@ import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class ReminderSetTitleFragment extends BaseReminderFragment {
 	
-	private ReminderObject reminderObj;
-
 	public ReminderSetTitleFragment() {
-		
+		init();
 	}
 	
-	public ReminderSetTitleFragment(final ReminderObject reminder) {
-		this.reminderObj = reminder;
+	public ReminderSetTitleFragment(final ReminderObject reminderObj) {
+		this.setReminderObject(reminderObj);
 		init();
 	}
 	

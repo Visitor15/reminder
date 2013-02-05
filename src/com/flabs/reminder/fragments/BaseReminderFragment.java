@@ -7,9 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.flabs.reminder.reminder_object.ReminderObject;
+
 public abstract class BaseReminderFragment extends Fragment implements IBaseReminder {
 
 	private int layoutId;
+	private ReminderObject reminderObj;
 	
 	@Override
 	public void onCreate (Bundle savedInstanceState){
@@ -58,6 +61,16 @@ public abstract class BaseReminderFragment extends Fragment implements IBaseRemi
 	@Override
 	public int getLayoutId() {
 		return layoutId;
+	}
+	
+	@Override
+	public void setReminderObject(final ReminderObject reminderObj) {
+		this.reminderObj = reminderObj;
+	}
+	
+	@Override
+	public ReminderObject getReminderObject() {
+		return this.reminderObj;
 	}
 
 }
