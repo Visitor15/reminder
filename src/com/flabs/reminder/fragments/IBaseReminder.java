@@ -3,6 +3,7 @@ package com.flabs.reminder.fragments;
 import android.os.Bundle;
 import android.view.View;
 
+import com.flabs.reminder.activities.ViewPagerAdapter.OnFragmentCreatedCallback;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public interface IBaseReminder {
@@ -14,6 +15,14 @@ public interface IBaseReminder {
 	public void setReminderObject(final ReminderObject reminderObj);
 	
 	public ReminderObject getReminderObject();
+	
+	public void setBackground(final int backgroundId);
+	
+	public int getBackgroundId();
+	
+	public View getBackgroundView();
+	
+	public void setAdapterCallback(final OnFragmentCreatedCallback callback);
 	
 	public void onFragmentCreate(final Bundle b);
 	

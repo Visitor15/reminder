@@ -2,12 +2,14 @@ package com.flabs.reminder.fragments;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class ReminderTypeChooserFragment extends BaseReminderFragment {
-
+	
 	public ReminderTypeChooserFragment() {
 		init();
 	}
@@ -19,6 +21,7 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 	
 	private void init() {
 		setLayoutId(R.layout.new_reminder_type_layout);
+		setBackground(R.drawable.red_gradient_background);
 	}
 	
 	@Override
@@ -29,8 +32,6 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentCreateView(View v) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -56,5 +57,4 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 		// TODO Auto-generated method stub
 		
 	}
-
 }

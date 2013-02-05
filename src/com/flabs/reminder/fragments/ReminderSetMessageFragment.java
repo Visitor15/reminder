@@ -19,6 +19,7 @@ public class ReminderSetMessageFragment extends BaseReminderFragment {
 	
 	private void init() {
 		setLayoutId(R.layout.new_reminder_message_layout);
+		setBackground(R.drawable.green_gradient_background);
 	}
 
 	@Override

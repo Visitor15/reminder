@@ -7,37 +7,46 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.flabs.mobile.reminder.R;
+import com.flabs.reminder.activities.ViewPagerAdapter.OnFragmentCreatedCallback;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public abstract class BaseReminderFragment extends Fragment implements IBaseReminder {
 
+	private View rootView;
 	private int layoutId;
+	private int backgroundId;
 	private ReminderObject reminderObj;
-	
+	protected OnFragmentCreatedCallback adapterCallback;
+
 	@Override
 	public void onCreate (Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		onFragmentCreate(savedInstanceState);
 	}
-	
+
 	@Override
 	public void onActivityCreated (Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		onFragmentCreated(savedInstanceState);
+
 	}
-	
+
 	@Override
 	public void onPause() {
 		super.onPause();
 		onFragmentPause();
 	}
-	
+
 	@Override
 	public void onResume() {
 		super.onResume();
 		onFragmentResume();
+		if(adapterCallback != null) {
+			adapterCallback.onFragmentCreated(getBackgroundId());
+		}
 	}
-	
+
 	@Override
 	public void onStop() {
 		super.onStop();
@@ -46,11 +55,11 @@ public abstract class BaseReminderFragment extends Fragment implements IBaseRemi
 
 	@Override
 	public View onCreateView(final LayoutInflater inflater, final ViewGroup container, final Bundle savedInstanceState) {
-		final View v = inflater.inflate(layoutId, null);
+		rootView = inflater.inflate(layoutId, null);
 
-		onFragmentCreateView(v);
-		
-		return v;
+		onFragmentCreateView(rootView);
+
+		return rootView;
 	}
 
 	@Override
@@ -62,15 +71,34 @@ public abstract class BaseReminderFragment extends Fragment implements IBaseRemi
 	public int getLayoutId() {
 		return layoutId;
 	}
-	
+
 	@Override
 	public void setReminderObject(final ReminderObject reminderObj) {
 		this.reminderObj = reminderObj;
 	}
-	
+
 	@Override
 	public ReminderObject getReminderObject() {
 		return this.reminderObj;
 	}
 
+	@Override
+	public void setBackground(final int backgroundId) {
+		this.backgroundId = backgroundId;
+	}
+
+	@Override
+	public int getBackgroundId() {
+		return this.backgroundId;
+	}
+
+	@Override
+	public View getBackgroundView() {
+		return rootView.findViewById(R.id.background);
+	}
+
+	@Override
+	public void setAdapterCallback(final OnFragmentCreatedCallback callback) {
+		this.adapterCallback = callback;
+	}
 }

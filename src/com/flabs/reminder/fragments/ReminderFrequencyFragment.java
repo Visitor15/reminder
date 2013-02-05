@@ -18,7 +18,8 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 	}
 	
 	private void init() {
-		setLayoutId(R.layout.new_reminder_title_layout);
+		setLayoutId(R.layout.new_reminder_frequency_layout);
+		setBackground(R.drawable.orange_gradient_background);
 	}
 
 	@Override

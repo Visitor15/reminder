@@ -17,11 +17,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:gravity="center"
-            android:textSize="32sp"
-            android:textStyle="bold"
+            android:text="How Often?"
             android:textColor="#44FFFFFF"
-            android:text="Message?" />
-
+            android:textSize="32sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -29,28 +28,26 @@
         android:layout_height="0dip"
         android:layout_weight="0.75" >
 
-        <EditText
-            android:id="@+id/editText1"
-            android:layout_width="match_parent"
+        <TimePicker
+            android:id="@+id/timepicker"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dip"
-            android:layout_marginRight="16dip"
-            android:layout_marginTop="8dip"
-            android:layout_marginBottom="8dip"
-            android:padding="4dip"
-            android:ems="10"
-            android:inputType="textMultiLine"
-            android:lines="6"
-            android:background="@drawable/message_edittext_background"
             android:layout_centerInParent="true"
-            android:gravity="left" />
-        
+            android:layout_marginTop="32dip" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1" >
+
+        <DatePicker
+            android:id="@+id/datepicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timepicker"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="16dip" />
     </RelativeLayout>
 
 </LinearLayout>

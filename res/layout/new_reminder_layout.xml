@@ -3,11 +3,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-    
+
     <RelativeLayout
         android:id="@+id/view_pager_container"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:background="@drawable/transparent_background" >
+
+        <FrameLayout
+            android:id="@+id/background_view1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        
+        <FrameLayout
+            android:id="@+id/background_view2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+    </RelativeLayout>
 
 </LinearLayout>
