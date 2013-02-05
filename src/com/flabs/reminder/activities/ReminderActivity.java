@@ -1,52 +1,65 @@
 package com.flabs.reminder.activities;
 
 import android.app.Activity;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.view.Window;
 
 public abstract class ReminderActivity extends Activity implements IReminderActivity {
 
 	public static final String TAG = "ReminderActivity";
-	
-	
+
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		onReminderActivityCreate();
 	}
-	
+
 	@Override
 	protected void onStart() {
 		super.onStart();
 		onReminderActivityStart();
 	}
-    
+
 	@Override
-    protected void onRestart() {
+	protected void onRestart() {
 		super.onRestart();
 		onReminderActivityRestart();
-    }
+	}
 
 	@Override
-    protected void onResume() {
+	protected void onResume() {
 		super.onResume();
 		onReminderActivityResume();
-    }
+	}
 
 	@Override
-    protected void onPause() {
+	protected void onPause() {
 		super.onPause();
 		onReminderActivityPause();
-    }
+	}
 
 	@Override
-    protected void onStop() {
+	protected void onStop() {
 		super.onStop();
 		onReminderActivityStop();
-    }
+	}
 
 	@Override
-    protected void onDestroy() {
+	protected void onDestroy() {
 		super.onDestroy();
 		onReminderActivityDestroy();
-    }
+	}
+
+	/*
+	 * This is here to attempt to have each background gradient to be drawn
+	 * with the best quality as possible on older Android devices.
+	 */
+	@Override
+	public void onAttachedToWindow() {
+		super.onAttachedToWindow();
+		Window window = getWindow();
+		window.setFormat(PixelFormat.RGBA_8888);
+	}
 }

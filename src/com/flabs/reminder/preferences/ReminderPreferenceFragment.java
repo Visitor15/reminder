@@ -1,5 +1,7 @@
 package com.flabs.reminder.preferences;
 
-public class ReminderPreferenceFragment {
+import android.preference.PreferenceFragment;
+
+public class ReminderPreferenceFragment extends PreferenceFragment {
 
 }
