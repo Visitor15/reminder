@@ -42,9 +42,6 @@ public abstract class BaseReminderFragment extends Fragment implements IBaseRemi
 	public void onResume() {
 		super.onResume();
 		onFragmentResume();
-		if(adapterCallback != null) {
-			adapterCallback.onFragmentCreated(getBackgroundId());
-		}
 	}
 
 	@Override
@@ -100,5 +97,10 @@ public abstract class BaseReminderFragment extends Fragment implements IBaseRemi
 	@Override
 	public void setAdapterCallback(final OnFragmentCreatedCallback callback) {
 		this.adapterCallback = callback;
+	}
+	
+	@Override
+	public OnFragmentCreatedCallback getAdapterCallback() {
+		return this.adapterCallback;
 	}
 }

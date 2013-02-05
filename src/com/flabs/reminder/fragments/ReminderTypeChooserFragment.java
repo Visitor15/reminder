@@ -48,7 +48,6 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentResume() {
-		// TODO Auto-generated method stub
 		
 	}
 

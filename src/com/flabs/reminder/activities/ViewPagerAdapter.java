@@ -5,18 +5,20 @@ import java.util.ArrayList;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.View;
+import android.support.v4.view.ViewPager;
+import android.util.Log;
 
-import com.flabs.reminder.activities.ViewPagerAdapter.OnFragmentCreatedCallback;
 import com.flabs.reminder.fragments.BaseReminderFragment;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class ViewPagerAdapter extends FragmentPagerAdapter {
-	
+
+	public static final String TAG = "ViewPagerAdapter";
+
 	private ArrayList<Fragment> dataList;
-	
+
 	private ReminderObject reminderObj;
-	
+
 	private ViewPagerCallback callback;
 
 	public ViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> dataList, ReminderObject reminderObj, ViewPagerCallback callback) {
@@ -26,17 +28,17 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 		this.callback = callback;
 		init();
 	}
-	
+
 	private void init() {
 		if(reminderObj == null) {
 			reminderObj = new ReminderObject();
 		}
 	}
-	
+
 	public void setReminderObject(final ReminderObject reminder) {
 		this.reminderObj = reminder;
 	}
-	
+
 	public ReminderObject getReminderObject() {
 		return this.reminderObj;
 	}
@@ -52,9 +54,9 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		return dataList.size();
+		return dataList.size() - 1;
 	}
-	
+
 	private OnFragmentCreatedCallback getAdapterCallback() {
 		return new OnFragmentCreatedCallback() {
 
@@ -62,14 +64,14 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 			public void onFragmentCreated(int backgroundId) {
 				callback.onFragmentChanged(backgroundId);
 			}
-			
+
 		};
 	}
-	
+
 	public interface ViewPagerCallback {
 		void onFragmentChanged(final int backgroundId);
 	}
-	
+
 	public interface OnFragmentCreatedCallback {
 		void onFragmentCreated(final int backgroundId);
 	}

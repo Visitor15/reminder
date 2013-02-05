@@ -24,6 +24,8 @@ public interface IBaseReminder {
 	
 	public void setAdapterCallback(final OnFragmentCreatedCallback callback);
 	
+	public OnFragmentCreatedCallback getAdapterCallback();
+	
 	public void onFragmentCreate(final Bundle b);
 	
 	public void onFragmentCreateView(final View v);
