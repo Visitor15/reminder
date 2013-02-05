@@ -86,6 +86,8 @@ public class NewReminderActivity extends ReminderActivity {
 		
 		pageAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragmentList);
 		
+		mViewPager.setAdapter(pageAdapter);
+		
 		mViewPagerContainer.addView(mViewPager);
 	}
 

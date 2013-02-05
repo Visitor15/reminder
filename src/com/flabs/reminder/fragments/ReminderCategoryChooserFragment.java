@@ -3,16 +3,24 @@ package com.flabs.reminder.fragments;
 import android.os.Bundle;
 import android.view.View;
 
+import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class ReminderCategoryChooserFragment extends BaseReminderFragment {
+	
+	private ReminderObject reminderObj;
 	
 	public ReminderCategoryChooserFragment() {
 		
 	}
 	
 	public ReminderCategoryChooserFragment(final ReminderObject reminderObj) {
-		
+		this.reminderObj = reminderObj;
+		init();
+	}
+	
+	private void init() {
+		setLayoutId(R.layout.new_reminder_title_layout);
 	}
 
 	@Override

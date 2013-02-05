@@ -41,8 +41,9 @@
             android:inputType="textMultiLine"
             android:lines="6"
             android:background="@drawable/message_edittext_background"
-            android:layout_centerInParent="true" />
-
+            android:layout_centerInParent="true"
+            android:gravity="left" />
+        
     </RelativeLayout>
 
     <RelativeLayout

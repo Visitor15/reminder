@@ -16,10 +16,11 @@ public class ReminderSetMessageFragment extends BaseReminderFragment {
 	
 	public ReminderSetMessageFragment(final ReminderObject reminder) {
 		this.reminderObj = reminder;
+		init();
 	}
 	
 	private void init() {
-		setLayoutId(R.layout.new_reminder_title_layout);
+		setLayoutId(R.layout.new_reminder_message_layout);
 	}
 
 	@Override

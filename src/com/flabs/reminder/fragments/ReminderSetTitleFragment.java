@@ -16,6 +16,7 @@ public class ReminderSetTitleFragment extends BaseReminderFragment {
 	
 	public ReminderSetTitleFragment(final ReminderObject reminder) {
 		this.reminderObj = reminder;
+		init();
 	}
 	
 	private void init() {

@@ -138,30 +138,33 @@ public class MainActivity extends ReminderActivity {
 
 	protected void onBtnAddClicked() {
 		
-		ReminderObject mReminder = ReminderObjectBuilder.getInstance(this).createSimpleReminder();
+		Intent mIntent = new Intent(this, NewReminderActivity.class);
+		startActivity(mIntent);
 		
-		mReminder.setTitle(titleInput.getText().toString());
-		mReminder.setMessage(messageInput.getText().toString());
-		
-		Category category = new Category();
-		category.setLabel(categorySpinner.getSelectedItem().toString());
-//		category.setCustomLabel();
-		
-		SubCategory subCategory = new SubCategory();
-		subCategory.setLabel(subCategorySpinner.getSelectedItem().toString());
-//		subCategory.setCustomLabel("Test custom subcategory label");
-		
-		mReminder.setCategory(category);
-		mReminder.setSubCategory(subCategory);
-		
-		Random ran = new Random();
-		mReminder.setActivatedState(ran.nextBoolean());
-		
-		mReminder.setId(ran.nextLong());
-		
-		setFutureAlarm(this, mReminder);
-		
-		Log.d(TAG, "NCC - DB IT RETURNED: " + DBManager.getInstance(this).insert(mReminder));
+//		ReminderObject mReminder = ReminderObjectBuilder.getInstance(this).createSimpleReminder();
+//		
+//		mReminder.setTitle(titleInput.getText().toString());
+//		mReminder.setMessage(messageInput.getText().toString());
+//		
+//		Category category = new Category();
+//		category.setLabel(categorySpinner.getSelectedItem().toString());
+////		category.setCustomLabel();
+//		
+//		SubCategory subCategory = new SubCategory();
+//		subCategory.setLabel(subCategorySpinner.getSelectedItem().toString());
+////		subCategory.setCustomLabel("Test custom subcategory label");
+//		
+//		mReminder.setCategory(category);
+//		mReminder.setSubCategory(subCategory);
+//		
+//		Random ran = new Random();
+//		mReminder.setActivatedState(ran.nextBoolean());
+//		
+//		mReminder.setId(ran.nextLong());
+//		
+//		setFutureAlarm(this, mReminder);
+//		
+//		Log.d(TAG, "NCC - DB IT RETURNED: " + DBManager.getInstance(this).insert(mReminder));
 	}
 	
 	private void setFutureAlarm(final Context context, ReminderObject reminderObj) {

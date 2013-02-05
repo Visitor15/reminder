@@ -54,6 +54,10 @@
                 <action android:name="com.flabs.reminder.display.reminder_dialog" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name="com.flabs.reminder.activities.NewReminderActivity">
+        </activity>
     </application>
 
 </manifest>
