@@ -12,6 +12,7 @@ import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.NewReminderActivity;
 import com.flabs.reminder.activities.ViewPagerAdapter;
 import com.flabs.reminder.reminder_object.ReminderObject;
+import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
 public class ReminderTypeChooserFragment extends BaseReminderFragment {
 	
@@ -45,6 +46,7 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 			@Override
 			public void onClick(View v) {
 				ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
+				adapter.getReminderObject().setReminderType(REMINDER_TYPE.QUICK_REMINDER);
 				ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
 				manipulateFragmentsInAdapter(adapter, ReminderTypeChooserFragment.QUICK_REMINDER);
 				switchToNewFragment(pager, (adapter.getDataList().size() - 1));
@@ -59,6 +61,7 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 			@Override
 			public void onClick(View v) {
 				ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
+				adapter.getReminderObject().setReminderType(REMINDER_TYPE.REPEAT_REMINDER);
 				ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
 				manipulateFragmentsInAdapter(adapter, ReminderTypeChooserFragment.REPEAT_REMINDER);
 				switchToNewFragment(pager, (adapter.getDataList().size() - 1));
@@ -70,11 +73,11 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 	private void manipulateFragmentsInAdapter(final ViewPagerAdapter adapter, final int reminderType) {
 		switch(reminderType) {
 		case ReminderTypeChooserFragment.QUICK_REMINDER: {
-			adapter.getDataList().add(new ReminderFrequencyFragment());
+			adapter.getDataList().add(new ReminderSetMessageFragment(adapter.getReminderObject()));
 			break;
 		}
 		case ReminderTypeChooserFragment.REPEAT_REMINDER: {
-			adapter.getDataList().add(new ReminderFrequencyFragment());
+			adapter.getDataList().add(new ReminderFrequencyFragment(adapter.getReminderObject()));
 			break;
 		}
 		default: {

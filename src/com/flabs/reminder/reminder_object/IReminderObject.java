@@ -1,6 +1,7 @@
 package com.flabs.reminder.reminder_object;
 
 import com.flabs.reminder.util.EnvironmentVariables.ACTION;
+import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
 public interface IReminderObject {
 
@@ -17,6 +18,8 @@ public interface IReminderObject {
 	public void setActivatedState(boolean isActivated);
 	
 	public void setOnRemindAction(ACTION action);
+	
+	public void setReminderType(REMINDER_TYPE reminderType);
 	
 	public void setHasDisplayedIn24Hours(boolean hasDisplayed);
 	
@@ -37,6 +40,8 @@ public interface IReminderObject {
 	public boolean isActivated();
 	
 	public ACTION getOnRemindAction();
+	
+	public REMINDER_TYPE getReminderType();
 	
 	public boolean hasDisplayedIn24Hours();
 	

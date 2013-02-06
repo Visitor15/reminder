@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.flabs.reminder.util.EnvironmentVariables;
 import com.flabs.reminder.util.EnvironmentVariables.ACTION;
+import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
 public class ReminderObject implements IReminderObject {
 
@@ -26,6 +27,7 @@ public class ReminderObject implements IReminderObject {
 	private boolean isActivated = false;
 	private boolean hasDisplayedIn24Hours = false;
 	private ACTION onRemindAction;
+	private REMINDER_TYPE reminderType;
 	private long id;
 
 	public ReminderObject() {
@@ -67,6 +69,11 @@ public class ReminderObject implements IReminderObject {
 	@Override
 	public void setOnRemindAction(ACTION action) {
 		this.onRemindAction = action;
+	}
+	
+	@Override
+	public void setReminderType(REMINDER_TYPE reminderType) {
+		this.reminderType = reminderType;
 	}
 	
 	@Override
@@ -112,6 +119,11 @@ public class ReminderObject implements IReminderObject {
 	@Override
 	public ACTION getOnRemindAction() {
 		return onRemindAction;
+	}
+
+	@Override
+	public REMINDER_TYPE getReminderType() {
+		return reminderType;
 	}
 
 	@Override
@@ -186,4 +198,6 @@ public class ReminderObject implements IReminderObject {
 
 		return reminderObj;
 	}
+
+	
 }

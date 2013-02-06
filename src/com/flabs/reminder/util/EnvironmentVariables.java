@@ -9,6 +9,11 @@ public class EnvironmentVariables {
 		VIEW_REMINDER
 	}
 	
+	public static enum REMINDER_TYPE {
+		QUICK_REMINDER,
+		REPEAT_REMINDER
+	}
+	
 	public static enum DAYS {
 		MONDAY,
 		TUESDAY,

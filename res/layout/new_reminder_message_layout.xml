@@ -51,6 +51,16 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="144dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dip"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:text="NEXT" />
+
     </RelativeLayout>
 
 </LinearLayout>
