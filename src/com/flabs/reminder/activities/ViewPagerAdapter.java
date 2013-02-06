@@ -54,7 +54,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		return dataList.size() - 1;
+		return dataList.size();
+	}
+	
+	public ArrayList<Fragment> getDataList() {
+		return this.dataList;
 	}
 
 	private OnFragmentCreatedCallback getAdapterCallback() {

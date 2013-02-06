@@ -1,14 +1,29 @@
 package com.flabs.reminder.fragments;
 
 import android.os.Bundle;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.RatingBar;
 
 import com.flabs.mobile.reminder.R;
+import com.flabs.reminder.activities.NewReminderActivity;
+import com.flabs.reminder.activities.ViewPagerAdapter;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class ReminderTypeChooserFragment extends BaseReminderFragment {
+	
+	public static final String TAG = "ReminderTypeChooserFragment";
+	
+	public static final int QUICK_REMINDER = 0x01;
+	
+	public static final int REPEAT_REMINDER = 0x02;
+	
+	private Button btnQuickReminder;
+	private Button btnRepeatReminder;
+	private RatingBar priorityBar;
 	
 	public ReminderTypeChooserFragment() {
 		init();
@@ -24,6 +39,56 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 		setBackground(R.drawable.red_gradient_background);
 	}
 	
+	private void setQuickReminderButton(final Button btn) {
+		btn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
+				ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
+				manipulateFragmentsInAdapter(adapter, ReminderTypeChooserFragment.QUICK_REMINDER);
+				switchToNewFragment(pager, (adapter.getDataList().size() - 1));
+			}
+			
+		});
+	}
+	
+	private void setRepeatReminderButton(final Button btn) {
+		btn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
+				ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
+				manipulateFragmentsInAdapter(adapter, ReminderTypeChooserFragment.REPEAT_REMINDER);
+				switchToNewFragment(pager, (adapter.getDataList().size() - 1));
+			}
+			
+		});
+	}
+	
+	private void manipulateFragmentsInAdapter(final ViewPagerAdapter adapter, final int reminderType) {
+		switch(reminderType) {
+		case ReminderTypeChooserFragment.QUICK_REMINDER: {
+			adapter.getDataList().add(new ReminderFrequencyFragment());
+			break;
+		}
+		case ReminderTypeChooserFragment.REPEAT_REMINDER: {
+			adapter.getDataList().add(new ReminderFrequencyFragment());
+			break;
+		}
+		default: {
+			//Do nothing
+			break;
+		}
+		}
+		
+	}
+	
+	private void switchToNewFragment(final ViewPager pager, final int pos) {
+		pager.setCurrentItem(pos, true);
+	}
+	
 	@Override
 	public void onFragmentCreate(Bundle b) {
 		// TODO Auto-generated method stub
@@ -32,7 +97,12 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentCreateView(View v) {
+		btnQuickReminder = (Button) v.findViewById(R.id.btn_quick_reminder);
+		btnRepeatReminder = (Button) v.findViewById(R.id.btn_repeat_reminder);
+		priorityBar = (RatingBar) v.findViewById(R.id.priority_bar);
 		
+		setQuickReminderButton(btnQuickReminder);
+		setRepeatReminderButton(btnRepeatReminder);
 	}
 
 	@Override

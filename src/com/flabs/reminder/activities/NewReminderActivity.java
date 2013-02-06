@@ -3,6 +3,7 @@ package com.flabs.reminder.activities;
 import java.util.ArrayList;
 
 import android.support.v4.app.Fragment;
+import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -125,14 +126,22 @@ public class NewReminderActivity extends ReminderActivity implements ViewPagerAd
 		fragmentList = new ArrayList<Fragment>();
 
 		fragmentList.add(new ReminderTypeChooserFragment());
-		fragmentList.add(new ReminderSetMessageFragment());
-		fragmentList.add(new ReminderFrequencyFragment());
-		fragmentList.add(new ReminderCategoryChooserFragment());
-		fragmentList.add(new ReminderSubCategoryChooserFragment());
-		fragmentList.add(new OnReminderActionChooserFragment());
-		fragmentList.add(new ReminderSetTitleFragment());
+//		fragmentList.add(new ReminderSetMessageFragment());
+//		fragmentList.add(new ReminderFrequencyFragment());
+//		fragmentList.add(new ReminderCategoryChooserFragment());
+//		fragmentList.add(new ReminderSubCategoryChooserFragment());
+//		fragmentList.add(new OnReminderActionChooserFragment());
+//		fragmentList.add(new ReminderSetTitleFragment());
 
 		return fragmentList;
+	}
+	
+	public PagerAdapter getAdapter() {
+		return this.pageAdapter;
+	}
+	
+	public ViewPager getViewPager() {
+		return this.mViewPager;
 	}
 
 	/*
