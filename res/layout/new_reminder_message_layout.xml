@@ -20,7 +20,7 @@
             android:textSize="32sp"
             android:textStyle="bold"
             android:textColor="#44FFFFFF"
-            android:text="Message?" />
+            android:text="Add a message?" />
 
     </RelativeLayout>
 

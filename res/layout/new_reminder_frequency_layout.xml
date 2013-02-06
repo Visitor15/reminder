@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:gravity="center"
-            android:text="How Often?"
+            android:text="When would you like to be reminded?"
             android:textColor="#44FFFFFF"
             android:textSize="32sp"
             android:textStyle="bold" />
