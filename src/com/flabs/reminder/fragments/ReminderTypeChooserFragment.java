@@ -32,6 +32,7 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentCreateView(View v) {
+		
 	}
 
 	@Override
@@ -53,7 +54,6 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentStop() {
-		// TODO Auto-generated method stub
 		
 	}
 }

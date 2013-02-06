@@ -51,8 +51,7 @@ public class NewReminderActivity extends ReminderActivity implements ViewPagerAd
 
 	@Override
 	public void onReminderActivityStart() {
-		// TODO Auto-generated method stub
-
+		initFirstViewPagerElement();
 	}
 
 	@Override
@@ -99,18 +98,17 @@ public class NewReminderActivity extends ReminderActivity implements ViewPagerAd
 
 			@Override
 			public void onPageScrollStateChanged(int pos) {
-				
+
 			}
 
 			@Override
 			public void onPageScrolled(int pos, float arg1, int arg2) {
 				// TODO Auto-generated method stub
-				
+
 			}
 
 			@Override
 			public void onPageSelected(int pos) {
-				Log.d(TAG, "NCC - HIT HIT HIT");
 				BaseReminderFragment frag = (BaseReminderFragment) pageAdapter.getItem(pos);
 				frag.getAdapterCallback().onFragmentCreated(frag.getBackgroundId());
 			}
@@ -135,6 +133,28 @@ public class NewReminderActivity extends ReminderActivity implements ViewPagerAd
 		fragmentList.add(new ReminderSetTitleFragment());
 
 		return fragmentList;
+	}
+
+	/*
+	 * This is here to simply kick start the background transition.
+	 * Without it, the first element in the ViewPager never has its background
+	 * set when we initially view the ViewPager.
+	 */
+	private void initFirstViewPagerElement() {
+		final Animation fadeIn = AnimationUtils.loadAnimation(this, android.R.anim.fade_in);
+
+		final int backgroundId = ((BaseReminderFragment) fragmentList.get(0)).getBackgroundId();
+
+		rootView1.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				rootView1.setBackgroundResource(backgroundId);
+				rootView1.startAnimation(fadeIn);
+			}
+
+		}, 100);
+
 	}
 
 	@Override

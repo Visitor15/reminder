@@ -8,8 +8,7 @@
         android:id="@+id/view_pager_container"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1"
-        android:background="@drawable/transparent_background" >
+        android:layout_weight="1" >
 
         <FrameLayout
             android:id="@+id/background_view1"
