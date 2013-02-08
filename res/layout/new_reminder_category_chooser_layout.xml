@@ -1,10 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/transparent_background"
     android:orientation="vertical" >
-    
-    
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:gravity="center"
+            android:text="Select a category."
+            android:textColor="#44FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.75" >
+
+        <TextView
+            android:id="@+id/tv_category_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dip"
+            android:layout_marginBottom="8dip"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="96dip"
+            android:text="Category" />
+
+        <Spinner
+            android:id="@+id/spinner_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:entries="@array/category_list"
+            android:layout_marginLeft="16dip"
+            android:layout_marginRight="16dip"
+            android:layout_marginTop="8dip"
+            android:layout_marginBottom="8dip"
+            android:layout_below="@id/tv_category_title"
+            android:gravity="center"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tv_subcategory_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinner_category"
+            android:layout_centerHorizontal="true"
+            android:text="Subcategory" />
+
+        <Spinner
+            android:id="@+id/spinner_subcategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dip"
+            android:layout_marginRight="16dip"
+            android:layout_marginTop="8dip"
+            android:layout_marginBottom="8dip"
+            android:entries="@array/subcategory_list"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_below="@id/tv_subcategory_title" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" >
+    </RelativeLayout>
 
 </LinearLayout>

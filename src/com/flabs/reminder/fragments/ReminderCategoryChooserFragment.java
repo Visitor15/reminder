@@ -18,8 +18,8 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 	}
 	
 	private void init() {
-		setLayoutId(R.layout.new_reminder_title_layout);
-		setBackground(R.drawable.blue_gradient_background);
+		setLayoutId(R.layout.new_reminder_category_chooser_layout);
+		setBackground(R.drawable.purple_gradient_background);
 	}
 
 	@Override
