@@ -38,7 +38,8 @@ public final class R {
         public static final int btn_quick_reminder=0x7f08000d;
         public static final int btn_repeat_reminder=0x7f08000e;
         public static final int btn_search=0x7f080018;
-        public static final int datepicker=0x7f080007;
+        public static final int btn_set_date=0x7f080007;
+        public static final int btn_set_time=0x7f080006;
         public static final int editText1=0x7f08000c;
         public static final int et_message=0x7f080016;
         public static final int et_title=0x7f080011;
@@ -52,7 +53,6 @@ public final class R {
         public static final int spinner_category=0x7f080003;
         public static final int spinner_subcategory=0x7f080005;
         public static final int textView1=0x7f080001;
-        public static final int timepicker=0x7f080006;
         public static final int tv_category=0x7f080014;
         public static final int tv_category_title=0x7f080002;
         public static final int tv_message=0x7f08001d;
