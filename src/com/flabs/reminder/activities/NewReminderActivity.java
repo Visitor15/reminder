@@ -52,7 +52,9 @@ public class NewReminderActivity extends ReminderActivity implements ViewPagerAd
 
 	@Override
 	public void onReminderActivityStart() {
-		initFirstViewPagerElement();
+		if(mViewPager.getCurrentItem() == 0) {
+			initFirstViewPagerElement();
+		}
 	}
 
 	@Override
@@ -126,20 +128,20 @@ public class NewReminderActivity extends ReminderActivity implements ViewPagerAd
 		fragmentList = new ArrayList<Fragment>();
 
 		fragmentList.add(new ReminderTypeChooserFragment());
-//		fragmentList.add(new ReminderSetMessageFragment());
-//		fragmentList.add(new ReminderFrequencyFragment());
-//		fragmentList.add(new ReminderCategoryChooserFragment());
-//		fragmentList.add(new ReminderSubCategoryChooserFragment());
-//		fragmentList.add(new OnReminderActionChooserFragment());
-//		fragmentList.add(new ReminderSetTitleFragment());
+		//		fragmentList.add(new ReminderSetMessageFragment());
+		//		fragmentList.add(new ReminderFrequencyFragment());
+		//		fragmentList.add(new ReminderCategoryChooserFragment());
+		//		fragmentList.add(new ReminderSubCategoryChooserFragment());
+		//		fragmentList.add(new OnReminderActionChooserFragment());
+		//		fragmentList.add(new ReminderSetTitleFragment());
 
 		return fragmentList;
 	}
-	
+
 	public PagerAdapter getAdapter() {
 		return this.pageAdapter;
 	}
-	
+
 	public ViewPager getViewPager() {
 		return this.mViewPager;
 	}
