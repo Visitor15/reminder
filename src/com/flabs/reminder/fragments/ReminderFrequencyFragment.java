@@ -9,6 +9,8 @@ import android.widget.Button;
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.NewReminderActivity;
 import com.flabs.reminder.activities.ViewPagerAdapter;
+import com.flabs.reminder.dialogs.SetReminderDateDialog;
+import com.flabs.reminder.dialogs.SetReminderTimeDialog;
 import com.flabs.reminder.reminder_object.ReminderObject;
 import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
@@ -17,6 +19,8 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 	public static final String TAG = "ReminderFrequencyFragment";
 	
 	private Button btnNext;
+	private Button btnSetTime;
+	private Button btnSetDate;
 	
 	public ReminderFrequencyFragment() {
 		init();
@@ -38,6 +42,28 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 			@Override
 			public void onClick(View v) {
 				handleNextButtonClicked();
+			}
+			
+		});
+	}
+	
+	private void setSetTimeButtonListener(final Button btn) {
+		btn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				new SetReminderTimeDialog().show(getActivity().getSupportFragmentManager(), "TAG");
+			}
+			
+		});
+	}
+	
+	private void setSetDateButtonListener(final Button btn) {
+		btn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				new SetReminderDateDialog().show(getActivity().getSupportFragmentManager(), "TAG");
 			}
 			
 		});
@@ -72,6 +98,11 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 	@Override
 	public void onFragmentCreateView(View v) {
 		btnNext = (Button) v.findViewById(R.id.btn_next);
+		btnSetTime = (Button) v.findViewById(R.id.btn_set_time);
+		btnSetDate = (Button) v.findViewById(R.id.btn_set_date);
+		
+		setSetTimeButtonListener(btnSetTime);
+		setSetDateButtonListener(btnSetDate);
 		setNextButtonListener(btnNext);
 	}
 
