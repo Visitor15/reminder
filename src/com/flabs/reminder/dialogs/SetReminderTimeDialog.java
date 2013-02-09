@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TimePicker;
 
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.reminder_object.ReminderObject;
@@ -20,6 +21,8 @@ public class SetReminderTimeDialog extends DialogFragment {
 	private Button btnSet;
 	
 	private Button btnCancel;
+	
+	private TimePicker timePicker;
 	
 	public SetReminderTimeDialog() {
 		
@@ -69,6 +72,7 @@ public class SetReminderTimeDialog extends DialogFragment {
 	
 		btnSet = (Button) rootView.findViewById(R.id.btn_two);
 		btnCancel = (Button) rootView.findViewById(R.id.btn_one);
+		timePicker = (TimePicker) rootView.findViewById(R.id.time_picker);
 		
 		setBtnSetClickListener(btnSet);
 		setBtnCancelClickListener(btnCancel);

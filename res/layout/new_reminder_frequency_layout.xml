@@ -51,6 +51,40 @@
         android:layout_height="0dip"
         android:layout_weight="1" >
         
+        <TextView
+            android:id="@+id/tv_set_for"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="16dip"
+            android:text="Reminder set for"
+            android:textColor="#44FFFFFF"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+        
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_set_for"
+            android:layout_centerHorizontal="true"
+            android:text="11:42 AM"
+            android:textColor="#44FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+        
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_time"
+            android:layout_centerHorizontal="true"
+            android:text="03/11/1988"
+            android:textColor="#44FFFFFF"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+        
         <Button
             android:id="@+id/btn_next"
             android:layout_width="144dip"
