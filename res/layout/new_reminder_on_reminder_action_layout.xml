@@ -27,9 +27,10 @@
         android:id="@+id/ll_actions_container"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="0.75"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:gravity="center"
+        android:background="@drawable/dialog_background"
         android:weightSum="2" >
 
         <LinearLayout
@@ -44,9 +45,8 @@
             <RelativeLayout
                 android:id="@+id/rl_btn_one"
                 android:layout_width="0dip"
-                android:layout_height="56dip"
-                android:layout_weight="1"
-                android:background="#FF0000" >
+                android:layout_height="64dip"
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -57,8 +57,8 @@
 
                 <ToggleButton
                     android:id="@+id/toggleButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:layout_below="@id/tv_title" />
@@ -69,9 +69,8 @@
             <RelativeLayout
                 android:id="@+id/rl_btn_two"
                 android:layout_width="0dip"
-                android:layout_height="56dip"
-                android:layout_weight="1"
-                android:background="#00FF00" >
+                android:layout_height="64dip"
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -82,8 +81,8 @@
 
                 <ToggleButton
                     android:id="@+id/toggleButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:layout_below="@id/tv_title" />
@@ -92,9 +91,8 @@
             <RelativeLayout
                 android:id="@+id/rl_btn_three"
                 android:layout_width="0dip"
-                android:layout_height="56dip"
-                android:layout_weight="1"
-                android:background="#0000FF" >
+                android:layout_height="64dip"
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -105,8 +103,8 @@
 
                 <ToggleButton
                     android:id="@+id/toggleButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:layout_below="@id/tv_title" />
@@ -124,21 +122,20 @@
             <RelativeLayout
                 android:id="@+id/rl_btn_one"
                 android:layout_width="0dip"
-                android:layout_height="56dip"
-                android:layout_weight="1"
-                android:background="#FF0000" >
+                android:layout_height="64dip"
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/tv_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="TEXT MESSAGE" />
+                    android:text="SMS" />
 
                 <ToggleButton
                     android:id="@+id/toggleButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:layout_below="@id/tv_title" />
@@ -147,9 +144,8 @@
             <RelativeLayout
                 android:id="@+id/rl_btn_two"
                 android:layout_width="0dip"
-                android:layout_height="56dip"
-                android:layout_weight="1"
-                android:background="#00FF00" >
+                android:layout_height="64dip"
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -160,8 +156,8 @@
 
                 <ToggleButton
                     android:id="@+id/toggleButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:layout_below="@id/tv_title" />
@@ -170,9 +166,8 @@
             <RelativeLayout
                 android:id="@+id/rl_btn_three"
                 android:layout_width="0dip"
-                android:layout_height="56dip"
-                android:layout_weight="1"
-                android:background="#0000FF" >
+                android:layout_height="64dip"
+                android:layout_weight="1" >
 
                 <TextView
                     android:id="@+id/tv_title"
@@ -183,8 +178,8 @@
 
                 <ToggleButton
                     android:id="@+id/toggleButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:layout_below="@id/tv_title" />
@@ -195,7 +190,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1" >
+        android:layout_weight="0.75" >
 
         <TextView
             android:id="@+id/textView1"

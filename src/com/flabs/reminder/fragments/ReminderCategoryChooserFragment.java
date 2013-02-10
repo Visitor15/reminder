@@ -66,7 +66,6 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		
 		if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.QUICK_REMINDER.name())) {
 			// We're going to view the frequency fragment
-//			adapter.getDataList().add(new ReminderFrequencyFragment(getReminderObject()));
 			adapter.getDataList().add(new ReminderFrequencyFragment(getReminderObject()));
 		}
 		else if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.REPEAT_REMINDER.name())) {
