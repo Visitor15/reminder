@@ -25,9 +25,12 @@
 
     <LinearLayout
         android:id="@+id/ll_actions_container"
-        style="@style/ReminderActionContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.75"
         android:orientation="vertical"
-        android:gravity="center" >
+        android:gravity="center"
+        android:weightSum="2" >
 
         <LinearLayout
             android:id="@+id/ll_row1"
