@@ -33,7 +33,7 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 	
 	private void init() {
 		setLayoutId(R.layout.new_reminder_frequency_layout);
-		setBackground(R.drawable.orange_gradient_background);
+		setBackground(R.drawable.teal_gradient_background);
 	}
 	
 	private void setNextButtonListener(final Button btn) {
@@ -75,7 +75,7 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 		
 		if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.QUICK_REMINDER.name())) {
 			// We're going to view the frequency fragment
-			adapter.getDataList().add(new ReminderSetTitleFragment(getReminderObject()));
+			adapter.getDataList().add(new ReminderSetMessageFragment(getReminderObject()));
 		}
 		else if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.REPEAT_REMINDER.name())) {
 			// We're going to view the set message fragment

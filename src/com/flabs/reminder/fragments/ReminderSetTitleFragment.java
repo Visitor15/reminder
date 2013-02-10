@@ -19,7 +19,7 @@ public class ReminderSetTitleFragment extends BaseReminderFragment {
 	
 	private void init() {
 		setLayoutId(R.layout.new_reminder_title_layout);
-		setBackground(R.drawable.blue_gradient_background);
+		setBackground(R.drawable.navy_gradient_background);
 	}
 	
 	@Override

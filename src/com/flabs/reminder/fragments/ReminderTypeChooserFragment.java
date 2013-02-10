@@ -73,11 +73,11 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 	private void manipulateFragmentsInAdapter(final ViewPagerAdapter adapter, final int reminderType) {
 		switch(reminderType) {
 		case ReminderTypeChooserFragment.QUICK_REMINDER: {
-			adapter.getDataList().add(new ReminderSetMessageFragment(adapter.getReminderObject()));
+			adapter.getDataList().add(new OnReminderActionChooserFragment(adapter.getReminderObject()));
 			break;
 		}
 		case ReminderTypeChooserFragment.REPEAT_REMINDER: {
-			adapter.getDataList().add(new ReminderFrequencyFragment(adapter.getReminderObject()));
+			adapter.getDataList().add(new OnReminderActionChooserFragment(adapter.getReminderObject()));
 			break;
 		}
 		default: {

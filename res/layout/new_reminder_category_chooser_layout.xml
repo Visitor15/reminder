@@ -32,24 +32,24 @@
             android:id="@+id/tv_category_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dip"
-            android:layout_marginBottom="8dip"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dip"
             android:layout_marginLeft="96dip"
+            android:layout_marginTop="8dip"
             android:text="Category" />
 
         <Spinner
             android:id="@+id/spinner_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:entries="@array/category_list"
+            android:layout_below="@id/tv_category_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dip"
             android:layout_marginLeft="16dip"
             android:layout_marginRight="16dip"
             android:layout_marginTop="8dip"
-            android:layout_marginBottom="8dip"
-            android:layout_below="@id/tv_category_title"
-            android:gravity="center"
-            android:layout_centerHorizontal="true" />
+            android:entries="@array/category_list"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/tv_subcategory_title"
@@ -63,20 +63,29 @@
             android:id="@+id/spinner_subcategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/tv_subcategory_title"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="8dip"
             android:layout_marginLeft="16dip"
             android:layout_marginRight="16dip"
             android:layout_marginTop="8dip"
-            android:layout_marginBottom="8dip"
             android:entries="@array/subcategory_list"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:layout_below="@id/tv_subcategory_title" />
+            android:gravity="center" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1" >
+
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="144dip"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dip"
+            android:text="NEXT" />
     </RelativeLayout>
 
 </LinearLayout>
