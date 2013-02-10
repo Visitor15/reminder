@@ -112,6 +112,8 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 		
 		setQuickReminderButton(btnQuickReminder);
 		setRepeatReminderButton(btnRepeatReminder);
+		
+		priorityBar.setRating(getReminderObject().getPriority());
 	}
 
 	@Override
@@ -123,6 +125,7 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 	@Override
 	public void onFragmentPause() {
 		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
+		getReminderObject().setPriority(priorityBar.getRating());
 		adapter.setReminderObject(getReminderObject());
 	}
 

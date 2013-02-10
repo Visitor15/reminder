@@ -183,6 +183,8 @@ public class ReminderObject implements IReminderObject {
 		SimpleDateFormat timeFormatter = new SimpleDateFormat("EEE, MMM d, ''yy");
 
 		mString = "TITLE: " + getTitle() + " " +
+				"ID: " + getId() + " " +
+				"PRIORITY: " + getPriority() + " " +
 				"CATEGORY: " + getCategory().getLabel() + " " +
 				"SUBCATEGORY: " + getSubCategory().getLabel() + " " +
 				"REMINDER TIME: " + " " +
