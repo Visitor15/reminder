@@ -15,13 +15,12 @@ public class Category extends BaseCategory implements ICategory {
 
 	private String customLabel = "NULL";
 	private int customColor = -1;
-	
+
 	private ArrayList<SubCategory> subCategories;
 
 	public Category() {
 		super();
 		subCategories = new ArrayList<SubCategory>();
-		addDefaultSubCategory(subCategories);
 	}
 
 	@Override
@@ -38,7 +37,7 @@ public class Category extends BaseCategory implements ICategory {
 	public void setColor(String color) {
 		this.color = Color.parseColor(color);
 	}
-	
+
 	@Override
 	public void addSubCategory(SubCategory subCategory) {
 		if(subCategories == null) {
@@ -87,7 +86,7 @@ public class Category extends BaseCategory implements ICategory {
 		if(subCategories == null) {
 			subCategories = new ArrayList<SubCategory>();
 		}
-		
+
 		return subCategories.get(pos);
 	}
 
@@ -107,8 +106,8 @@ public class Category extends BaseCategory implements ICategory {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	private void addDefaultSubCategory(final ArrayList<SubCategory> subCategoryList) {
+
+	public void addDefaultSubCategory(final ArrayList<SubCategory> subCategoryList) {
 		SubCategory subCategory = new SubCategory();
 		subCategory.setLabel("General");
 		subCategoryList.add(subCategory);
@@ -122,14 +121,20 @@ public class Category extends BaseCategory implements ICategory {
 			out.writeUTF(getCustomLabel());
 			out.writeInt(getColor());
 			out.writeInt(getCustomColor());
-			out.writeInt(getAllSubCategories().size());
-			
-			for(SubCategory subCat : subCategories) {
-				final byte[] subCategoryBytes = subCat.toBinary();
-				out.writeInt(subCategoryBytes.length);
-				out.write(subCategoryBytes);
+
+			if(!getAllSubCategories().isEmpty()) {
+				out.writeInt(getAllSubCategories().size());
+
+				for(SubCategory subCat : subCategories) {
+					final byte[] subCategoryBytes = subCat.toBinary();
+					out.writeInt(subCategoryBytes.length);
+					out.write(subCategoryBytes);
+				}
 			}
-			
+			else {
+				out.writeInt(0);
+			}
+
 			out.flush();
 		} catch (final IOException e) {
 		}
@@ -138,31 +143,31 @@ public class Category extends BaseCategory implements ICategory {
 
 		return res;
 	}
-	
+
 	public static Category fromBinary(final byte[] byteArray) throws StreamCorruptedException, IOException {
 		final ByteArrayInputStream is = new ByteArrayInputStream(byteArray);
 		final ObjectInputStream in = new ObjectInputStream(is);
-		
+
 		Category category = new Category();
 		category.setLabel(in.readUTF());
 		category.setCustomLabel(in.readUTF());
 		category.setColor(in.readInt());
 		category.setCustomColor(in.readInt());
-		
+
 		int numOfSubCategories = in.readInt();
-		
+
 		for(int i = 0; i < numOfSubCategories; i++) {
 			final int subCategoryBytesLength = in.readInt();
-			
+
 			final byte[] subCategoryBytes = new byte[subCategoryBytesLength];
 			in.read(subCategoryBytes);
-			
+
 			category.addSubCategory(SubCategory.fromBinary(subCategoryBytes));
 		}
-		
+
 		return category;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getLabel();

@@ -8,6 +8,7 @@ public abstract class BaseCategory implements IBaseCategory, Serializable {
 
 	protected String label = "NULL";
 	protected int color = -1;
+	protected boolean isSubCategory;
 	
 	public BaseCategory() {
 		

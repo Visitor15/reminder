@@ -66,6 +66,7 @@ public class AddCategoryDialog extends DialogFragment {
 	
 	private void createAndSaveCategory(final String label) {
 		Category newCategory = new Category();
+		newCategory.addDefaultSubCategory(newCategory.getAllSubCategories());
 		newCategory.setLabel(label);
 		
 		DBManager.getInstance(getActivity()).insertCategoryObject(newCategory);
