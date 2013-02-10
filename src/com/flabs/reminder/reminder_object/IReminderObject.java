@@ -23,6 +23,8 @@ public interface IReminderObject {
 	
 	public void setHasDisplayedIn24Hours(boolean hasDisplayed);
 	
+	public void setPriority(final float priority);
+	
 	public void setId(long Id);
 	
 	public String getTitle();
@@ -34,6 +36,8 @@ public interface IReminderObject {
 	public Category getCategory();
 	
 	public SubCategory getSubCategory();
+	
+	public float getPriority();
 	
 	public long getId();
 	

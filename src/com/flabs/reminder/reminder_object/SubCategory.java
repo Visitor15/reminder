@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
+import java.util.ArrayList;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -109,5 +110,23 @@ public class SubCategory extends BaseCategory implements ICategory {
 		subCategory.setCustomColor(in.readInt());
 		
 		return subCategory;
+	}
+
+	@Override
+	public void addSubCategory(SubCategory subCategory) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public SubCategory getSubCategory(int pos) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<SubCategory> getAllSubCategories() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

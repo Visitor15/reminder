@@ -71,6 +71,8 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 	}
 	
 	private void manipulateFragmentsInAdapter(final ViewPagerAdapter adapter, final int reminderType) {
+		adapter.getReminderObject().setPriority(priorityBar.getRating());
+		
 		switch(reminderType) {
 		case ReminderTypeChooserFragment.QUICK_REMINDER: {
 			adapter.getDataList().add(new OnReminderActionChooserFragment(adapter.getReminderObject()));

@@ -22,7 +22,7 @@
         <item name="android:layout_width">match_parent</item>
     </style>
 
-    <style name="Theme.Transparent" parent="android:Theme.Light">
+    <style name="Theme.Transparent" parent="@android:Theme.Light">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowContentOverlay">@null</item>
@@ -50,6 +50,15 @@
         <item name="android:textAllCaps">true</item>
         <item name="android:layout_weight">1</item>
         <item name="android:textColor">#FFFFFF</item>
+    </style>
+    
+    <style name="ReminderActionContainer" parent="ReminderTheme">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dip</item>
+        <item name="android:layout_weight">0.75</item>
+        <item name="android:weightSum">2</item>
+        <item name="android:textColor">#44000000</item>
+        <item name="android:maxWidth">325dip</item>
     </style>
 
 </resources>

@@ -1,10 +1,15 @@
 package com.flabs.reminder.fragments;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.NewReminderActivity;
@@ -15,6 +20,8 @@ import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 public class OnReminderActionChooserFragment extends BaseReminderFragment {
 
 	private Button btnNext;
+	
+	private LinearLayout actionsContainer;
 	
 	public OnReminderActionChooserFragment() {
 		init();
@@ -39,6 +46,20 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 			}
 			
 		});
+	}
+	
+	private void initActionsContainer(final LinearLayout container) {
+		int dipValue = 325;
+	    Resources r = getResources();
+	    int pix = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, r.getDisplayMetrics());
+	    
+	    container.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
+	    
+	    Log.d("TAG", "NCC - PIX IS: " + pix + " VIEW WIDTH: " + container.getMeasuredWidth());
+	    
+	    if(container.getMeasuredWidth() > pix) {
+	    	container.setLayoutParams(new LinearLayout.LayoutParams(pix, 0, 0.75f));
+	    }
 	}
 	
 	private void handleNextButtonClicked() {
@@ -71,6 +92,8 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 	@Override
 	public void onFragmentCreateView(View v) {
 		btnNext = (Button) v.findViewById(R.id.btn_next);
+		actionsContainer = (LinearLayout) v.findViewById(R.id.ll_actions_container);
+		
 		setNextButtonListener(btnNext);
 	}
 
@@ -88,8 +111,7 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentResume() {
-		// TODO Auto-generated method stub
-		
+		initActionsContainer(actionsContainer);
 	}
 
 	@Override

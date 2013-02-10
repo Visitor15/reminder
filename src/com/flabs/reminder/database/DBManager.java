@@ -53,16 +53,15 @@ public class DBManager extends SQLiteOpenHelper {
 
 	}
 
-	public long insert(IReminderObject reminderObj) {
-		return insert(reminderObj.getTitle(), reminderObj.getIconPath(), reminderObj);
+	public long insertReminderObject(IReminderObject reminderObj) {
+		return insertReminderObject(reminderObj.getTitle(), reminderObj.getIconPath(), reminderObj);
 	}
 
-	private long insert(final String title, final String iconPath, final IReminderObject reminderObj) {
+	private long insertReminderObject(final String title, final String iconPath, final IReminderObject reminderObj) {
 		ContentValues values = new ContentValues();
 		values.put(EnvironmentVariables.DATABASE.Columns.TITLE_NAME.name(), title);
 		values.put(EnvironmentVariables.DATABASE.Columns.ICON.name(), iconPath);
 		values.put(EnvironmentVariables.DATABASE.Columns.DATA_BLOB.name(), reminderObj.toBinary());
-		values.put(EnvironmentVariables.DATABASE.Columns.HAS_DISPLAYED_IN_24H.name(), reminderObj.hasDisplayedIn24Hours());
 
 		Log.d("TAG", "NCC - INSERTING INTO DB: " + values.toString());
 

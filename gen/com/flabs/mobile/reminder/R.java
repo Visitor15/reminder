@@ -13,6 +13,26 @@ public final class R {
         public static final int subcategory_list=0x7f050001;
     }
     public static final class attr {
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bounded_height=0x7f010001;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int bounded_width=0x7f010000;
     }
     public static final class drawable {
         public static final int blue_gradient_background=0x7f020000;
@@ -42,45 +62,50 @@ public final class R {
         public static final int background=0x7f080000;
         public static final int background_view1=0x7f08000d;
         public static final int background_view2=0x7f08000e;
-        public static final int btn=0x7f080021;
+        public static final int btn=0x7f080026;
         public static final int btn_next=0x7f080006;
-        public static final int btn_one=0x7f08002a;
-        public static final int btn_quick_reminder=0x7f080017;
-        public static final int btn_repeat_reminder=0x7f080018;
-        public static final int btn_search=0x7f080022;
+        public static final int btn_one=0x7f08002f;
+        public static final int btn_quick_reminder=0x7f08001c;
+        public static final int btn_repeat_reminder=0x7f08001d;
+        public static final int btn_search=0x7f080027;
         public static final int btn_set_date=0x7f080008;
         public static final int btn_set_time=0x7f080007;
-        public static final int btn_two=0x7f080029;
-        public static final int date_picker=0x7f080015;
+        public static final int btn_two=0x7f08002e;
+        public static final int date_picker=0x7f08001a;
         public static final int editText1=0x7f08000f;
-        public static final int et_message=0x7f080020;
-        public static final int et_title=0x7f08001b;
-        public static final int iv_icon=0x7f080027;
-        public static final int ll_button_container=0x7f080028;
-        public static final int ll_container=0x7f08001d;
-        public static final int ll_second_container=0x7f080025;
-        public static final int priority_bar=0x7f080019;
-        public static final int rl_btn_four=0x7f080013;
-        public static final int rl_btn_one=0x7f080010;
-        public static final int rl_btn_three=0x7f080012;
-        public static final int rl_btn_two=0x7f080011;
-        public static final int rl_first_container=0x7f080024;
-        public static final int rl_root_container=0x7f080023;
-        public static final int scrollView1=0x7f08001c;
+        public static final int et_message=0x7f080025;
+        public static final int et_title=0x7f080020;
+        public static final int iv_icon=0x7f08002c;
+        public static final int ll_actions_container=0x7f080010;
+        public static final int ll_button_container=0x7f08002d;
+        public static final int ll_container=0x7f080022;
+        public static final int ll_row1=0x7f080011;
+        public static final int ll_row2=0x7f080019;
+        public static final int ll_second_container=0x7f08002a;
+        public static final int priority_bar=0x7f08001e;
+        public static final int rl_btn_one=0x7f080012;
+        public static final int rl_btn_three=0x7f080017;
+        public static final int rl_btn_two=0x7f080015;
+        public static final int rl_first_container=0x7f080029;
+        public static final int rl_root_container=0x7f080028;
+        public static final int scrollView1=0x7f080021;
         public static final int spinner_category=0x7f080003;
         public static final int spinner_subcategory=0x7f080005;
         public static final int textView1=0x7f080001;
-        public static final int time_picker=0x7f080016;
-        public static final int tv_category=0x7f08001e;
+        public static final int time_picker=0x7f08001b;
+        public static final int toggleButton1=0x7f080014;
+        public static final int toggleButton2=0x7f080016;
+        public static final int toggleButton3=0x7f080018;
+        public static final int tv_category=0x7f080023;
         public static final int tv_category_title=0x7f080002;
         public static final int tv_date=0x7f08000b;
-        public static final int tv_message=0x7f080026;
-        public static final int tv_priority=0x7f08001a;
+        public static final int tv_message=0x7f08002b;
+        public static final int tv_priority=0x7f08001f;
         public static final int tv_set_for=0x7f080009;
-        public static final int tv_subcategory=0x7f08001f;
+        public static final int tv_subcategory=0x7f080024;
         public static final int tv_subcategory_title=0x7f080004;
         public static final int tv_time=0x7f08000a;
-        public static final int tv_title=0x7f080014;
+        public static final int tv_title=0x7f080013;
         public static final int view_pager_container=0x7f08000c;
     }
     public static final class layout {
@@ -115,9 +140,10 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070005;
+        public static final int AppBaseTheme=0x7f070006;
         public static final int Dialog=0x7f070001;
         public static final int DialogButton=0x7f070004;
+        public static final int ReminderActionContainer=0x7f070005;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -137,4 +163,53 @@ public final class R {
     public static final class xml {
         public static final int preferences=0x7f040000;
     }
+    public static final class styleable {
+        /** Attributes that can be used with a BoundedView.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #BoundedView_bounded_height com.flabs.mobile.reminder:bounded_height}</code></td><td></td></tr>
+           <tr><td><code>{@link #BoundedView_bounded_width com.flabs.mobile.reminder:bounded_width}</code></td><td></td></tr>
+           </table>
+           @see #BoundedView_bounded_height
+           @see #BoundedView_bounded_width
+         */
+        public static final int[] BoundedView = {
+            0x7f010000, 0x7f010001
+        };
+        /**
+          <p>This symbol is the offset where the {@link com.flabs.mobile.reminder.R.attr#bounded_height}
+          attribute's value can be found in the {@link #BoundedView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:bounded_height
+        */
+        public static final int BoundedView_bounded_height = 1;
+        /**
+          <p>This symbol is the offset where the {@link com.flabs.mobile.reminder.R.attr#bounded_width}
+          attribute's value can be found in the {@link #BoundedView} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:bounded_width
+        */
+        public static final int BoundedView_bounded_width = 0;
+    };
 }

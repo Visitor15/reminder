@@ -6,7 +6,12 @@ public class EnvironmentVariables {
 	
 	
 	public static enum ACTION {
-		VIEW_REMINDER
+		VIEW_REMINDER_DIALOG,
+		VIEW_REMINDER_NOTIFICATION,
+		VIEW_REMINDER_NOTIF_AND_DIALOG,
+		SEND_SMS,
+		SEND_EMAIL,
+		CALL
 	}
 	
 	public static enum REMINDER_TYPE {
@@ -47,24 +52,29 @@ public class EnvironmentVariables {
 		public static final int MASTER_DATABASE_VERSION = 1;
 		
 		public static final String MASTER_TABLE_NAME = "reminder_main_table";
+		public static final String CATEGORIES_TABLE_NAME = "reminder_categories_table";
 		
 		public static enum Columns {
 			_id,
 			TITLE_NAME,
 			ICON,
-			DATA_BLOB,
-			HAS_DISPLAYED_IN_24H
+			DATA_BLOB
 		}
 		
 		public static final String[] ALL_COLUMNS = { Columns._id.name(), Columns.TITLE_NAME.name(), Columns.ICON.name(),
-	        Columns.DATA_BLOB.name(), Columns.HAS_DISPLAYED_IN_24H.name() };
+	        Columns.DATA_BLOB.name() };
 		
 		public static final String CREATE_MASTER_DATABASE_TABLE = "create table " + MASTER_TABLE_NAME +
 				" (" + Columns._id + "  INTEGER PRIMARY KEY," +
 				Columns.TITLE_NAME + " TEXT," +
 				Columns.ICON + "  TEXT," +
-				Columns.DATA_BLOB + " BLOB," +
-				Columns.HAS_DISPLAYED_IN_24H + " INTEGER" + ");";
+				Columns.DATA_BLOB + " BLOB" + ");";
+		
+		public static final String CREATE_CATEGORIES_DATABASE_TABLE = "create table " + CATEGORIES_TABLE_NAME +
+				" (" + Columns._id + "  INTEGER PRIMARY KEY," +
+				Columns.TITLE_NAME + " TEXT," +
+				Columns.ICON + "  TEXT," +
+				Columns.DATA_BLOB + " BLOB" + ");";
 
 	}
 }

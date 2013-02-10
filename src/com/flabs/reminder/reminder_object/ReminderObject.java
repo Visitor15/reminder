@@ -28,12 +28,13 @@ public class ReminderObject implements IReminderObject {
 	private boolean hasDisplayedIn24Hours = false;
 	private ACTION onRemindAction;
 	private REMINDER_TYPE reminderType;
+	private float reminderPriority;
 	private long id;
 
 	public ReminderObject() {
 		category = new Category();
 		subCategory = new SubCategory();
-		onRemindAction = ACTION.VIEW_REMINDER;
+		onRemindAction = ACTION.VIEW_REMINDER_NOTIF_AND_DIALOG;
 	}
 
 	@Override
@@ -74,6 +75,11 @@ public class ReminderObject implements IReminderObject {
 	@Override
 	public void setReminderType(REMINDER_TYPE reminderType) {
 		this.reminderType = reminderType;
+	}
+	
+	@Override
+	public void setPriority(final float priority) {
+		this.reminderPriority = priority;
 	}
 	
 	@Override
@@ -120,6 +126,11 @@ public class ReminderObject implements IReminderObject {
 	public ACTION getOnRemindAction() {
 		return onRemindAction;
 	}
+	
+	@Override
+	public float getPriority() {
+		return reminderPriority;
+	}
 
 	@Override
 	public REMINDER_TYPE getReminderType() {
@@ -159,6 +170,7 @@ public class ReminderObject implements IReminderObject {
 			out.write(subCategoryBytes);
 			
 			out.writeBoolean(hasDisplayedIn24Hours());
+			out.writeFloat(getPriority());
 			out.writeLong(getId());
 
 			out.flush();
@@ -194,6 +206,7 @@ public class ReminderObject implements IReminderObject {
 		reminderObj.setSubCategory(SubCategory.fromBinary(subCategoryBytes));
 
 		reminderObj.setHasDisplayedIn24Hours(in.readBoolean());
+		reminderObj.setPriority(in.readFloat());
 		reminderObj.setId(in.readLong());
 
 		return reminderObj;

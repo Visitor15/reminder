@@ -5,8 +5,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.io.StreamCorruptedException;
+import java.util.ArrayList;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +15,8 @@ public class Category extends BaseCategory implements ICategory {
 
 	private String customLabel = "NULL";
 	private int customColor = -1;
+	
+	private ArrayList<SubCategory> subCategories;
 
 	public Category() {
 		super();
@@ -34,6 +36,14 @@ public class Category extends BaseCategory implements ICategory {
 	@Override
 	public void setColor(String color) {
 		this.color = Color.parseColor(color);
+	}
+	
+	@Override
+	public void addSubCategory(SubCategory subCategory) {
+		if(subCategories == null) {
+			subCategories = new ArrayList<SubCategory>();
+		}
+		subCategories.add(subCategory);
 	}
 
 	@Override
@@ -72,6 +82,24 @@ public class Category extends BaseCategory implements ICategory {
 	}
 
 	@Override
+	public SubCategory getSubCategory(int pos) {
+		if(subCategories == null) {
+			subCategories = new ArrayList<SubCategory>();
+		}
+		
+		return subCategories.get(pos);
+	}
+
+	@Override
+	public ArrayList<SubCategory> getAllSubCategories() {
+		if(subCategories == null) {
+			subCategories = new ArrayList<SubCategory>();
+		}
+		
+		return subCategories;
+	}
+
+	@Override
 	public void toBundle(Bundle bundle) {
 		// TODO Auto-generated method stub
 
@@ -91,6 +119,14 @@ public class Category extends BaseCategory implements ICategory {
 			out.writeUTF(getCustomLabel());
 			out.writeInt(getColor());
 			out.writeInt(getCustomColor());
+			out.writeInt(subCategories.size());
+			
+			for(SubCategory subCat : subCategories) {
+				final byte[] subCategoryBytes = subCat.toBinary();
+				out.writeInt(subCategoryBytes.length);
+				out.write(subCategoryBytes);
+			}
+			
 			out.flush();
 		} catch (final IOException e) {
 		}
@@ -109,6 +145,17 @@ public class Category extends BaseCategory implements ICategory {
 		category.setCustomLabel(in.readUTF());
 		category.setColor(in.readInt());
 		category.setCustomColor(in.readInt());
+		
+		int numOfSubCategories = in.readInt();
+		
+		for(int i = 0; i < numOfSubCategories; i++) {
+			final int subCategoryBytesLength = in.readInt();
+			
+			final byte[] subCategoryBytes = new byte[subCategoryBytesLength];
+			in.read(subCategoryBytes);
+			
+			category.addSubCategory(SubCategory.fromBinary(subCategoryBytes));
+		}
 		
 		return category;
 	}
