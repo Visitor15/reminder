@@ -1,20 +1,39 @@
 package com.flabs.reminder.fragments;
 
+import java.io.IOException;
+import java.io.StreamCorruptedException;
+import java.util.ArrayList;
+
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.NewReminderActivity;
 import com.flabs.reminder.activities.ViewPagerAdapter;
+import com.flabs.reminder.database.DBManager;
+import com.flabs.reminder.reminder_object.Category;
 import com.flabs.reminder.reminder_object.ReminderObject;
+import com.flabs.reminder.reminder_object.SubCategory;
 import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
 public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 	
 	private Button btnNext;
+	
+	private Spinner categorySpinner;
+	
+	private Spinner subCategorySpinner;
+	
+	private ArrayAdapter<SubCategory> spinnerSubCategoryAdapter;
+	
+	private ArrayAdapter<Category> spinnerCategoryAdapter ;
 	
 	public ReminderCategoryChooserFragment() {
 		init();
@@ -62,6 +81,53 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		pager.setCurrentItem(pos, true);
 	}
 
+	private void initSpinners() throws StreamCorruptedException, IOException, ClassNotFoundException {
+		ArrayList<Category> categoryList = DBManager.getInstance(getActivity()).getCategoryByTitle(null);
+		ArrayList<SubCategory> subCategoryList = categoryList.get(1).getAllSubCategories();
+		
+		String[] categoryTitleList = new String[categoryList.size()];
+		for(Category cat : categoryList) {
+			categoryTitleList[categoryList.indexOf(cat)] = cat.getLabel();
+		}
+		
+		spinnerCategoryAdapter = new ArrayAdapter<Category>(getActivity(), android.R.layout.simple_spinner_dropdown_item, categoryList);
+		categorySpinner.setAdapter(spinnerCategoryAdapter);
+		
+		spinnerSubCategoryAdapter = new ArrayAdapter<SubCategory>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subCategoryList);
+		subCategorySpinner.setAdapter(spinnerSubCategoryAdapter);
+		
+		categorySpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+				spinnerSubCategoryAdapter = new ArrayAdapter<SubCategory>(getActivity(), android.R.layout.simple_spinner_dropdown_item, ((Category) categorySpinner.getItemAtPosition(position)).getAllSubCategories());
+				subCategorySpinner.setAdapter(spinnerSubCategoryAdapter);
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parentView) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		subCategorySpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parentView) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+	}
 
 	@Override
 	public void onFragmentCreate(Bundle b) {
@@ -72,6 +138,22 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 	@Override
 	public void onFragmentCreateView(View v) {
 		btnNext = (Button) v.findViewById(R.id.btn_next);
+		categorySpinner = (Spinner) v.findViewById(R.id.spinner_category);
+		subCategorySpinner = (Spinner) v.findViewById(R.id.spinner_subcategory);
+		
+		try {
+			initSpinners();
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		setNextButtonListener(btnNext);
 	}
 

@@ -65,7 +65,7 @@ public class DBManager extends SQLiteOpenHelper {
 
 		Log.d("TAG", "NCC - INSERTING INTO DB: " + values.toString());
 
-		return getReadableDatabase().insert(EnvironmentVariables.DATABASE.MASTER_TABLE_NAME, null, values);
+		return getReadableDatabase().insert(EnvironmentVariables.DATABASE.CATEGORIES_TABLE_NAME, null, values);
 	}
 
 	public long insertReminderObject(IReminderObject reminderObj) {
@@ -154,6 +154,9 @@ public class DBManager extends SQLiteOpenHelper {
 			else if(tableName.equalsIgnoreCase(EnvironmentVariables.DATABASE.CATEGORIES_TABLE_NAME)) {
 				c = db.query(EnvironmentVariables.DATABASE.CATEGORIES_TABLE_NAME, EnvironmentVariables.DATABASE.ALL_COLUMNS_FOR_CATEGORY_OBJ,
 						selection, selectionArgs, null, null, orderBy);
+				
+				Log.d("TAG", "NCC - QUERIED FOR CATEGORIES");
+				
 				return c;
 			}
 		} catch (final SQLiteException e) {
@@ -194,7 +197,7 @@ public class DBManager extends SQLiteOpenHelper {
 		s7.setLabel("2 Hour Parking");
 		c3.addSubCategory(s7);
 
-		insertCategoryObject(c1);
+		Log.d("TAG", "NCC - INSERTED JUNK: " + insertCategoryObject(c1));
 		insertCategoryObject(c2);
 		insertCategoryObject(c3);
 	}

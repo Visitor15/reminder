@@ -129,4 +129,9 @@ public class SubCategory extends BaseCategory implements ICategory {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public String toString() {
+		return getLabel();
+	}
 }

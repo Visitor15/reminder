@@ -75,7 +75,6 @@ public class EnvironmentVariables {
 		public static final String CREATE_CATEGORIES_DATABASE_TABLE = "create table " + CATEGORIES_TABLE_NAME +
 				" (" + Columns._id + "  INTEGER PRIMARY KEY," +
 				Columns.TITLE_NAME + " TEXT," +
-				Columns.ICON + "  TEXT," +
 				Columns.DATA_BLOB + " BLOB" + ");";
 
 	}

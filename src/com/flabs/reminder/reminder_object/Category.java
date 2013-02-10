@@ -159,4 +159,9 @@ public class Category extends BaseCategory implements ICategory {
 		
 		return category;
 	}
+	
+	@Override
+	public String toString() {
+		return getLabel();
+	}
 }
