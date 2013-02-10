@@ -8,7 +8,6 @@ public class EnvironmentVariables {
 	public static enum ACTION {
 		VIEW_REMINDER_DIALOG,
 		VIEW_REMINDER_NOTIFICATION,
-		VIEW_REMINDER_NOTIF_AND_DIALOG,
 		SEND_SMS,
 		SEND_EMAIL,
 		CALL,

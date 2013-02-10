@@ -72,6 +72,8 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
 		ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
 		
+		if((adapter.getDataList().size() - 1) == pager.getCurrentItem()) {
+		
 		if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.QUICK_REMINDER.name())) {
 			// We're going to view the frequency fragment
 			adapter.getDataList().add(new ReminderFrequencyFragment(getReminderObject()));
@@ -82,6 +84,9 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		}
 		
 		switchToNewFragment(pager, (adapter.getDataList().size() - 1));
+		} else {
+			pager.setCurrentItem((pager.getCurrentItem() + 1), true);
+		}
 	}
 	
 	private void setAddCategoryButton(final View v) {

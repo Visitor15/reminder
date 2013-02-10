@@ -16,7 +16,7 @@ import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 public class ReminderSetTitleFragment extends BaseReminderFragment {
 
 	private EditText titleField;
-	
+
 	private Button btnPreview;
 
 	public ReminderSetTitleFragment() {
@@ -32,31 +32,36 @@ public class ReminderSetTitleFragment extends BaseReminderFragment {
 		setLayoutId(R.layout.new_reminder_title_layout);
 		setBackground(R.drawable.navy_gradient_background);
 	}
-	
+
 	private void handleNextButtonClicked() {
 		if(titleField.getText().length() > 0) {
 			getReminderObject().setTitle(titleField.getText().toString());
 		}
 		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
 		ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
-		
-		if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.QUICK_REMINDER.name())) {
-			// We're going to view the frequency fragment
-//			adapter.getDataList().add(new ReminderFrequencyFragment(getReminderObject()));
-			adapter.getDataList().add(new ReminderPreviewFragment(getReminderObject()));
+
+		if((adapter.getDataList().size() - 1) == pager.getCurrentItem()) {
+			if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.QUICK_REMINDER.name())) {
+				// We're going to view the frequency fragment
+				//			adapter.getDataList().add(new ReminderFrequencyFragment(getReminderObject()));
+				adapter.getDataList().add(new ReminderPreviewFragment(getReminderObject()));
+			}
+			else if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.REPEAT_REMINDER.name())) {
+				// We're going to view the set message fragment
+				adapter.getDataList().add(new ReminderPreviewFragment(getReminderObject()));
+			}
+
+			switchToNewFragment(pager, (adapter.getDataList().size() - 1));
 		}
-		else if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.REPEAT_REMINDER.name())) {
-			// We're going to view the set message fragment
-			adapter.getDataList().add(new ReminderPreviewFragment(getReminderObject()));
+		else {
+			pager.setCurrentItem((pager.getCurrentItem() + 1), true);
 		}
-		
-		switchToNewFragment(pager, (adapter.getDataList().size() - 1));
 	}
-	
+
 	private void switchToNewFragment(final ViewPager pager, final int pos) {
 		pager.setCurrentItem(pos, true);
 	}
-	
+
 	private void setPreviewButtonListener(Button btn) {
 		btn.setOnClickListener(new OnClickListener() {
 
@@ -64,7 +69,7 @@ public class ReminderSetTitleFragment extends BaseReminderFragment {
 			public void onClick(View v) {
 				handleNextButtonClicked();
 			}
-			
+
 		});
 	}
 
@@ -78,7 +83,7 @@ public class ReminderSetTitleFragment extends BaseReminderFragment {
 	public void onFragmentCreateView(View v) {
 		titleField = (EditText) v.findViewById(R.id.et_title);
 		btnPreview = (Button) v.findViewById(R.id.btn_next);
-		
+
 		setPreviewButtonListener(btnPreview);
 	}
 
@@ -93,7 +98,7 @@ public class ReminderSetTitleFragment extends BaseReminderFragment {
 		if(titleField.getText().length() > 0) {
 			getReminderObject().setTitle(titleField.getText().toString());
 		}
-		
+
 		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
 		adapter.setReminderObject(getReminderObject());
 	}
