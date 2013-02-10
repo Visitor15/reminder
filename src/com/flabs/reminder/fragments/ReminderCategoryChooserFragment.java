@@ -20,6 +20,7 @@ import com.flabs.reminder.activities.NewReminderActivity;
 import com.flabs.reminder.activities.ViewPagerAdapter;
 import com.flabs.reminder.database.DBManager;
 import com.flabs.reminder.dialogs.AddCategoryDialog;
+import com.flabs.reminder.dialogs.AddSubCategoryDialog;
 import com.flabs.reminder.reminder_object.Category;
 import com.flabs.reminder.reminder_object.ReminderObject;
 import com.flabs.reminder.reminder_object.SubCategory;
@@ -92,6 +93,22 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 			}
 			
 		});
+	}
+	
+	private void setAddSubCategoryButton(final View v) {
+		v.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showAddSubCategoryDialog();
+			}
+			
+		});
+	}
+	
+	private void showAddSubCategoryDialog() {
+		AddSubCategoryDialog dialog = new AddSubCategoryDialog(this, (Category) categorySpinner.getSelectedItem());
+		dialog.show(getActivity().getSupportFragmentManager(), "DIALOG");
 	}
 	
 	private void showAddCategoryDialog() {
@@ -197,6 +214,7 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		
 		setNextButtonListener(btnNext);
 		setAddCategoryButton(btnAddCategory);
+		setAddSubCategoryButton(btnAddSubCategory);
 	}
 
 	@Override
