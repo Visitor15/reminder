@@ -1,5 +1,8 @@
 package com.flabs.reminder.reminder_object;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+
 import com.flabs.reminder.util.EnvironmentVariables.ACTION;
 import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
@@ -27,6 +30,10 @@ public interface IReminderObject {
 	
 	public void setId(long Id);
 	
+	public void setReminderTime(final Calendar calObj);
+	
+	public Calendar getReminderTime();
+	
 	public String getTitle();
 	
 	public String getIconPath();
@@ -43,7 +50,7 @@ public interface IReminderObject {
 	
 	public boolean isActivated();
 	
-	public ACTION getOnRemindAction();
+	public ArrayList<ACTION> getOnRemindAction();
 	
 	public REMINDER_TYPE getReminderType();
 	

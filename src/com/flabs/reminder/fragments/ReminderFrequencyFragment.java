@@ -1,10 +1,17 @@
 package com.flabs.reminder.fragments;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.NewReminderActivity;
@@ -14,13 +21,18 @@ import com.flabs.reminder.dialogs.SetReminderTimeDialog;
 import com.flabs.reminder.reminder_object.ReminderObject;
 import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
-public class ReminderFrequencyFragment extends BaseReminderFragment {
+public class ReminderFrequencyFragment extends BaseReminderFragment implements ReminderDialogCallback {
 	
 	public static final String TAG = "ReminderFrequencyFragment";
 	
 	private Button btnNext;
 	private Button btnSetTime;
 	private Button btnSetDate;
+	
+	private TextView timeView;
+	private TextView dateView;
+	
+	private Calendar calendar = Calendar.getInstance();
 	
 	public ReminderFrequencyFragment() {
 		init();
@@ -52,7 +64,7 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 
 			@Override
 			public void onClick(View v) {
-				new SetReminderTimeDialog().show(getActivity().getSupportFragmentManager(), "TAG");
+				new SetReminderTimeDialog(ReminderFrequencyFragment.this).show(getActivity().getSupportFragmentManager(), "TAG");
 			}
 			
 		});
@@ -63,7 +75,7 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 
 			@Override
 			public void onClick(View v) {
-				new SetReminderDateDialog().show(getActivity().getSupportFragmentManager(), "TAG");
+				new SetReminderDateDialog(ReminderFrequencyFragment.this).show(getActivity().getSupportFragmentManager(), "TAG");
 			}
 			
 		});
@@ -88,6 +100,20 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 	private void switchToNewFragment(final ViewPager pager, final int pos) {
 		pager.setCurrentItem(pos, true);
 	}
+	
+	private void saveDateTimeToReminder(ReminderObject reminderObject) {
+		reminderObject.setReminderTime(calendar);
+	}
+	
+	private void updateDateView(final Calendar calendar) throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("EEE, MMM d, ''yy");
+		timeView.setText(formatter.format(calendar.getTime()));
+	}
+	
+	private void updateTimeView(final Calendar calendar) throws ParseException {
+		SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
+		dateView.setText(formatter.format(calendar.getTime()));
+	}
 
 	@Override
 	public void onFragmentCreate(Bundle b) {
@@ -100,6 +126,8 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 		btnNext = (Button) v.findViewById(R.id.btn_next);
 		btnSetTime = (Button) v.findViewById(R.id.btn_set_time);
 		btnSetDate = (Button) v.findViewById(R.id.btn_set_date);
+		timeView = (TextView) v.findViewById(R.id.tv_time);
+		dateView = (TextView) v.findViewById(R.id.tv_date);
 		
 		setSetTimeButtonListener(btnSetTime);
 		setSetDateButtonListener(btnSetDate);
@@ -114,8 +142,7 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentPause() {
-		// TODO Auto-generated method stub
-		
+		saveDateTimeToReminder(getReminderObject());
 	}
 
 	@Override
@@ -128,6 +155,31 @@ public class ReminderFrequencyFragment extends BaseReminderFragment {
 	public void onFragmentStop() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void onSetTime(final int hour, final int minute) {
+		calendar.set(Calendar.HOUR_OF_DAY, hour);
+		calendar.set(Calendar.MINUTE, minute);
+		
+		try {
+			updateTimeView(calendar);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void onSetDate(final int month, final int day, final int year) {
+		calendar.set(year, month, day);
+		
+		try {
+			updateDateView(calendar);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -11,7 +11,8 @@ public class EnvironmentVariables {
 		VIEW_REMINDER_NOTIF_AND_DIALOG,
 		SEND_SMS,
 		SEND_EMAIL,
-		CALL
+		CALL,
+		VIBRATE
 	}
 	
 	public static enum REMINDER_TYPE {

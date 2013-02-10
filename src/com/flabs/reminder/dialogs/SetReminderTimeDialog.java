@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TimePicker;
 
 import com.flabs.mobile.reminder.R;
+import com.flabs.reminder.fragments.ReminderDialogCallback;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
 public class SetReminderTimeDialog extends DialogFragment {
@@ -23,9 +24,15 @@ public class SetReminderTimeDialog extends DialogFragment {
 	private Button btnCancel;
 	
 	private TimePicker timePicker;
+
+	private ReminderDialogCallback mCallback;
 	
 	public SetReminderTimeDialog() {
 		
+	}
+	
+	public SetReminderTimeDialog(ReminderDialogCallback callback) {
+		this.mCallback = callback;
 	}
 	
 	public SetReminderTimeDialog(final ReminderObject reminderObj) {
@@ -38,8 +45,8 @@ public class SetReminderTimeDialog extends DialogFragment {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
+				mCallback.onSetTime(timePicker.getCurrentHour(), timePicker.getCurrentMinute());
+				dismiss();
 			}
 			
 		});

@@ -127,6 +127,11 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 			
 		});
 	}
+	
+	private void saveCategoriesToReminder(ReminderObject reminderObject) {
+		reminderObject.setCategory((Category) categorySpinner.getSelectedItem());
+		reminderObject.setSubCategory((SubCategory) subCategorySpinner.getSelectedItem());
+	}
 
 	@Override
 	public void onFragmentCreate(Bundle b) {
@@ -164,8 +169,7 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentPause() {
-		// TODO Auto-generated method stub
-		
+		saveCategoriesToReminder(getReminderObject());
 	}
 
 	@Override

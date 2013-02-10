@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
+import java.util.ArrayList;
+import java.util.Calendar;
 
 import android.util.Log;
 
@@ -16,9 +18,9 @@ import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 public class ReminderObject implements IReminderObject {
 
 	public static final String TAG = "ReminderObject";
-	
+
 	public static final String BUNDLE_KEY = "bundle_reminder_key";
-	
+
 	private String title = "NULL";
 	private String message = "NULL";
 	private String iconUriPath = "NULL";
@@ -26,15 +28,23 @@ public class ReminderObject implements IReminderObject {
 	private SubCategory subCategory;
 	private boolean isActivated = false;
 	private boolean hasDisplayedIn24Hours = false;
-	private ACTION onRemindAction;
+	private ArrayList<ACTION> onRemindActionList;
 	private REMINDER_TYPE reminderType;
 	private float reminderPriority;
+	private int month;
+	private int day;
+	private int year;
+	private int hour;
+	private int minute;
 	private long id;
 
 	public ReminderObject() {
 		category = new Category();
 		subCategory = new SubCategory();
-		onRemindAction = ACTION.VIEW_REMINDER_NOTIF_AND_DIALOG;
+		onRemindActionList = new ArrayList<ACTION>();
+		onRemindActionList.add(ACTION.VIBRATE);
+		onRemindActionList.add(ACTION.VIEW_REMINDER_DIALOG);
+		onRemindActionList.add(ACTION.VIEW_REMINDER_NOTIFICATION);
 	}
 
 	@Override
@@ -69,22 +79,31 @@ public class ReminderObject implements IReminderObject {
 
 	@Override
 	public void setOnRemindAction(ACTION action) {
-		this.onRemindAction = action;
+		this.onRemindActionList.add(action);
 	}
-	
+
 	@Override
 	public void setReminderType(REMINDER_TYPE reminderType) {
 		this.reminderType = reminderType;
 	}
-	
+
 	@Override
 	public void setPriority(final float priority) {
 		this.reminderPriority = priority;
 	}
-	
+
 	@Override
 	public void setId(long Id) {
 		this.id = Id;
+	}
+
+	@Override
+	public void setReminderTime(Calendar calObj) {
+		this.month = calObj.get(Calendar.MONTH);
+		this.day = calObj.get(Calendar.DAY_OF_MONTH);
+		this.year = calObj.get(Calendar.YEAR);
+		this.hour = calObj.get(Calendar.HOUR);
+		this.minute = calObj.get(Calendar.MINUTE);
 	}
 
 	@Override
@@ -123,10 +142,10 @@ public class ReminderObject implements IReminderObject {
 	}
 
 	@Override
-	public ACTION getOnRemindAction() {
-		return onRemindAction;
+	public ArrayList<ACTION> getOnRemindAction() {
+		return onRemindActionList;
 	}
-	
+
 	@Override
 	public float getPriority() {
 		return reminderPriority;
@@ -148,6 +167,14 @@ public class ReminderObject implements IReminderObject {
 	}
 
 	@Override
+	public Calendar getReminderTime() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(year, month, day, hour, minute);
+
+		return calendar;
+	}
+
+	@Override
 	public byte[] toBinary() {
 		final ByteArrayOutputStream os = new ByteArrayOutputStream();
 		try {
@@ -159,7 +186,13 @@ public class ReminderObject implements IReminderObject {
 			out.writeUTF(getMessage());
 			out.writeUTF(getIconPath());
 			out.writeBoolean(isActivated());
-			out.writeUTF(getOnRemindAction().name());
+
+			out.writeInt(onRemindActionList.size());
+
+			for(ACTION action : onRemindActionList) {
+				out.writeUTF(action.name());
+			}
+
 
 			final byte[] categoryBytes = getCategory().toBinary();
 			out.writeInt(categoryBytes.length);
@@ -168,7 +201,7 @@ public class ReminderObject implements IReminderObject {
 			final byte[] subCategoryBytes = getSubCategory().toBinary();
 			out.writeInt(subCategoryBytes.length);
 			out.write(subCategoryBytes);
-			
+
 			out.writeBoolean(hasDisplayedIn24Hours());
 			out.writeFloat(getPriority());
 			out.writeLong(getId());
@@ -191,15 +224,20 @@ public class ReminderObject implements IReminderObject {
 		reminderObj.setMessage(in.readUTF());
 		reminderObj.setIconPath(in.readUTF());
 		reminderObj.setActivatedState(in.readBoolean());
-		reminderObj.setOnRemindAction(EnvironmentVariables.ACTION.valueOf(in.readUTF()));
-		
+
+		int numOfActions = in.readInt();
+
+		for(int i = 0; i < numOfActions; i++) {
+			reminderObj.setOnRemindAction(EnvironmentVariables.ACTION.valueOf(in.readUTF()));
+		}
+
 		final int categoryBytesLength = in.readInt();
-		
+
 		final byte[] categoryBytes = new byte[categoryBytesLength];
 		in.read(categoryBytes);
-		
+
 		reminderObj.setCategory(Category.fromBinary(categoryBytes));
-		
+
 		final int subCategoryBytesLength = in.readInt();
 		final byte[] subCategoryBytes = new byte[subCategoryBytesLength];
 		in.read(subCategoryBytes);
@@ -211,6 +249,4 @@ public class ReminderObject implements IReminderObject {
 
 		return reminderObj;
 	}
-
-	
 }

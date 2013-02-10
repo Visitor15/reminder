@@ -10,11 +10,13 @@ import android.view.View.MeasureSpec;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ToggleButton;
 
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.NewReminderActivity;
 import com.flabs.reminder.activities.ViewPagerAdapter;
 import com.flabs.reminder.reminder_object.ReminderObject;
+import com.flabs.reminder.util.EnvironmentVariables.ACTION;
 import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
 public class OnReminderActionChooserFragment extends BaseReminderFragment {
@@ -22,6 +24,16 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 	private Button btnNext;
 	
 	private LinearLayout actionsContainer;
+	
+	private ToggleButton btnDialog;
+	private ToggleButton btnNotification;
+	private ToggleButton btnSMS;
+	private ToggleButton btnEmail;
+	private ToggleButton btnCall;
+	private ToggleButton btnVibrate;
+	
+	private LinearLayout row1;
+	private LinearLayout row2;
 	
 	public OnReminderActionChooserFragment() {
 		init();
@@ -83,6 +95,27 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 		pager.setCurrentItem(pos, true);
 	}
 	
+	private void saveActionsToReminder(final ReminderObject reminderObj) {
+		if(btnCall.isChecked()) {
+			reminderObj.setOnRemindAction(ACTION.CALL);
+		}
+		if(btnDialog.isChecked()) {
+			reminderObj.setOnRemindAction(ACTION.VIEW_REMINDER_DIALOG);
+		}
+		if(btnEmail.isChecked()) {
+			reminderObj.setOnRemindAction(ACTION.SEND_EMAIL);
+		}
+		if(btnNotification.isChecked()) {
+			reminderObj.setOnRemindAction(ACTION.VIEW_REMINDER_NOTIFICATION);
+		}
+		if(btnSMS.isChecked()) {
+			reminderObj.setOnRemindAction(ACTION.SEND_SMS);
+		}
+		if(btnVibrate.isChecked()) {
+			reminderObj.setOnRemindAction(ACTION.VIBRATE);
+		}
+	}
+	
 	@Override
 	public void onFragmentCreate(Bundle b) {
 		// TODO Auto-generated method stub
@@ -93,6 +126,15 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 	public void onFragmentCreateView(View v) {
 		btnNext = (Button) v.findViewById(R.id.btn_next);
 		actionsContainer = (LinearLayout) v.findViewById(R.id.ll_actions_container);
+		row1 = (LinearLayout) v.findViewById(R.id.ll_row1);
+		row2 = (LinearLayout) v.findViewById(R.id.ll_row2);
+		
+		btnCall = (ToggleButton) row2.findViewById(R.id.toggleButton3);
+		btnDialog = (ToggleButton) row1.findViewById(R.id.toggleButton1);
+		btnEmail = (ToggleButton) row2.findViewById(R.id.toggleButton2);
+		btnNotification = (ToggleButton) row1.findViewById(R.id.toggleButton2);
+		btnSMS = (ToggleButton) row2.findViewById(R.id.toggleButton1);
+		btnVibrate = (ToggleButton) row1.findViewById(R.id.toggleButton3);
 		
 		setNextButtonListener(btnNext);
 	}
@@ -105,8 +147,7 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentPause() {
-		// TODO Auto-generated method stub
-		
+		saveActionsToReminder(getReminderObject());
 	}
 
 	@Override

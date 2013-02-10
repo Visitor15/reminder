@@ -99,7 +99,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
-                    android:text="DIALOG" />
+                    android:text="VIBRATE" />
 
                 <ToggleButton
                     android:id="@+id/toggleButton3"
