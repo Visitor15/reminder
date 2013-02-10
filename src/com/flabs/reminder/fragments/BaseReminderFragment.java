@@ -11,7 +11,7 @@ import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.ViewPagerAdapter.OnFragmentCreatedCallback;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
-public abstract class BaseReminderFragment extends Fragment implements IBaseReminder {
+public abstract class BaseReminderFragment extends Fragment implements IBaseReminder, ReminderDialogCallback {
 
 	private View rootView;
 	private int layoutId;
@@ -102,5 +102,25 @@ public abstract class BaseReminderFragment extends Fragment implements IBaseRemi
 	@Override
 	public OnFragmentCreatedCallback getAdapterCallback() {
 		return this.adapterCallback;
+	}
+	
+	@Override
+	public void onSetTime(int hour, int minute) {
+		//Do nothing
+	}
+
+	@Override
+	public void onSetDate(int month, int day, int year) {
+		//Do nothing
+	}
+	
+	@Override
+	public void onDialogPositiveBtnClicked() {
+		//Do nothing
+	}
+
+	@Override
+	public void onDialogNegativeBtnClicked() {
+		//Do nothing
 	}
 }

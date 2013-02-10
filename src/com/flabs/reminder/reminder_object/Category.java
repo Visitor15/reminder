@@ -20,7 +20,8 @@ public class Category extends BaseCategory implements ICategory {
 
 	public Category() {
 		super();
-		
+		subCategories = new ArrayList<SubCategory>();
+		addDefaultSubCategory(subCategories);
 	}
 
 	@Override
@@ -92,10 +93,6 @@ public class Category extends BaseCategory implements ICategory {
 
 	@Override
 	public ArrayList<SubCategory> getAllSubCategories() {
-		if(subCategories == null) {
-			subCategories = new ArrayList<SubCategory>();
-		}
-		
 		return subCategories;
 	}
 
@@ -110,6 +107,12 @@ public class Category extends BaseCategory implements ICategory {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	private void addDefaultSubCategory(final ArrayList<SubCategory> subCategoryList) {
+		SubCategory subCategory = new SubCategory();
+		subCategory.setLabel("General");
+		subCategoryList.add(subCategory);
+	}
 
 	public byte[] toBinary() {
 		final ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -119,7 +122,7 @@ public class Category extends BaseCategory implements ICategory {
 			out.writeUTF(getCustomLabel());
 			out.writeInt(getColor());
 			out.writeInt(getCustomColor());
-			out.writeInt(subCategories.size());
+			out.writeInt(getAllSubCategories().size());
 			
 			for(SubCategory subCat : subCategories) {
 				final byte[] subCategoryBytes = subCat.toBinary();

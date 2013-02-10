@@ -12,12 +12,14 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.NewReminderActivity;
 import com.flabs.reminder.activities.ViewPagerAdapter;
 import com.flabs.reminder.database.DBManager;
+import com.flabs.reminder.dialogs.AddCategoryDialog;
 import com.flabs.reminder.reminder_object.Category;
 import com.flabs.reminder.reminder_object.ReminderObject;
 import com.flabs.reminder.reminder_object.SubCategory;
@@ -26,6 +28,10 @@ import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 	
 	private Button btnNext;
+	
+	private ImageView btnAddCategory;
+	
+	private ImageView btnAddSubCategory;
 	
 	private Spinner categorySpinner;
 	
@@ -75,6 +81,22 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		}
 		
 		switchToNewFragment(pager, (adapter.getDataList().size() - 1));
+	}
+	
+	private void setAddCategoryButton(final View v) {
+		v.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				showAddCategoryDialog();
+			}
+			
+		});
+	}
+	
+	private void showAddCategoryDialog() {
+		AddCategoryDialog dialog = new AddCategoryDialog(this);
+		dialog.show(getActivity().getSupportFragmentManager(), "DIALOG");
 	}
 	
 	private void switchToNewFragment(final ViewPager pager, final int pos) {
@@ -133,6 +155,18 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		reminderObject.setCategory((Category) categorySpinner.getSelectedItem());
 		reminderObject.setSubCategory((SubCategory) subCategorySpinner.getSelectedItem());
 	}
+	
+	private void refreshCategorySpinner() throws StreamCorruptedException, IOException, ClassNotFoundException {
+		ArrayList<Category> categoryList = DBManager.getInstance(getActivity()).getCategoryByTitle(null);
+		spinnerCategoryAdapter = new ArrayAdapter<Category>(getActivity(), android.R.layout.simple_spinner_dropdown_item, categoryList);
+		categorySpinner.setAdapter(spinnerCategoryAdapter);
+	}
+	
+	private void refreshSubCategorySpinner() {
+		ArrayList<SubCategory> subCategoryList = ((Category) categorySpinner.getSelectedItem()).getAllSubCategories();
+		spinnerSubCategoryAdapter = new ArrayAdapter<SubCategory>(getActivity(), android.R.layout.simple_spinner_dropdown_item, subCategoryList);
+		subCategorySpinner.setAdapter(spinnerSubCategoryAdapter);
+	}
 
 	@Override
 	public void onFragmentCreate(Bundle b) {
@@ -145,6 +179,8 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		btnNext = (Button) v.findViewById(R.id.btn_next);
 		categorySpinner = (Spinner) v.findViewById(R.id.spinner_category);
 		subCategorySpinner = (Spinner) v.findViewById(R.id.spinner_subcategory);
+		btnAddCategory = (ImageView) v.findViewById(R.id.btn_add_category);
+		btnAddSubCategory = (ImageView) v.findViewById(R.id.btn_add_subcategory);
 		
 		try {
 			initSpinners();
@@ -160,6 +196,7 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		}
 		
 		setNextButtonListener(btnNext);
+		setAddCategoryButton(btnAddCategory);
 	}
 
 	@Override
@@ -187,5 +224,29 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void onDialogPositiveBtnClicked() {
+		try {
+			refreshCategorySpinner();
+			refreshSubCategorySpinner();
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void onDialogNegativeBtnClicked() {
+		
+	}
+
+
 
 }

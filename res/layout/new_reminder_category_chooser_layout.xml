@@ -49,6 +49,16 @@
             android:layout_marginRight="16dip"
             android:layout_marginTop="8dip"
             android:gravity="center" />
+        
+        <ImageView
+            android:id="@+id/btn_add_category"
+            android:layout_width="42dip"
+            android:layout_height="42dip"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:layout_toRightOf="@id/spinner_category"
+            android:layout_alignBottom="@id/spinner_category"
+            android:src="@drawable/add_icon" />
 
         <TextView
             android:id="@+id/tv_subcategory_title"
@@ -69,6 +79,16 @@
             android:layout_marginRight="16dip"
             android:layout_marginTop="8dip"
             android:gravity="center" />
+        
+        <ImageView
+            android:id="@+id/btn_add_subcategory"
+            android:layout_width="42dip"
+            android:layout_height="42dip"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:layout_toRightOf="@id/spinner_subcategory"
+            android:layout_alignBottom="@id/spinner_subcategory"
+            android:src="@drawable/add_icon" />
     </RelativeLayout>
 
     <RelativeLayout

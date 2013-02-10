@@ -46,6 +46,8 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 			@Override
 			public void onClick(View v) {
 				ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
+				adapter.getDataList().clear();
+				adapter.getDataList().add(ReminderTypeChooserFragment.this);
 				adapter.getReminderObject().setReminderType(REMINDER_TYPE.QUICK_REMINDER);
 				ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
 				manipulateFragmentsInAdapter(adapter, ReminderTypeChooserFragment.QUICK_REMINDER);
@@ -61,6 +63,8 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 			@Override
 			public void onClick(View v) {
 				ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
+				adapter.getDataList().clear();
+				adapter.getDataList().add(ReminderTypeChooserFragment.this);
 				adapter.getReminderObject().setReminderType(REMINDER_TYPE.REPEAT_REMINDER);
 				ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
 				manipulateFragmentsInAdapter(adapter, ReminderTypeChooserFragment.REPEAT_REMINDER);
