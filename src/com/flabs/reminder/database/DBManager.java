@@ -83,6 +83,31 @@ public class DBManager extends SQLiteOpenHelper {
 		return getReadableDatabase().insert(EnvironmentVariables.DATABASE.MASTER_TABLE_NAME, null, values);
 	}
 
+	public int updateCategoriesTable(final Category category, final String title) {
+		ContentValues values = new ContentValues();
+		values.put(EnvironmentVariables.DATABASE.Columns.TITLE_NAME.name(), title);
+		values.put(EnvironmentVariables.DATABASE.Columns.DATA_BLOB.name(), category.toBinary());
+
+		final String tableName = EnvironmentVariables.DATABASE.CATEGORIES_TABLE_NAME;
+
+		return updateRow(category.getId(), tableName, values);
+	}
+
+	public int updateReminderTable(final ReminderObject reminderObj, final String title, final String iconPath) {
+		ContentValues values = new ContentValues();
+		values.put(EnvironmentVariables.DATABASE.Columns.TITLE_NAME.name(), title);
+		values.put(EnvironmentVariables.DATABASE.Columns.ICON.name(), iconPath);
+		values.put(EnvironmentVariables.DATABASE.Columns.DATA_BLOB.name(), reminderObj.toBinary());
+
+		final String tableName = EnvironmentVariables.DATABASE.MASTER_TABLE_NAME;
+
+		return updateRow(reminderObj.getId(), tableName, values);
+	}
+
+	private int updateRow(long rowId, final String tableName, final ContentValues args) {
+		return getReadableDatabase().update(tableName, args, "_id=" + rowId, null);
+	}
+
 	public ArrayList<Category> getCategoryByTitle(final String title) throws StreamCorruptedException, IOException, ClassNotFoundException {
 		final Cursor all = query(EnvironmentVariables.DATABASE.CATEGORIES_TABLE_NAME, null, null, null);
 		ArrayList<Category> categoryList = new ArrayList<Category>();
@@ -94,6 +119,8 @@ public class DBManager extends SQLiteOpenHelper {
 
 			category = (Category) Category.fromBinary(all.getBlob(all.getColumnIndex(
 					EnvironmentVariables.DATABASE.Columns.DATA_BLOB.name())));
+
+			category.setId(all.getInt(all.getColumnIndex(EnvironmentVariables.DATABASE.Columns._id.name())));
 
 			Log.d("TAG", "NCC - REMINDER FROM DB: " + category.getLabel());
 
@@ -122,6 +149,8 @@ public class DBManager extends SQLiteOpenHelper {
 
 				reminder = (ReminderObject) ReminderObject.fromBinary(all.getBlob(all.getColumnIndex(
 						EnvironmentVariables.DATABASE.Columns.DATA_BLOB.name())));
+				
+				reminder.setId(all.getInt(all.getColumnIndex(EnvironmentVariables.DATABASE.Columns._id.name())));
 
 				Log.d("TAG", "NCC - REMINDER FROM DB: " + reminder.getTitle());
 
@@ -154,9 +183,9 @@ public class DBManager extends SQLiteOpenHelper {
 			else if(tableName.equalsIgnoreCase(EnvironmentVariables.DATABASE.CATEGORIES_TABLE_NAME)) {
 				c = db.query(EnvironmentVariables.DATABASE.CATEGORIES_TABLE_NAME, EnvironmentVariables.DATABASE.ALL_COLUMNS_FOR_CATEGORY_OBJ,
 						selection, selectionArgs, null, null, orderBy);
-				
+
 				Log.d("TAG", "NCC - QUERIED FOR CATEGORIES");
-				
+
 				return c;
 			}
 		} catch (final SQLiteException e) {
@@ -213,7 +242,7 @@ public class DBManager extends SQLiteOpenHelper {
 
 	public void checkAndInitDefaults() throws StreamCorruptedException, IOException, ClassNotFoundException {
 		ArrayList<Category> catList = getCategoryByTitle(null);
-		
+
 		if(catList == null || catList.size() == 0) {
 			initDefaultCategories();
 		}

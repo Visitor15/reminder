@@ -75,9 +75,7 @@ public class AddSubCategoryDialog extends DialogFragment {
 		subCategory.setLabel(label);
 		mCategory.addSubCategory(subCategory);
 		
-		//We need to update saved category.
-		//Instead of what we're doing here.
-		DBManager.getInstance(getActivity()).insertCategoryObject(mCategory);
+		DBManager.getInstance(getActivity()).updateCategoriesTable(mCategory, mCategory.getLabel());
 	}
 	
 	private void setTitle(final String title) {

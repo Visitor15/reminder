@@ -15,12 +15,21 @@ public class Category extends BaseCategory implements ICategory {
 
 	private String customLabel = "NULL";
 	private int customColor = -1;
+	private int id;
 
 	private ArrayList<SubCategory> subCategories;
 
 	public Category() {
 		super();
 		subCategories = new ArrayList<SubCategory>();
+	}
+	
+	public void setId(final int id) {
+		this.id = id;
+	}
+	
+	public int getId() {
+		return id;
 	}
 
 	@Override
