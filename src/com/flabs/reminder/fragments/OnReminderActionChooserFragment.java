@@ -148,6 +148,9 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 	@Override
 	public void onFragmentPause() {
 		saveActionsToReminder(getReminderObject());
+		
+		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
+		adapter.setReminderObject(getReminderObject());
 	}
 
 	@Override

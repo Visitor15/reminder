@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -45,6 +46,7 @@ public class ReminderObject implements IReminderObject {
 		onRemindActionList.add(ACTION.VIBRATE);
 		onRemindActionList.add(ACTION.VIEW_REMINDER_DIALOG);
 		onRemindActionList.add(ACTION.VIEW_REMINDER_NOTIFICATION);
+		setReminderTime(Calendar.getInstance());
 	}
 
 	@Override
@@ -172,6 +174,23 @@ public class ReminderObject implements IReminderObject {
 		calendar.set(year, month, day, hour, minute);
 
 		return calendar;
+	}
+
+	@Override
+	public String toString() {
+		String mString;
+		SimpleDateFormat dateFormatter = new SimpleDateFormat("h:mm a");
+		SimpleDateFormat timeFormatter = new SimpleDateFormat("EEE, MMM d, ''yy");
+
+		mString = "TITLE: " + getTitle() + " " +
+				"CATEGORY: " + getCategory().getLabel() + " " +
+				"SUBCATEGORY: " + getSubCategory().getLabel() + " " +
+				"REMINDER TIME: " + " " +
+				timeFormatter.format(getReminderTime().getTime()) + " " +
+				dateFormatter.format(getReminderTime().getTime()) + " " +
+				"MESSAGE: " + getMessage();
+
+		return mString;
 	}
 
 	@Override

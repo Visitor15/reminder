@@ -61,6 +61,7 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 	}
 	
 	private void handleNextButtonClicked() {
+		saveCategoriesToReminder(getReminderObject());
 		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
 		ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
 		
@@ -170,6 +171,9 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 	@Override
 	public void onFragmentPause() {
 		saveCategoriesToReminder(getReminderObject());
+		
+		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
+		adapter.setReminderObject(getReminderObject());
 	}
 
 	@Override

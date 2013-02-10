@@ -118,8 +118,8 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentPause() {
-		// TODO Auto-generated method stub
-		
+		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
+		adapter.setReminderObject(getReminderObject());
 	}
 
 	@Override

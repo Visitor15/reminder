@@ -19,7 +19,7 @@ import com.flabs.reminder.dialogs.SetReminderTimeDialog;
 import com.flabs.reminder.reminder_object.ReminderObject;
 import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
-public class ReminderFrequencyFragment extends BaseReminderFragment implements ReminderDialogCallback {
+public class ReminderPreviewFragment extends BaseReminderFragment implements ReminderDialogCallback {
 
 	public static final String TAG = "ReminderFrequencyFragment";
 
@@ -29,21 +29,23 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 
 	private TextView timeView;
 	private TextView dateView;
+	
+	private TextView reminderTextView;
 
 	private Calendar calendar = Calendar.getInstance();
 
-	public ReminderFrequencyFragment() {
+	public ReminderPreviewFragment() {
 		init();
 	}
 
-	public ReminderFrequencyFragment(ReminderObject reminderObj) {
+	public ReminderPreviewFragment(ReminderObject reminderObj) {
 		this.setReminderObject(reminderObj);
 		init();
 	}
 
 	private void init() {
-		setLayoutId(R.layout.new_reminder_frequency_layout);
-		setBackground(R.drawable.teal_gradient_background);
+		setLayoutId(R.layout.new_reminder_preview_layout);
+		setBackground(R.drawable.blue_gradient_background);
 	}
 
 	private void setNextButtonListener(final Button btn) {
@@ -62,7 +64,7 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 
 			@Override
 			public void onClick(View v) {
-				new SetReminderTimeDialog(ReminderFrequencyFragment.this).show(getActivity().getSupportFragmentManager(), "TAG");
+				new SetReminderTimeDialog(ReminderPreviewFragment.this).show(getActivity().getSupportFragmentManager(), "TAG");
 			}
 
 		});
@@ -73,14 +75,13 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 
 			@Override
 			public void onClick(View v) {
-				new SetReminderDateDialog(ReminderFrequencyFragment.this).show(getActivity().getSupportFragmentManager(), "TAG");
+				new SetReminderDateDialog(ReminderPreviewFragment.this).show(getActivity().getSupportFragmentManager(), "TAG");
 			}
 
 		});
 	}
 
 	private void handleNextButtonClicked() {
-		saveDateTimeToReminder(getReminderObject());
 		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
 		ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
 
@@ -122,23 +123,26 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 
 	@Override
 	public void onFragmentCreateView(View v) {
-		btnNext = (Button) v.findViewById(R.id.btn_next);
-		btnSetTime = (Button) v.findViewById(R.id.btn_set_time);
-		btnSetDate = (Button) v.findViewById(R.id.btn_set_date);
-		timeView = (TextView) v.findViewById(R.id.tv_time);
-		dateView = (TextView) v.findViewById(R.id.tv_date);
-
-		try {
-			updateDateView(getReminderObject().getReminderTime());
-			updateTimeView(getReminderObject().getReminderTime());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		setSetTimeButtonListener(btnSetTime);
-		setSetDateButtonListener(btnSetDate);
-		setNextButtonListener(btnNext);
+		
+		reminderTextView = (TextView) v.findViewById(R.id.textView1);
+		
+//		btnNext = (Button) v.findViewById(R.id.btn_next);
+//		btnSetTime = (Button) v.findViewById(R.id.btn_set_time);
+//		btnSetDate = (Button) v.findViewById(R.id.btn_set_date);
+//		timeView = (TextView) v.findViewById(R.id.tv_time);
+//		dateView = (TextView) v.findViewById(R.id.tv_date);
+//
+//		try {
+//			updateDateView(getReminderObject().getReminderTime());
+//			updateTimeView(getReminderObject().getReminderTime());
+//		} catch (ParseException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//
+//		setSetTimeButtonListener(btnSetTime);
+//		setSetDateButtonListener(btnSetDate);
+//		setNextButtonListener(btnNext);
 	}
 
 	@Override
@@ -157,8 +161,7 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 
 	@Override
 	public void onFragmentResume() {
-		// TODO Auto-generated method stub
-
+		reminderTextView.setText(getReminderObject().toString());
 	}
 
 	@Override
