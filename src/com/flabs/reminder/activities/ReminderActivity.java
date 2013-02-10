@@ -1,5 +1,10 @@
 package com.flabs.reminder.activities;
 
+import java.io.IOException;
+import java.io.StreamCorruptedException;
+
+import com.flabs.reminder.database.DBManager;
+
 import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -14,6 +19,19 @@ public abstract class ReminderActivity extends FragmentActivity implements IRemi
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		onReminderActivityCreate();
+		
+		try {
+			DBManager.getInstance(this).checkAndInitDefaults();
+		} catch (StreamCorruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override

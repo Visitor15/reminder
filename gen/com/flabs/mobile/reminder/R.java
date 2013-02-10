@@ -140,10 +140,9 @@ containing a value of this type.
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f070006;
+        public static final int AppBaseTheme=0x7f070005;
         public static final int Dialog=0x7f070001;
         public static final int DialogButton=0x7f070004;
-        public static final int ReminderActionContainer=0x7f070005;
         /** 
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.

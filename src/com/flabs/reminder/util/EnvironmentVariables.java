@@ -61,8 +61,10 @@ public class EnvironmentVariables {
 			DATA_BLOB
 		}
 		
-		public static final String[] ALL_COLUMNS = { Columns._id.name(), Columns.TITLE_NAME.name(), Columns.ICON.name(),
+		public static final String[] ALL_COLUMNS_FOR_REMINDER_OBJ = { Columns._id.name(), Columns.TITLE_NAME.name(), Columns.ICON.name(),
 	        Columns.DATA_BLOB.name() };
+		
+		public static final String[] ALL_COLUMNS_FOR_CATEGORY_OBJ = { Columns._id.name(), Columns.TITLE_NAME.name(), Columns.DATA_BLOB.name() };
 		
 		public static final String CREATE_MASTER_DATABASE_TABLE = "create table " + MASTER_TABLE_NAME +
 				" (" + Columns._id + "  INTEGER PRIMARY KEY," +
