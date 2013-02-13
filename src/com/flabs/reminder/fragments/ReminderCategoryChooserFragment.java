@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -52,6 +53,9 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 	}
 	
 	private void init() {
+		
+		Log.d("TAG", "REMINDER OBJECT: " + getReminderObject().toString());
+		
 		setLayoutId(R.layout.new_reminder_category_chooser_layout);
 		setBackground(R.drawable.green_gradient_background);
 	}

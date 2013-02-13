@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.ViewPagerAdapter.OnFragmentCreatedCallback;
 import com.flabs.reminder.reminder_object.ReminderObject;
+import com.flabs.reminder.reminder_object.ReminderRepeatType;
 
 public abstract class BaseReminderFragment extends Fragment implements IBaseReminder, ReminderDialogCallback {
 
@@ -121,6 +122,11 @@ public abstract class BaseReminderFragment extends Fragment implements IBaseRemi
 
 	@Override
 	public void onDialogNegativeBtnClicked() {
+		//Do nothing
+	}
+	
+	@Override
+	public void onSetRepeatType(final ReminderRepeatType repeatType) {
 		//Do nothing
 	}
 }

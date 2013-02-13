@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ReminderTheme.Dialog"
+    android:orientation="vertical"
+    android:weightSum="1" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dip"
+        android:layout_gravity="center" >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:paddingBottom="8dip"
+            android:text="Repeat"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" >
+        </TextView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="4dip" >
+
+        <Spinner
+            android:id="@+id/spinner_repeat_type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dip"
+            android:entries="@array/repeat_type" />
+
+        <RelativeLayout
+            android:id="@+id/rl_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinner_repeat_type"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="8dip"
+        android:gravity="center" >
+
+        <TextView
+            android:id="@+id/tv_num_of_times_to_repeat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Number of times to repeat?"
+            android:textColor="#FFFFFF" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/et_num_of_time_to_repeat"
+            android:layout_width="56dip"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@id/tv_num_of_times_to_repeat"
+            android:layout_centerVertical="true"
+            android:layout_margin="8dip"
+            android:layout_toRightOf="@id/tv_num_of_times_to_repeat"
+            android:inputType="number" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="16dip"
+        android:background="#33B5E5" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/two_button_layout" />
+
+</LinearLayout>

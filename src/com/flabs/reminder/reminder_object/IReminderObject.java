@@ -32,6 +32,12 @@ public interface IReminderObject {
 	
 	public void setReminderTime(final Calendar calObj);
 	
+	public void setRepeat(final ReminderRepeatType repeat);
+	
+	public void clearAllActions();
+	
+	public ReminderRepeatType getRepeat();
+	
 	public Calendar getReminderTime();
 	
 	public String getTitle();

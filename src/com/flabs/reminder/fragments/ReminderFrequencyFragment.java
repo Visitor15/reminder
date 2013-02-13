@@ -15,8 +15,10 @@ import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.NewReminderActivity;
 import com.flabs.reminder.activities.ViewPagerAdapter;
 import com.flabs.reminder.dialogs.SetReminderDateDialog;
+import com.flabs.reminder.dialogs.SetReminderRepeatDialog;
 import com.flabs.reminder.dialogs.SetReminderTimeDialog;
 import com.flabs.reminder.reminder_object.ReminderObject;
+import com.flabs.reminder.reminder_object.ReminderRepeatType;
 import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
 public class ReminderFrequencyFragment extends BaseReminderFragment implements ReminderDialogCallback {
@@ -26,6 +28,7 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 	private Button btnNext;
 	private Button btnSetTime;
 	private Button btnSetDate;
+	private Button btnRepeat;
 
 	private TextView timeView;
 	private TextView dateView;
@@ -78,6 +81,17 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 
 		});
 	}
+	
+	private void setSetRepeatTypeButtonListener(final Button btn) {
+		btn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				new SetReminderRepeatDialog(ReminderFrequencyFragment.this).show(getActivity().getSupportFragmentManager(), "TAG");
+			}
+
+		});
+	}
 
 	private void handleNextButtonClicked() {
 		saveDateTimeToReminder(getReminderObject());
@@ -118,6 +132,10 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 		SimpleDateFormat formatter = new SimpleDateFormat("h:mm a");
 		dateView.setText(formatter.format(calendar.getTime()));
 	}
+	
+	private void updateRepeatView(final ReminderRepeatType repeat) {
+		
+	}
 
 	@Override
 	public void onFragmentCreate(Bundle b) {
@@ -130,8 +148,17 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 		btnNext = (Button) v.findViewById(R.id.btn_next);
 		btnSetTime = (Button) v.findViewById(R.id.btn_set_time);
 		btnSetDate = (Button) v.findViewById(R.id.btn_set_date);
+		btnRepeat = (Button) v.findViewById(R.id.btn_set_repeat);
 		timeView = (TextView) v.findViewById(R.id.tv_time);
 		dateView = (TextView) v.findViewById(R.id.tv_date);
+		
+		if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.REPEAT_REMINDER.name())) {
+			btnRepeat.setVisibility(View.VISIBLE);
+			setSetRepeatTypeButtonListener(btnRepeat);
+		}
+		else {
+			btnRepeat.setVisibility(View.GONE);
+		}
 
 		try {
 			updateDateView(getReminderObject().getReminderTime());
@@ -143,6 +170,7 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 
 		setSetTimeButtonListener(btnSetTime);
 		setSetDateButtonListener(btnSetDate);
+		
 		setNextButtonListener(btnNext);
 	}
 
@@ -197,4 +225,9 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 		}
 	}
 
+	@Override
+	public void onSetRepeatType(final ReminderRepeatType repeatType) {
+		getReminderObject().setRepeat(repeatType);
+		updateRepeatView(repeatType);
+	}
 }

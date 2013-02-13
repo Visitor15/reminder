@@ -69,7 +69,7 @@ public class AddCategoryDialog extends DialogFragment {
 		newCategory.addDefaultSubCategory(newCategory.getAllSubCategories());
 		newCategory.setLabel(label);
 		
-		DBManager.getInstance(getActivity()).updateCategoriesTable(newCategory, newCategory.getLabel());
+		DBManager.getInstance(getActivity()).insertCategoryObject(newCategory);
 	}
 
 	@Override

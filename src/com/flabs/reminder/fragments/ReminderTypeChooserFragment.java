@@ -1,10 +1,11 @@
 package com.flabs.reminder.fragments;
 
 import android.os.Bundle;
-import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.RatingBar;
 
@@ -98,6 +99,41 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 		pager.setCurrentItem(pos, true);
 	}
 	
+	private void setPriorityBarListener(final RatingBar bar) {
+		bar.setOnTouchListener(new OnTouchListener() {
+
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if(event.equals(MotionEvent.ACTION_UP)) {
+					transitionBackgroundForRating(priorityBar.getRating());
+				}
+				return false;
+			}
+			
+		});
+	}
+	
+	private void transitionBackgroundForRating(final float rating) {
+		if(rating < 1) {
+			
+		}
+		else if(rating < 2 && rating > 1) {
+			
+		}
+		else if(rating < 3 && rating > 2) {
+			
+		}
+		else if(rating < 4 && rating > 3) {
+			
+		}
+		else if(rating < 5 && rating > 4) {
+			
+		}
+		else if(rating == 5) {
+			
+		}
+	}
+	
 	@Override
 	public void onFragmentCreate(Bundle b) {
 		// TODO Auto-generated method stub
@@ -114,6 +150,8 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 		setRepeatReminderButton(btnRepeatReminder);
 		
 		priorityBar.setRating(getReminderObject().getPriority());
+		
+		setPriorityBarListener(priorityBar);
 	}
 
 	@Override

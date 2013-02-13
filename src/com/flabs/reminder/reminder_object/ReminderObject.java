@@ -37,6 +37,7 @@ public class ReminderObject implements IReminderObject {
 	private int year;
 	private int hour;
 	private int minute;
+	private ReminderRepeatType repeatType;
 	private long id;
 
 	public ReminderObject() {
@@ -98,6 +99,11 @@ public class ReminderObject implements IReminderObject {
 	public void setId(long Id) {
 		this.id = Id;
 	}
+	
+	@Override
+	public void clearAllActions() {
+		this.onRemindActionList.clear();
+	}
 
 	@Override
 	public void setReminderTime(Calendar calObj) {
@@ -106,6 +112,11 @@ public class ReminderObject implements IReminderObject {
 		this.year = calObj.get(Calendar.YEAR);
 		this.hour = calObj.get(Calendar.HOUR);
 		this.minute = calObj.get(Calendar.MINUTE);
+	}
+	
+	@Override
+	public void setRepeat(ReminderRepeatType repeat) {
+		this.repeatType = repeat;
 	}
 
 	@Override
@@ -175,6 +186,11 @@ public class ReminderObject implements IReminderObject {
 
 		return calendar;
 	}
+	
+	@Override
+	public ReminderRepeatType getRepeat() {
+		return repeatType;
+	}
 
 	@Override
 	public String toString() {
@@ -190,7 +206,16 @@ public class ReminderObject implements IReminderObject {
 				"REMINDER TIME: " + " " +
 				timeFormatter.format(getReminderTime().getTime()) + " " +
 				dateFormatter.format(getReminderTime().getTime()) + " " +
-				"MESSAGE: " + getMessage();
+				"MESSAGE: " + getMessage() + " " +
+				"REMINDER ACTIONS: ";
+		
+		for(ACTION action : onRemindActionList) {
+			mString.concat(action.name() + " ");
+		}
+		
+		for(int i = 0; i < onRemindActionList.size(); i++) {
+			mString.concat(onRemindActionList.get(i).name() + " ");
+		}
 
 		return mString;
 	}

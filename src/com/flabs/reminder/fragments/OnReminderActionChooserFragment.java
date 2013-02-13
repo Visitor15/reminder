@@ -47,6 +47,7 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 	}
 
 	private void init() {
+		getReminderObject().clearAllActions();
 		setLayoutId(R.layout.new_reminder_on_reminder_action_layout);
 		setBackground(R.drawable.orange_gradient_background);
 	}
@@ -68,7 +69,7 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 		int pix = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dipValue, r.getDisplayMetrics());
 
 		container.measure(MeasureSpec.UNSPECIFIED, MeasureSpec.UNSPECIFIED);
-
+		Log.d("TAG", "REMINDER OBJECT: " + getReminderObject().toString());
 		Log.d("TAG", "NCC - PIX IS: " + pix + " VIEW WIDTH: " + container.getMeasuredWidth());
 
 		if(container.getMeasuredWidth() > pix) {
@@ -77,6 +78,7 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 	}
 
 	private void handleNextButtonClicked() {
+		saveActionsToReminder(getReminderObject());
 		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
 		ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
 

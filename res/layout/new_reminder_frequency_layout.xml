@@ -43,6 +43,14 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@id/btn_set_time"
             android:text="Set Date" />
+        
+        <Button
+            android:id="@+id/btn_set_repeat"
+            android:layout_width="144dip"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/btn_set_date"
+            android:text="Repeat" />
 
     </RelativeLayout>
 

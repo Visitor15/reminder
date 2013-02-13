@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
-    
+
     <string-array name="category_list">
         <item>Math</item>
         <item>Sciences</item>
         <item>History</item>
         <item>Macro/Micro Economics</item>
     </string-array>
-    
     <string-array name="subcategory_list">
         <item>Algebra</item>
         <item>Calculus</item>
@@ -16,5 +14,50 @@
         <item>Biology</item>
         <item>Economics 101</item>
     </string-array>
-    
+    <string-array name="repeat_type">
+        <item>Minute</item>
+        <item>Hour</item>
+        <item>Day</item>
+        <item>Week</item>
+        <item>Month</item>
+        <item>Year</item>
+        <item>On Date</item>
+    </string-array>
+    <string-array name="repeat_minute_presets">
+        <item>5</item>
+        <item>10</item>
+        <item>15</item>
+        <item>30</item>
+        <item>45</item>
+        <item>60</item>
+    </string-array>
+    <string-array name="repeat_hour_presets">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+    <string-array name="repeat_week_presets">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+        <item>11</item>
+        <item>12</item>
+    </string-array>
+
 </resources>
