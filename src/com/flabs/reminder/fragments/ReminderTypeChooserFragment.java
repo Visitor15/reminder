@@ -2,6 +2,7 @@ package com.flabs.reminder.fragments;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -152,6 +153,10 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 		priorityBar.setRating(getReminderObject().getPriority());
 		
 		setPriorityBarListener(priorityBar);
+		
+		if(getReminderObject() == null) {
+			setReminderObject(((ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter()).getReminderObject());
+		}
 	}
 
 	@Override

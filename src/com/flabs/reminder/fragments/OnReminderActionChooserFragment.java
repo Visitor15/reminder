@@ -47,7 +47,6 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 	}
 
 	private void init() {
-		getReminderObject().clearAllActions();
 		setLayoutId(R.layout.new_reminder_on_reminder_action_layout);
 		setBackground(R.drawable.orange_gradient_background);
 	}
@@ -81,6 +80,8 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 		saveActionsToReminder(getReminderObject());
 		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
 		ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
+		
+		adapter.setReminderObject(getReminderObject());
 
 		if((adapter.getDataList().size() - 1) == pager.getCurrentItem()) {
 
@@ -106,6 +107,7 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 	}
 
 	private void saveActionsToReminder(final ReminderObject reminderObj) {
+//		reminderObj.clearAllActions();
 		if(btnCall.isChecked()) {
 			reminderObj.setOnRemindAction(ACTION.CALL);
 		}

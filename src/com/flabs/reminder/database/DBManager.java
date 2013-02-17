@@ -138,7 +138,9 @@ public class DBManager extends SQLiteOpenHelper {
 	}
 
 	public ArrayList<ReminderObject> getReminderObjectsByTitle(final String title) throws StreamCorruptedException, IOException, ClassNotFoundException {
-		final Cursor all = query(EnvironmentVariables.DATABASE.MASTER_DATABASE_NAME, null, null, null);
+		Log.d("TAG", "NCC - HIT DAMNIT!");
+		
+		final Cursor all = query(EnvironmentVariables.DATABASE.MASTER_TABLE_NAME, null, null, null);
 		ArrayList<ReminderObject> reminderList = new ArrayList<ReminderObject>();
 		ReminderObject reminder;
 
@@ -155,6 +157,7 @@ public class DBManager extends SQLiteOpenHelper {
 				Log.d("TAG", "NCC - REMINDER FROM DB: " + reminder.getTitle());
 
 				if((title == null) || title.trim().length() == 0) {
+					Log.d("TAG", "NCC - FIND REMINDER: " + reminder.getTitle());
 					reminderList.add(reminder);
 				}
 				else if(reminder.getTitle().equalsIgnoreCase(title)) {
@@ -176,8 +179,13 @@ public class DBManager extends SQLiteOpenHelper {
 
 			if(tableName.equalsIgnoreCase(EnvironmentVariables.DATABASE.MASTER_TABLE_NAME)) {
 
+				Log.d("TAG", "NCC - QUERIED FOR REMINDERS");
+				
 				c = db.query(EnvironmentVariables.DATABASE.MASTER_TABLE_NAME, EnvironmentVariables.DATABASE.ALL_COLUMNS_FOR_REMINDER_OBJ,
 						selection, selectionArgs, null, null, orderBy);
+				
+				Log.d("TAG", "NCC - GOT CURSOR FOR MASTER_TABLE_NAME - SIZE IS: " + c.getCount());
+				
 				return c;
 			}
 			else if(tableName.equalsIgnoreCase(EnvironmentVariables.DATABASE.CATEGORIES_TABLE_NAME)) {

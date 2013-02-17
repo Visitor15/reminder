@@ -207,15 +207,16 @@ public class ReminderObject implements IReminderObject {
 				timeFormatter.format(getReminderTime().getTime()) + " " +
 				dateFormatter.format(getReminderTime().getTime()) + " " +
 				"MESSAGE: " + getMessage() + " " +
-				"REMINDER ACTIONS: ";
+				"REMINDER ACTIONS: " +
+				onRemindActionList.size();
 		
-		for(ACTION action : onRemindActionList) {
-			mString.concat(action.name() + " ");
-		}
-		
-		for(int i = 0; i < onRemindActionList.size(); i++) {
-			mString.concat(onRemindActionList.get(i).name() + " ");
-		}
+//		for(ACTION action : onRemindActionList) {
+//			mString.concat(action.name() + " ");
+//		}
+//		
+//		for(int i = 0; i < onRemindActionList.size(); i++) {
+//			mString.concat(onRemindActionList.get(i).name() + " ");
+//		}
 
 		return mString;
 	}

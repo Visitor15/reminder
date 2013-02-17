@@ -46,9 +46,12 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 	@Override
 	public Fragment getItem(int pos) {
 		BaseReminderFragment frag = ((BaseReminderFragment) dataList.get(pos));
-		frag.setReminderObject(reminderObj);
-		frag.setAdapterCallback(getAdapterCallback());
-		
+
+		if(reminderObj != null) {
+			frag.setReminderObject(reminderObj);
+			frag.setAdapterCallback(getAdapterCallback());
+		}
+
 		return frag;
 	}
 
@@ -56,7 +59,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 	public int getCount() {
 		return dataList.size();
 	}
-	
+
 	public ArrayList<Fragment> getDataList() {
 		return this.dataList;
 	}

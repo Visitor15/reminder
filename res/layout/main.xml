@@ -4,5 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+    <RelativeLayout 
+        android:id="@+id/rl_frag_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dip"
+        android:layout_weight="1"/>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="54dip"
+        layout="@layout/new_reminder_btn" />
 
 </LinearLayout>

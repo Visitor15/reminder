@@ -76,6 +76,8 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
 		ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
 		
+		adapter.setReminderObject(getReminderObject());
+		
 		if((adapter.getDataList().size() - 1) == pager.getCurrentItem()) {
 		
 		if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.QUICK_REMINDER.name())) {

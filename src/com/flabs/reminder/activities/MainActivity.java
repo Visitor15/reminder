@@ -12,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,18 +21,20 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.flabs.mobile.reminder.R;
-import com.flabs.reminder.controllers.ReminderObjectBuilder;
+import com.flabs.reminder.activities.ViewPagerAdapter.ViewPagerCallback;
 import com.flabs.reminder.database.DBManager;
+import com.flabs.reminder.fragments.ActiveRemindersFragment;
+import com.flabs.reminder.fragments.BaseReminderFragment;
+import com.flabs.reminder.fragments.SavedRemindersFragment;
 import com.flabs.reminder.receivers.ReminderScheduleReceiver;
-import com.flabs.reminder.reminder_object.Category;
 import com.flabs.reminder.reminder_object.ReminderObject;
-import com.flabs.reminder.reminder_object.SubCategory;
 
-public class MainActivity extends ReminderActivity {
+public class MainActivity extends ReminderActivity implements ViewPagerCallback {
 
 	public static final String TAG = "MainActivity";
 	
@@ -43,28 +47,77 @@ public class MainActivity extends ReminderActivity {
 	Button btnAdd;
 	Button btnSearch;
 	
+	private RelativeLayout fragContainer;
+	private RelativeLayout newReminderBtn;
+	
+	private SavedRemindersFragment savedRemindersFrag;
+	private ActiveRemindersFragment activeRemindersFrag;
+	
+	private ViewPager mViewPager;
+	private ViewPagerAdapter pageAdapter;
+	private ArrayList<Fragment> fragList;
 	
 	@Override
 	public void onReminderActivityCreate() {
-		setContentView(R.layout.temp_main);
+		setContentView(R.layout.main);
 		
 		initVariables();
 	}
 
 	private void initVariables() {
-		container = (LinearLayout) findViewById(R.id.ll_container);
-		titleInput = (EditText) findViewById(R.id.et_title);
-		messageInput = (EditText) findViewById(R.id.et_message);
-		categorySpinner = (Spinner) findViewById(R.id.spinner_category);
-		subCategorySpinner = (Spinner) findViewById(R.id.spinner_subcategory);
-		btnAdd = (Button) findViewById(R.id.btn);
-		btnSearch = (Button) findViewById(R.id.btn_search);
+		fragList = new ArrayList<Fragment>();
+		savedRemindersFrag = new SavedRemindersFragment();
+		activeRemindersFrag = new ActiveRemindersFragment();
+		fragList.add(activeRemindersFrag);
+		fragList.add(savedRemindersFrag);
+		fragContainer = (RelativeLayout) findViewById(R.id.rl_frag_container);
+		newReminderBtn = (RelativeLayout) findViewById(R.id.rl_btn);
 		
-		initAddBtn(btnAdd);
-		initSearchBtn(btnSearch);
+		initAddBtn(newReminderBtn);
+		
+		
+		mViewPager = new ViewPager(this);
+		mViewPager.setId(NewReminderActivity.VIEW_PAGER_ID);
+		mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+
+			@Override
+			public void onPageScrollStateChanged(int pos) {
+
+			}
+
+			@Override
+			public void onPageScrolled(int pos, float arg1, int arg2) {
+				// TODO Auto-generated method stub
+
+			}
+
+			@Override
+			public void onPageSelected(int pos) {
+				BaseReminderFragment frag = (BaseReminderFragment) pageAdapter.getItem(pos);
+				frag.getAdapterCallback().onFragmentCreated(frag.getBackgroundId());
+			}
+		});
+
+		pageAdapter = new ViewPagerAdapter(getSupportFragmentManager(), fragList, null, this);
+
+		mViewPager.setAdapter(pageAdapter);
+		mViewPager.setCurrentItem(0);
+		fragContainer.addView(mViewPager);
+		
+		
+//		container = (LinearLayout) findViewById(R.id.ll_container);
+//		titleInput = (EditText) findViewById(R.id.et_title);
+//		messageInput = (EditText) findViewById(R.id.et_message);
+//		categorySpinner = (Spinner) findViewById(R.id.spinner_category);
+//		subCategorySpinner = (Spinner) findViewById(R.id.spinner_subcategory);
+//		btnAdd = (Button) findViewById(R.id.btn);
+//		btnSearch = (Button) findViewById(R.id.btn_search);
+//		
+//		initAddBtn(btnAdd);
+//		initSearchBtn(btnSearch);
 	}
 
-	private void initAddBtn(Button btn) {
+	private void initAddBtn(View btn) {
 		btn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -215,6 +268,12 @@ public class MainActivity extends ReminderActivity {
 
 	@Override
 	public void onReminderActivityDestroy() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onFragmentChanged(int backgroundId) {
 		// TODO Auto-generated method stub
 		
 	}
