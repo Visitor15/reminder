@@ -47,14 +47,14 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		init();
 	}
 	
-	public ReminderCategoryChooserFragment(final ReminderObject reminderObj) {
-		this.setReminderObject(reminderObj);
-		init();
-	}
+//	public ReminderCategoryChooserFragment(final ReminderObject reminderObj) {
+//		this.setReminderObject(reminderObj);
+//		init();
+//	}
 	
 	private void init() {
-		
-		Log.d("TAG", "REMINDER OBJECT: " + getReminderObject().toString());
+//		this.setReminderObject(((ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter()).getReminderObject());
+//		Log.d("TAG", "REMINDER OBJECT: " + getReminderObject().toString());
 		
 		setLayoutId(R.layout.new_reminder_category_chooser_layout);
 		setBackground(R.drawable.green_gradient_background);
@@ -82,11 +82,11 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 		
 		if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.QUICK_REMINDER.name())) {
 			// We're going to view the frequency fragment
-			adapter.getDataList().add(new ReminderFrequencyFragment(getReminderObject()));
+			adapter.getDataList().add(new ReminderFrequencyFragment());
 		}
 		else if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.REPEAT_REMINDER.name())) {
 			// We're going to view the set message fragment
-			adapter.getDataList().add(new ReminderFrequencyFragment(getReminderObject()));
+			adapter.getDataList().add(new ReminderFrequencyFragment());
 		}
 		
 		switchToNewFragment(pager, (adapter.getDataList().size() - 1));
@@ -198,8 +198,6 @@ public class ReminderCategoryChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentCreate(Bundle b) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -114,6 +114,7 @@ public class NewReminderActivity extends ReminderActivity implements ViewPagerAd
 			public void onPageSelected(int pos) {
 				BaseReminderFragment frag = (BaseReminderFragment) pageAdapter.getItem(pos);
 				frag.getAdapterCallback().onFragmentCreated(frag.getBackgroundId());
+				frag.setReminderObject(pageAdapter.getReminderObject());
 			}
 		});
 

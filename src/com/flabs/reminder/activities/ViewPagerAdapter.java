@@ -17,14 +17,14 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 
 	private ArrayList<Fragment> dataList;
 
-	private ReminderObject reminderObj;
+	private static ReminderObject reminderObj;
 
 	private ViewPagerCallback callback;
 
 	public ViewPagerAdapter(FragmentManager fm, ArrayList<Fragment> dataList, ReminderObject reminderObj, ViewPagerCallback callback) {
 		super(fm);
 		this.dataList = dataList;
-		this.reminderObj = reminderObj;
+		ViewPagerAdapter.reminderObj = reminderObj;
 		this.callback = callback;
 		init();
 	}
@@ -36,11 +36,11 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
 	}
 
 	public void setReminderObject(final ReminderObject reminder) {
-		this.reminderObj = reminder;
+		ViewPagerAdapter.reminderObj = reminder;
 	}
 
 	public ReminderObject getReminderObject() {
-		return this.reminderObj;
+		return ViewPagerAdapter.reminderObj;
 	}
 
 	@Override

@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.flabs.mobile.reminder.R;
 import com.flabs.reminder.activities.MainActivity;
+import com.flabs.reminder.activities.NewReminderActivity;
+import com.flabs.reminder.activities.ViewPagerAdapter;
 import com.flabs.reminder.database.DBManager;
 import com.flabs.reminder.reminder_object.ReminderObject;
 
@@ -29,15 +31,16 @@ public class ReminderPreviewFragment extends BaseReminderFragment {
 	private Calendar calendar = Calendar.getInstance();
 
 	public ReminderPreviewFragment() {
-		init();
+//		init();
 	}
 
-	public ReminderPreviewFragment(ReminderObject reminderObj) {
-		this.setReminderObject(reminderObj);
-		init();
-	}
+//	public ReminderPreviewFragment(ReminderObject reminderObj) {
+//		this.setReminderObject(reminderObj);
+//		init();
+//	}
 
 	private void init() {
+		this.setReminderObject(((ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter()).getReminderObject());
 		setLayoutId(R.layout.new_reminder_preview_layout);
 		setBackground(R.drawable.blue_gradient_background);
 	}
@@ -62,8 +65,7 @@ public class ReminderPreviewFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentCreate(Bundle b) {
-		// TODO Auto-generated method stub
-
+		init();
 	}
 
 	@Override

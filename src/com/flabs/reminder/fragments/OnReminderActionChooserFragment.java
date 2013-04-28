@@ -23,6 +23,8 @@ import com.flabs.reminder.util.EnvironmentVariables.REMINDER_TYPE;
 
 public class OnReminderActionChooserFragment extends BaseReminderFragment {
 
+	public static final String TAG = "OnReminderActionChooserFragment";
+	
 	private Button btnNext;
 
 	private LinearLayout actionsContainer;
@@ -41,12 +43,13 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 		init();
 	}
 
-	public OnReminderActionChooserFragment(final ReminderObject reminderObj) {
-		this.setReminderObject(reminderObj);
-		init();
-	}
+//	public OnReminderActionChooserFragment(final ReminderObject reminderObj) {
+//		this.setReminderObject(reminderObj);
+//		init();
+//	}
 
 	private void init() {
+//		this.setReminderObject(((ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter()).getReminderObject());
 		setLayoutId(R.layout.new_reminder_on_reminder_action_layout);
 		setBackground(R.drawable.orange_gradient_background);
 	}
@@ -88,11 +91,11 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 			if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.QUICK_REMINDER.name())) {
 				// We're going to view the frequency fragment
 				//			adapter.getDataList().add(new ReminderFrequencyFragment(getReminderObject()));
-				adapter.getDataList().add(new ReminderCategoryChooserFragment(getReminderObject()));
+				adapter.getDataList().add(new ReminderCategoryChooserFragment());
 			}
 			else if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.REPEAT_REMINDER.name())) {
 				// We're going to view the set message fragment
-				adapter.getDataList().add(new ReminderCategoryChooserFragment(getReminderObject()));
+				adapter.getDataList().add(new ReminderCategoryChooserFragment());
 			}
 
 			switchToNewFragment(pager, (adapter.getDataList().size() - 1));
@@ -107,7 +110,7 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 	}
 
 	private void saveActionsToReminder(final ReminderObject reminderObj) {
-//		reminderObj.clearAllActions();
+		reminderObj.clearAllActions();
 		if(btnCall.isChecked()) {
 			reminderObj.setOnRemindAction(ACTION.CALL);
 		}
@@ -131,29 +134,40 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 	private void initButtons(final ReminderObject reminderObj) {
 		ArrayList<ACTION> actionList = reminderObj.getOnRemindAction();
 
+		Log.d(TAG, "NCC - NUMBER OF ACTIONS: " + actionList.size());
+		
+		int count = 0;
+		
 		for(ACTION action : actionList) {
+			Log.d(TAG, "NCC - LOOPING " + ++count + " action: " + action.name());
 			switch(action) {
 			case VIEW_REMINDER_DIALOG: {
+				Log.d(TAG, "NCC - SETTING DIALOG BUTTON TRUE");
 				btnDialog.setChecked(true);
 				break;
 			}
 			case VIEW_REMINDER_NOTIFICATION: {
+				Log.d(TAG, "NCC - SETTING NOTIFICATION BUTTON TRUE");
 				btnNotification.setChecked(true);
 				break;
 			}
 			case SEND_SMS: {
+				Log.d(TAG, "NCC - SETTING SMS BUTTON TRUE");
 				btnSMS.setChecked(true);
 				break;
 			}
 			case SEND_EMAIL: {
+				Log.d(TAG, "NCC - SETTING EMAIL BUTTON TRUE");
 				btnEmail.setChecked(true);
 				break;
 			}
 			case CALL: {
+				Log.d(TAG, "NCC - SETTING CALL BUTTON TRUE");
 				btnCall.setChecked(true);
 				break;
 			}
 			case VIBRATE: {
+				Log.d(TAG, "NCC - SETTING VIBRATE BUTTON TRUE");
 				btnVibrate.setChecked(true);
 				break;
 			}
@@ -166,8 +180,6 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentCreate(Bundle b) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -185,26 +197,26 @@ public class OnReminderActionChooserFragment extends BaseReminderFragment {
 		btnVibrate = (ToggleButton) row1.findViewById(R.id.toggleButton3);
 
 		setNextButtonListener(btnNext);
-		initButtons(getReminderObject());
+		
 	}
 
 	@Override
 	public void onFragmentCreated(Bundle b) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void onFragmentPause() {
 		saveActionsToReminder(getReminderObject());
-
 		ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
 		adapter.setReminderObject(getReminderObject());
+		
 	}
 
 	@Override
 	public void onFragmentResume() {
 		initActionsContainer(actionsContainer);
+		initButtons(getReminderObject());
 	}
 
 	@Override

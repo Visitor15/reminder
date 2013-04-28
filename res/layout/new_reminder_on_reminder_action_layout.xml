@@ -61,7 +61,8 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/tv_title" />
+                    android:layout_below="@id/tv_title"
+                    android:checked="false" />
                 
                 
             </RelativeLayout>
@@ -85,7 +86,8 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/tv_title" />
+                    android:layout_below="@id/tv_title"
+                    android:checked="false" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -107,7 +109,8 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/tv_title" />
+                    android:layout_below="@id/tv_title"
+                    android:checked="false" />
             </RelativeLayout>
         </LinearLayout>
 
@@ -138,7 +141,8 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/tv_title" />
+                    android:layout_below="@id/tv_title"
+                    android:checked="false" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -160,7 +164,8 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/tv_title" />
+                    android:layout_below="@id/tv_title"
+                    android:checked="false" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -182,7 +187,8 @@
                     android:layout_height="match_parent"
                     android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@id/tv_title" />
+                    android:layout_below="@id/tv_title"
+                    android:checked="false" />
             </RelativeLayout>
         </LinearLayout>
     </LinearLayout>

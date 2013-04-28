@@ -36,15 +36,16 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 	private Calendar calendar = Calendar.getInstance();
 
 	public ReminderFrequencyFragment() {
-		init();
+//		init();
 	}
 
-	public ReminderFrequencyFragment(ReminderObject reminderObj) {
-		this.setReminderObject(reminderObj);
-		init();
-	}
+//	public ReminderFrequencyFragment(ReminderObject reminderObj) {
+//		this.setReminderObject(reminderObj);
+//		init();
+//	}
 
 	private void init() {
+		this.setReminderObject(((ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter()).getReminderObject());
 		setLayoutId(R.layout.new_reminder_frequency_layout);
 		setBackground(R.drawable.teal_gradient_background);
 	}
@@ -101,11 +102,11 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 		if((adapter.getDataList().size() - 1) == pager.getCurrentItem()) {
 			if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.QUICK_REMINDER.name())) {
 				// We're going to view the frequency fragment
-				adapter.getDataList().add(new ReminderSetMessageFragment(getReminderObject()));
+				adapter.getDataList().add(new ReminderSetMessageFragment());
 			}
 			else if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.REPEAT_REMINDER.name())) {
 				// We're going to view the set message fragment
-				adapter.getDataList().add(new ReminderSetMessageFragment(getReminderObject()));
+				adapter.getDataList().add(new ReminderSetMessageFragment());
 			}
 
 			switchToNewFragment(pager, (adapter.getDataList().size() - 1));
@@ -139,8 +140,7 @@ public class ReminderFrequencyFragment extends BaseReminderFragment implements R
 
 	@Override
 	public void onFragmentCreate(Bundle b) {
-		// TODO Auto-generated method stub
-
+		init();
 	}
 
 	@Override

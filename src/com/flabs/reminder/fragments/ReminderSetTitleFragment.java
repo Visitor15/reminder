@@ -20,15 +20,16 @@ public class ReminderSetTitleFragment extends BaseReminderFragment {
 	private Button btnPreview;
 
 	public ReminderSetTitleFragment() {
-		init();
+//		init();
 	}
 
-	public ReminderSetTitleFragment(final ReminderObject reminderObj) {
-		this.setReminderObject(reminderObj);
-		init();
-	}
+//	public ReminderSetTitleFragment(final ReminderObject reminderObj) {
+//		this.setReminderObject(reminderObj);
+//		init();
+//	}
 
 	private void init() {
+		this.setReminderObject(((ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter()).getReminderObject());
 		setLayoutId(R.layout.new_reminder_title_layout);
 		setBackground(R.drawable.navy_gradient_background);
 	}
@@ -44,11 +45,11 @@ public class ReminderSetTitleFragment extends BaseReminderFragment {
 			if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.QUICK_REMINDER.name())) {
 				// We're going to view the frequency fragment
 				//			adapter.getDataList().add(new ReminderFrequencyFragment(getReminderObject()));
-				adapter.getDataList().add(new ReminderPreviewFragment(getReminderObject()));
+				adapter.getDataList().add(new ReminderPreviewFragment());
 			}
 			else if(getReminderObject().getReminderType().name().equalsIgnoreCase(REMINDER_TYPE.REPEAT_REMINDER.name())) {
 				// We're going to view the set message fragment
-				adapter.getDataList().add(new ReminderPreviewFragment(getReminderObject()));
+				adapter.getDataList().add(new ReminderPreviewFragment());
 			}
 
 			switchToNewFragment(pager, (adapter.getDataList().size() - 1));
@@ -75,8 +76,7 @@ public class ReminderSetTitleFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentCreate(Bundle b) {
-		// TODO Auto-generated method stub
-
+		init();
 	}
 
 	@Override
@@ -89,8 +89,7 @@ public class ReminderSetTitleFragment extends BaseReminderFragment {
 
 	@Override
 	public void onFragmentCreated(Bundle b) {
-		// TODO Auto-generated method stub
-
+		init();
 	}
 
 	@Override

@@ -32,10 +32,10 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 		init();
 	}
 	
-	public ReminderTypeChooserFragment(final ReminderObject reminderObj) {
-		this.setReminderObject(reminderObj);
-		init();
-	}
+//	public ReminderTypeChooserFragment(final ReminderObject reminderObj) {
+//		this.setReminderObject(reminderObj);
+//		init();
+//	}
 	
 	private void init() {
 		setLayoutId(R.layout.new_reminder_type_layout);
@@ -50,7 +50,16 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 				ViewPagerAdapter adapter = (ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter();
 				adapter.getDataList().clear();
 				adapter.getDataList().add(ReminderTypeChooserFragment.this);
-				adapter.getReminderObject().setReminderType(REMINDER_TYPE.QUICK_REMINDER);
+				
+				//We're resetting the ReminderObject here.
+				setReminderObject(new ReminderObject());
+				
+				getReminderObject().setReminderType(REMINDER_TYPE.QUICK_REMINDER);
+				
+				//Setting the new ReminderObject to the adapter.
+				adapter.setReminderObject(getReminderObject());
+				
+//				adapter.getReminderObject().setReminderType(REMINDER_TYPE.QUICK_REMINDER);
 				ViewPager pager = ((NewReminderActivity) getActivity()).getViewPager();
 				manipulateFragmentsInAdapter(adapter, ReminderTypeChooserFragment.QUICK_REMINDER);
 				switchToNewFragment(pager, (adapter.getDataList().size() - 1));
@@ -77,15 +86,15 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 	}
 	
 	private void manipulateFragmentsInAdapter(final ViewPagerAdapter adapter, final int reminderType) {
-		adapter.getReminderObject().setPriority(priorityBar.getRating());
+		getReminderObject().setPriority(priorityBar.getRating());
 		
 		switch(reminderType) {
 		case ReminderTypeChooserFragment.QUICK_REMINDER: {
-			adapter.getDataList().add(new OnReminderActionChooserFragment(adapter.getReminderObject()));
+			adapter.getDataList().add(new OnReminderActionChooserFragment());
 			break;
 		}
 		case ReminderTypeChooserFragment.REPEAT_REMINDER: {
-			adapter.getDataList().add(new OnReminderActionChooserFragment(adapter.getReminderObject()));
+			adapter.getDataList().add(new OnReminderActionChooserFragment());
 			break;
 		}
 		default: {
@@ -154,9 +163,9 @@ public class ReminderTypeChooserFragment extends BaseReminderFragment {
 		
 		setPriorityBarListener(priorityBar);
 		
-		if(getReminderObject() == null) {
-			setReminderObject(((ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter()).getReminderObject());
-		}
+//		if(getReminderObject() == null) {
+//			setReminderObject(((ViewPagerAdapter) ((NewReminderActivity) getActivity()).getAdapter()).getReminderObject());
+//		}
 	}
 
 	@Override
